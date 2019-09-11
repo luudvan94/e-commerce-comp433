@@ -15,7 +15,7 @@ public class HibernateUtil
       {
          if (sessionFactory == null)
          {
-            Configuration configuration = new Configuration().configure(HibernateUtil.class.getResource("/hibernate.cfg.xml"));
+            Configuration configuration = new Configuration().configure(HibernateUtil.class.getResource("../hibernate.cfg.xml"));
             StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
             serviceRegistryBuilder.applySettings(configuration.getProperties());
             ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
