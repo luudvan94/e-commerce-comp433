@@ -93,15 +93,21 @@
         <artifactId>slf4j-log4j12</artifactId>
         <version>1.5.6</version>
     </dependency>
-    <dependency>
-    <groupId>com.h2database</groupId>
-    <artifactId>h2</artifactId>
-    <version>1.4.194</version>
+    <dependency> 
+    <groupId>hsqldb</groupId> 
+    <artifactId>hsqldb</artifactId> 
+    <version>1.8.0.10</version> 
 </dependency>
 <dependency>
     <groupId>org.javatuples</groupId>
     <artifactId>javatuples</artifactId>
     <version>1.2</version>
+</dependency>
+<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.12</version>
+  <scope>test</scope>
 </dependency>
   </dependencies>
 </project>

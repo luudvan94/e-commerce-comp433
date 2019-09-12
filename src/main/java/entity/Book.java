@@ -1,14 +1,21 @@
 package entity;
 
+import java.io.Serializable;
+import java.util.Date;  
+
 import javax.persistence.*;
 
 @Entity
-@Table(name  = "BOOK")
+@Table(name = "BOOK", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "id"),
+       	})
 public class Book {
-
-	@Id @GeneratedValue
-	@Column(name = "id")
-	private int id;
+	
+	private static final long serialVersionUID = -1798070786993154676L;
+	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	private String id;
 	
 	@Column(name = "title")
 	private String title;
@@ -17,18 +24,22 @@ public class Book {
 	private String author;
 	
 	@Column(name = "description")
-	private String book;
+	private String description;
 	
 	@Column(name = "price")
-	private int price;
+	private double price;
 	
 	public Book() {}
+	
+	public static String generateID() {
+		return "B" + new Date().getTime();
+	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -40,20 +51,28 @@ public class Book {
 		this.title = title;
 	}
 
-	public String getBook() {
-		return book;
-	}
-
-	public void setBook(String book) {
-		this.book = book;
-	}
-
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	
