@@ -11,8 +11,6 @@ import javax.persistence.*;
        	})
 public class Book {
 	
-	private static final long serialVersionUID = -1798070786993154676L;
-	
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
 	private String id;
