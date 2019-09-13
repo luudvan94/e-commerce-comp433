@@ -3,3 +3,5 @@ INSERT INTO BOOK(id, title, author, description, price) VALUES ('B123','Artifici
 INSERT INTO BOOK(id, title, author, description, price) VALUES ('B456','Deep Learning', 'Ian Goodfellow, Yoshua Bengio and Aaron Courville', 'This best data science book is especially effective for those looking to enter the data-driven machine learning and deep learning avenues of the field.', 35.0),
 INSERT INTO BOOK(id, title, author, description, price) VALUES ('B789','Advanced R', 'Hadley Wickham', 'Budding ‘R’ users and those looking to improve their overall programming talents and analytical skills as well as peruse the intricate nuances of this invaluable data-driven language.', 55.0),
 INSERT INTO BOOK(id, title, author, description, price) VALUES ('B124','Machine Learning Yearning', 'Andrew Ng', 'Someone who has become all too aware of the machine learning and artificial intelligence craze but needs to get a grip on the subject. One of the best books for data science if you’re looking to hit the ground running with autonomous technologies.', 40.0),
+
+INSERT INTO PARTNER(id, username, password) VALUES('P123', 'partner1', 'abcd');

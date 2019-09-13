@@ -14,5 +14,6 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.hbm2ddl.import_files">import.sql</property>
         <mapping class="entity.Book"></mapping>
+        <mapping class="entity.Partner"></mapping>
     </session-factory>
 </hibernate-configuration>

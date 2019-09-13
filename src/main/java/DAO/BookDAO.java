@@ -11,10 +11,8 @@ import entity.Book;
 import util.HibernateUtil;
 
 public class BookDAO {
-	
-	public static final String INSERT_QUERY = "INSERT INTO BOOK(title, author, description, price) VALUES (:title, :author, :description, :price)";
 
-	public List<Book> getAllBooks() {
+	public static List<Book> getAllBooks() {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria cri = session.createCriteria(Book.class);
@@ -24,7 +22,7 @@ public class BookDAO {
 		return result;
 	}
 	
-	public Book getBookById(String id) {
+	public static Book getBookById(String id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Criteria crit = session.createCriteria(Book.class);
@@ -40,12 +38,12 @@ public class BookDAO {
 		return result;
 	}
 
-	public List<Book> getBooksByTitle(String title) {
+	public static List<Book> getBooksByTitle(String title) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Criteria crit = session.createCriteria(Book.class);
 		crit.add(Restrictions.like("title",title, MatchMode.START));
-		List<Book> result = crit.list();
+		List<Book> result = (List<Book>) crit.list();
 		
 		if (result.size() == 0) {
 			return null;
@@ -55,7 +53,7 @@ public class BookDAO {
 		return result;
 	}
 
-	public void addNewBook(Book book) {
+	public static void addNewBook(Book book) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		session.beginTransaction();
