@@ -1,6 +1,7 @@
 package dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -74,6 +75,16 @@ public class BookDAOTest {
 		List<Book> result = BookDAO.getBooksByPartnerID("P12345");
 		
 		assertTrue(result == null);
+	}
+	
+	@Test
+	public void shouldReturnTrueForExistedBook() {
+		assertTrue(BookDAO.isBookExist("B123"));
+	}
+	
+	@Test
+	public void shouldReturnFalseForNonExistedBook() {
+		assertFalse(BookDAO.isBookExist("B12345"));
 	}
 	
 	@AfterClass

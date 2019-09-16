@@ -8,9 +8,24 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import entity.Book;
+import entity.Partner;
 import util.HibernateUtil;
 
 public class BookDAO {
+	
+	public static boolean isBookExist(String bookID) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria crit = session.createCriteria(Book.class);
+		crit.add(Restrictions.eq("id",bookID));
+		
+		List<Book> result = crit.list();
+		
+		if (result.size() == 0) {
+			return false;
+		}
+		
+		return true;
+	}
 
 	public static List<Book> getAllBooks() {
 		

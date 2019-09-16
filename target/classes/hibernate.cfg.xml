@@ -16,5 +16,6 @@
         <mapping class="entity.Book"></mapping>
         <mapping class="entity.Partner"></mapping>
         <mapping class="entity.PartnerInfo"></mapping>
+        <mapping class="entity.BookReview"></mapping>
     </session-factory>
 </hibernate-configuration>
