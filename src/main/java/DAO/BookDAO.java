@@ -52,6 +52,21 @@ public class BookDAO {
 		
 		return result;
 	}
+	
+	public static List<Book> getBooksByPartnerID(String partnerId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Criteria crit = session.createCriteria(Book.class);
+		crit.add(Restrictions.eq("partnerID",partnerId));
+		List<Book> result = (List<Book>) crit.list();
+		
+		if (result.size() == 0) {
+			return null;
+		}
+		
+		
+		return result;
+	}
 
 	public static void addNewBook(Book book) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -64,5 +79,7 @@ public class BookDAO {
       
 		
 	}
+	
+	
 
 }

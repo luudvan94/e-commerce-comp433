@@ -1,6 +1,5 @@
 package entity;
 
-import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -22,7 +21,7 @@ public class Partner {
 	@Column(name = "password")
 	private String password;
 	
-	public void Partner() {}
+	public Partner() {}
 	
 	public static String generateID() {
 		return "P" + new Date().getTime();

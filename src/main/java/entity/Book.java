@@ -1,14 +1,11 @@
 package entity;
 
-import java.io.Serializable;
 import java.util.Date;  
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "BOOK", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "id"),
-       	})
+@Table(name = "BOOK")
 public class Book {
 	
 	@Id
@@ -26,6 +23,9 @@ public class Book {
 	
 	@Column(name = "price")
 	private double price;
+	
+	@Column(name = "partnerID")
+	private String partnerID;
 	
 	public Book() {}
 	
@@ -71,6 +71,14 @@ public class Book {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getPartnerID() {
+		return partnerID;
+	}
+
+	public void setPartnerID(String partnerID) {
+		this.partnerID = partnerID;
 	}
 	
 	

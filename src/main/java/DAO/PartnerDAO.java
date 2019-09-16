@@ -12,6 +12,19 @@ import util.HibernateUtil;
 
 public class PartnerDAO {
 	
+	public static boolean isPartnerExist(String partnerID) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria crit = session.createCriteria(Partner.class);
+		crit.add(Restrictions.eq("id", partnerID));
+		List<Partner> result = crit.list();
+		
+		if (result.size() == 0) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public static boolean isUserNameAlreadyExist(String username) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria crit = session.createCriteria(Partner.class);

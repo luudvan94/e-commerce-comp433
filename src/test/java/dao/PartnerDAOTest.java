@@ -1,6 +1,7 @@
 package dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.AfterClass;
@@ -55,6 +56,15 @@ public class PartnerDAOTest {
 		
 		Partner partner = PartnerDAO.login("partner3", "password");
 		assertTrue(partner == null);
+	}
+	
+	@Test 
+	public void shouldReturnTrueForPartnerExist() {
+		assertTrue(PartnerDAO.isPartnerExist("P1234"));
+	}
+	
+	@Test public void shouldReturnFalseForPartnerNotExist() {
+		assertFalse(PartnerDAO.isPartnerExist("P12345"));
 	}
 
 	@AfterClass
