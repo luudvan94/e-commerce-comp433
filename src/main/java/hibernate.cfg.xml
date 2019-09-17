@@ -20,5 +20,6 @@
         <mapping class="entity.Customer"></mapping>
         <mapping class="entity.CustomerInfo"></mapping>
         <mapping class="entity.ShippingAddress"></mapping>
+        <mapping class="entity.CardProfile"></mapping>
     </session-factory>
 </hibernate-configuration>

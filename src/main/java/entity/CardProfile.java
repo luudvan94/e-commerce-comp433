@@ -18,6 +18,9 @@ public class CardProfile {
 	@Column(name="date_added")
 	private String date_added;
 	
+	@Column(name = "customerID")
+	private String customerID;
+	
 	@Column(name="four_digit")
 	private String four_digit;
 	
@@ -71,6 +74,14 @@ public class CardProfile {
 
 	public void setExpires(String expires) {
 		this.expires = expires;
+	}
+
+	public String getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 	
 }

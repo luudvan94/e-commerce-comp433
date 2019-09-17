@@ -19,3 +19,5 @@ INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('B
 INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('BR125', 'This book is very great!', 'B123', 'C456', '12345656');
 
 INSERT INTO SHIPPING_ADDRESS(id, customerID, street, city, zipcode) VALUES('S123', 'C123', '7800 Nashville', 'Burbank', '60459');
+INSERT INTO CARD_PROFILE(id, customerID, amount, expires, date_added) VALUES('CP123', 'C123', 35.0, '06/23', '345345346');
+INSERT INTO CARD_PROFILE(id, customerID, amount, expires, date_added) VALUES('CP124', 'C456', 95.0, '06/23', '565676353');

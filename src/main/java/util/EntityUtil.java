@@ -4,6 +4,7 @@ import java.util.Date;
 
 import entity.Book;
 import entity.BookReview;
+import entity.CardProfile;
 import entity.Customer;
 import entity.CustomerInfo;
 import entity.Partner;
@@ -81,6 +82,18 @@ public class EntityUtil {
 		info.setStreet("1234 ABC");
 		info.setCity("XYZ");
 		info.setZipcode("12345");
+		
+		return info;
+	}
+	
+	public static CardProfile cardProfileSample() {
+		CardProfile info = new CardProfile();
+		info.setId(ID.generateID("CP"));
+		info.setCustomerID("C123");
+		info.setAmount(25.0);
+		info.setDate_added("12334234");
+		info.setExpires("06/22");
+		info.setFour_digit("1234");
 		
 		return info;
 	}

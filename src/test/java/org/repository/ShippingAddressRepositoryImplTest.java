@@ -36,7 +36,7 @@ public class ShippingAddressRepositoryImplTest extends AbstractHibernateTest {
 	public void getShippingAddress_WhenNotExist() {
 		flushAndClearSession();
 		
-		ShippingAddress shippingAddressFromDb = shippingAddressRepository.get("CI123567");
+		ShippingAddress shippingAddressFromDb = shippingAddressRepository.get("S123567");
 		assertTrue(shippingAddressFromDb == null);
 	}
 	
