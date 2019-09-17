@@ -5,6 +5,7 @@ import java.util.Date;
 import entity.Book;
 import entity.BookReview;
 import entity.Customer;
+import entity.CustomerInfo;
 import entity.Partner;
 import entity.PartnerInfo;
 
@@ -59,6 +60,17 @@ public class EntityUtil {
 		customer.setPassword(Password.encrypt("password"));
 		
 		return customer;
+	}
+	
+	public static CustomerInfo customerInfoSample() {
+		CustomerInfo info = new CustomerInfo();
+		info.setId(PartnerInfo.generateID());
+		info.setName("customer info");
+		info.setAddress("123 Sherindan Av");
+		info.setDate_added("" + new Date().getTime());
+		info.setCustomerID("C123");
+		
+		return info;
 	}
 
 }

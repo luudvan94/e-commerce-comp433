@@ -15,3 +15,5 @@ INSERT INTO BOOK_REVIEW(id, content, bookID, date_created) VALUES('BR125', 'This
 
 INSERT INTO CUSTOMER(id, username, password) VALUES('C123', 'customer1', 'abcd');
 INSERT INTO CUSTOMER(id, username, password) VALUES('C456', 'customer2', 'abcd');
+
+INSERT INTO CUSTOMER_INFO(id, customerID, name, address, date_added) VALUES('CI123', 'C123', 'Loyola University', '123 Sheridan Rd, IL', '123456678');
