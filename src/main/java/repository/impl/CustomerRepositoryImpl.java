@@ -6,29 +6,29 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
-import entity.Book;
-import entity.Partner;
+import entity.Customer;
 import repository.AbstractRepository;
+import repository.CustomerRepository;
 import repository.PartnerRepository;
 import util.Password;
 
-public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> implements PartnerRepository {
-
+public class CustomerRepositoryImpl extends AbstractRepository<Customer, String> implements CustomerRepository {
+	
 	@Override
-	public void delete(Partner t) {
-		Partner persistancePartner = get(t.getId());
-		getSession().delete(persistancePartner);	
+	public void delete(Customer t) {
+		Customer persistanceCustomer = get(t.getId());
+		getSession().delete(persistanceCustomer);	
 	}
 
 	@Override
-	public void update(Partner t) {
+	public void update(Customer t) {
 		t.setPassword(Password.encrypt(t.getPassword()));
 		getSession().merge(t);
 		
 	}
 
 	@Override
-	public String create(Partner t) {
+	public String create(Customer t) {
 		if (isUserAlreadyExist(t.getUsername())) {
 			return null;
 		}
@@ -37,29 +37,29 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 	}
 
 	@Override
-	public Partner get(String id) {
-		return (Partner) getSession().get(Partner.class, id);
+	public Customer get(String id) {
+		return (Customer) getSession().get(Customer.class, id);
 	}
 	
 
 	@Override
-	public List<Partner> getAll() {
-		Query query = getSession().createQuery("FROM Partner");
+	public List<Customer> getAll() {
+		Query query = getSession().createQuery("FROM Customer");
 		return query.list();
 	}
 
 	@Override
 	public void deleteAll() {
-		Query query = getSession().createQuery("DELETE FROM Partner");
+		Query query = getSession().createQuery("DELETE FROM Customer");
 		query.executeUpdate();
 	}
 
 	@Override
-	public Partner login(String username, String password) {
-		Criteria crit = getSession().createCriteria(Partner.class);
+	public Customer login(String username, String password) {
+		Criteria crit = getSession().createCriteria(Customer.class);
 		crit.add(Restrictions.eq("username", username));
 		crit.add(Restrictions.eq("password", Password.encrypt(password)));
-		List<Partner> result = crit.list();
+		List<Customer> result = crit.list();
 		
 		if (result.size() > 0) {
 			return result.get(0);
@@ -70,9 +70,9 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 
 	@Override
 	public boolean isUserAlreadyExist(String username) {
-		Criteria crit = getSession().createCriteria(Partner.class);
+		Criteria crit = getSession().createCriteria(Customer.class);
 		crit.add(Restrictions.eq("username", username));
-		List<Partner> result = crit.list();
+		List<Customer> result = crit.list();
 		
 		if (result.size() == 0) {
 			return false;
@@ -80,7 +80,4 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 		
 		return true;
 	}
-	
-	
-
 }

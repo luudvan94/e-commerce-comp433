@@ -1,18 +1,16 @@
 package entity;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;  
+import java.util.Date;
 
-import javax.persistence.*;
-
-import util.Password;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "PARTNER")
-public class Partner {
-	
+@Table(name = "CUSTOMER")
+public class Customer {
+
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
 	private String id;
@@ -23,10 +21,10 @@ public class Partner {
 	@Column(name = "password")
 	private String password;
 	
-	public Partner() {}
+	public Customer() {}
 	
 	public static String generateID() {
-		return "P" + new Date().getTime();
+		return "C" + new Date().getTime();
 	}
 
 	public String getId() {
@@ -49,13 +47,7 @@ public class Partner {
 		return password;
 	}
 
-	public void encryptAndSetPassword(String password) {
-		this.password = Password.encrypt(password);
-	}
-	
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }

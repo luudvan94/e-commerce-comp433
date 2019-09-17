@@ -12,3 +12,6 @@ INSERT INTO PARTNER_INFO(id, partnerID, name, address, date_added) VALUES('PI123
 INSERT INTO BOOK_REVIEW(id, content, bookID, date_created) VALUES('BR123', 'This book is very great! yeahhhhhh', 'B123', '12345656');
 INSERT INTO BOOK_REVIEW(id, content, bookID, date_created) VALUES('BR124', 'This book is very great!', 'B123', '12345656');
 INSERT INTO BOOK_REVIEW(id, content, bookID, date_created) VALUES('BR125', 'This book is very great!', 'B123', '12345656');
+
+INSERT INTO CUSTOMER(id, username, password) VALUES('C123', 'customer1', 'abcd');
+INSERT INTO CUSTOMER(id, username, password) VALUES('C456', 'customer2', 'abcd');

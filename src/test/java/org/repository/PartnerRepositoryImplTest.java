@@ -9,6 +9,7 @@ import entity.Partner;
 import repository.PartnerRepository;
 import repository.impl.PartnerRepositoryImpl;
 import util.EntityUtil;
+import util.Password;
 
 public class PartnerRepositoryImplTest extends AbstractHibernateTest {
 
@@ -74,7 +75,7 @@ public class PartnerRepositoryImplTest extends AbstractHibernateTest {
 		flushAndClearSession();
 		
 		partner = partnerRepository.get("P1234");
-		assertTrue(partner.getPassword().equalsIgnoreCase(Partner.encrypt("newPassword")));
+		assertTrue(partner.getPassword().equalsIgnoreCase(Password.encrypt("newPassword")));
 	}
 	
 	@Test

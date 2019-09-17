@@ -4,6 +4,7 @@ import java.util.Date;
 
 import entity.Book;
 import entity.BookReview;
+import entity.Customer;
 import entity.Partner;
 import entity.PartnerInfo;
 
@@ -25,7 +26,7 @@ public class EntityUtil {
 		Partner partner = new Partner();
 		partner.setId(Partner.generateID());
 		partner.setUsername("username");
-		partner.setPassword(Partner.encrypt("password"));
+		partner.setPassword(Password.encrypt("password"));
 		
 		return partner;
 	}
@@ -49,6 +50,15 @@ public class EntityUtil {
 		review.setBook_id("B123");
 		
 		return review;
+	}
+	
+	public static Customer customerSample() {
+		Customer customer = new Customer();
+		customer.setId(Customer.generateID());
+		customer.setUsername("username");
+		customer.setPassword(Password.encrypt("password"));
+		
+		return customer;
 	}
 
 }
