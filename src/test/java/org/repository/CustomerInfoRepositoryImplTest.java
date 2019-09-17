@@ -87,7 +87,7 @@ public class CustomerInfoRepositoryImplTest extends AbstractHibernateTest {
 	}
 	
 	@Test
-	public void partnerInfoByPartnerID() {
+	public void customerInfoByCustomerID() {
 		assertTrue(customerInfoRepository.customerInfoByCustomerID("C123") != null);
 	}
 

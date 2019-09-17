@@ -8,12 +8,13 @@ import entity.Customer;
 import entity.CustomerInfo;
 import entity.Partner;
 import entity.PartnerInfo;
+import entity.ShippingAddress;
 
 public class EntityUtil {
 	
 	public static Book bookSample() {
 		Book book = new Book();
-		book.setId(Book.generateID());
+		book.setId(ID.generateID("B"));
 		book.setTitle("Data Smart: Using Data Science to Transform Information into Insight");
 		book.setAuthor("John W. Foreman");
 		book.setDescription("Data Science gets thrown around in the press like it's magic. Major retailers are predicting everything from when their customers are pregnant to when they want a new pair of Chuck Taylors. It's a brave new world where seemingly meaningless data can be transformed into valuable insight to drive smart business decisions.");
@@ -25,7 +26,7 @@ public class EntityUtil {
 	
 	public static Partner partnerSample() {
 		Partner partner = new Partner();
-		partner.setId(Partner.generateID());
+		partner.setId(ID.generateID("B"));
 		partner.setUsername("username");
 		partner.setPassword(Password.encrypt("password"));
 		
@@ -34,7 +35,7 @@ public class EntityUtil {
 	
 	public static PartnerInfo partnerInfoSample() {
 		PartnerInfo info = new PartnerInfo();
-		info.setId(PartnerInfo.generateID());
+		info.setId(ID.generateID("PI"));
 		info.setName("partner info");
 		info.setAddress("123 Sherindan Av");
 		info.setDate_added("" + new Date().getTime());
@@ -45,7 +46,7 @@ public class EntityUtil {
 	
 	public static BookReview bookReviewSample() {
 		BookReview review = new BookReview();
-		review.setId(BookReview.generateID());
+		review.setId(ID.generateID("BR"));
 		review.setContent("this is awesome!!");
 		review.setDateCreated("" + new Date().getTime());
 		review.setBook_id("B123");
@@ -55,7 +56,7 @@ public class EntityUtil {
 	
 	public static Customer customerSample() {
 		Customer customer = new Customer();
-		customer.setId(Customer.generateID());
+		customer.setId(ID.generateID("C"));
 		customer.setUsername("username");
 		customer.setPassword(Password.encrypt("password"));
 		
@@ -64,11 +65,22 @@ public class EntityUtil {
 	
 	public static CustomerInfo customerInfoSample() {
 		CustomerInfo info = new CustomerInfo();
-		info.setId(PartnerInfo.generateID());
+		info.setId(ID.generateID("CI"));
 		info.setName("customer info");
 		info.setAddress("123 Sherindan Av");
 		info.setDate_added("" + new Date().getTime());
 		info.setCustomerID("C123");
+		
+		return info;
+	}
+	
+	public static ShippingAddress shippingAddressSample() {
+		ShippingAddress info = new ShippingAddress();
+		info.setId(ID.generateID("S"));
+		info.setCustomerID("C123");
+		info.setStreet("1234 ABC");
+		info.setCity("XYZ");
+		info.setZipcode("12345");
 		
 		return info;
 	}

@@ -9,11 +9,13 @@ INSERT INTO PARTNER(id, username, password) VALUES('P4567', 'partner2', 'abcd');
 
 INSERT INTO PARTNER_INFO(id, partnerID, name, address, date_added) VALUES('PI1234', 'P1234', 'Loyola University', '123 Sheridan Rd, IL', '123456678');
 
-INSERT INTO BOOK_REVIEW(id, content, bookID, date_created) VALUES('BR123', 'This book is very great! yeahhhhhh', 'B123', '12345656');
-INSERT INTO BOOK_REVIEW(id, content, bookID, date_created) VALUES('BR124', 'This book is very great!', 'B123', '12345656');
-INSERT INTO BOOK_REVIEW(id, content, bookID, date_created) VALUES('BR125', 'This book is very great!', 'B123', '12345656');
-
 INSERT INTO CUSTOMER(id, username, password) VALUES('C123', 'customer1', 'abcd');
 INSERT INTO CUSTOMER(id, username, password) VALUES('C456', 'customer2', 'abcd');
 
 INSERT INTO CUSTOMER_INFO(id, customerID, name, address, date_added) VALUES('CI123', 'C123', 'Loyola University', '123 Sheridan Rd, IL', '123456678');
+
+INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('BR123', 'This book is very great! yeahhhhhh', 'B123', 'C123', '12345656');
+INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('BR124', 'This book is very great!', 'B123', 'C123', '12345656');
+INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('BR125', 'This book is very great!', 'B123', 'C456', '12345656');
+
+INSERT INTO SHIPPING_ADDRESS(id, customerID, street, city, zipcode) VALUES('S123', 'C123', '7800 Nashville', 'Burbank', '60459');

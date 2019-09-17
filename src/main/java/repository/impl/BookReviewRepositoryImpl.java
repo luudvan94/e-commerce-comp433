@@ -59,5 +59,16 @@ public class BookReviewRepositoryImpl extends AbstractRepository<BookReview, Str
 		
 		return result;
 	}
+
+	@Override
+	public List<BookReview> bookReviewsByCustomerID(String id) {
+		Criteria crit = getSession().createCriteria(BookReview.class);
+		crit.add(Restrictions.eq("customerID",id));
+		List<BookReview> result = new ArrayList();
+		
+		result = crit.list();
+		
+		return result;
+	}
 	
 }

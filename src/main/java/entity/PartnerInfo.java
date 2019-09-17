@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 
 @Entity
 @Table(name = "PARTNER_INFO")

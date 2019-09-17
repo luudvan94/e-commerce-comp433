@@ -92,6 +92,13 @@ public class BookReviewRepositoryImplTest extends AbstractHibernateTest {
 	public void bookReviewsByBookID() {
 		List<BookReview> reviews = bookReviewRepository.bookReviewsByBookID("B123");
 		assertTrue(reviews != null);
-		assertTrue(reviews.size() > 0);
+		assertTrue(reviews.size() == 3);
+	}
+	
+	@Test
+	public void bookReviewsByCustomerID() {
+		List<BookReview> reviews = bookReviewRepository.bookReviewsByCustomerID("C123");
+		assertTrue(reviews != null);
+		assertTrue(reviews.size() == 2);
 	}
 }

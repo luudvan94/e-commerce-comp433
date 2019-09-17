@@ -19,5 +19,6 @@
         <mapping class="entity.BookReview"></mapping>
         <mapping class="entity.Customer"></mapping>
         <mapping class="entity.CustomerInfo"></mapping>
+        <mapping class="entity.ShippingAddress"></mapping>
     </session-factory>
 </hibernate-configuration>

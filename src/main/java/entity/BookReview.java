@@ -1,8 +1,5 @@
 package entity;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;  
 
 import javax.persistence.*;
@@ -20,6 +17,9 @@ public class BookReview {
 	
 	@Column(name="bookID")
 	private String bookID;
+	
+	@Column(name="customerID")
+	private String customerID;
 	
 	@Column(name="date_created")
 	private String dateCreated;
@@ -60,6 +60,14 @@ public class BookReview {
 
 	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+
+	public String getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 	
 	
