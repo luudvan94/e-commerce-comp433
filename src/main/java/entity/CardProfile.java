@@ -24,9 +24,6 @@ public class CardProfile {
 	@Column(name="four_digit")
 	private String four_digit;
 	
-	@Column(name="amount")
-	private double amount;
-	
 	@Column(name="expires")
 	private String expires;
 	
@@ -60,13 +57,6 @@ public class CardProfile {
 		this.four_digit = four_digit;
 	}
 
-	public double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
 
 	public String getExpires() {
 		return expires;

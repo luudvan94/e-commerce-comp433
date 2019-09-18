@@ -27,11 +27,8 @@ public class Book {
 	@Column(name = "partnerID")
 	private String partnerID;
 	
-	public Book() {}
 	
-	public static String generateID() {
-		return "B" + new Date().getTime();
-	}
+	public Book() {}
 
 	public String getId() {
 		return id;

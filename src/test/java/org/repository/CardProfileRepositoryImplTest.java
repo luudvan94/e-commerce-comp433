@@ -59,13 +59,13 @@ public class CardProfileRepositoryImplTest extends AbstractHibernateTest {
 	public void update() {
 		CardProfile info = cardProfileRepository.get("CP123");
 		
-		info.setAmount(50.0);
+		info.setFour_digit("4567");
 		cardProfileRepository.update(info);
 		
 		flushAndClearSession();
 		
 		info = cardProfileRepository.get("CP123");
-		assertTrue(info.getAmount() == 50.0);
+		assertTrue(info.getFour_digit().equalsIgnoreCase("4567"));
 	}
 	
 	@Test

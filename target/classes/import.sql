@@ -13,11 +13,20 @@ INSERT INTO CUSTOMER(id, username, password) VALUES('C123', 'customer1', 'abcd')
 INSERT INTO CUSTOMER(id, username, password) VALUES('C456', 'customer2', 'abcd');
 
 INSERT INTO CUSTOMER_INFO(id, customerID, name, address, date_added) VALUES('CI123', 'C123', 'Loyola University', '123 Sheridan Rd, IL', '123456678');
+INSERT INTO CUSTOMER_INFO(id, customerID, name, address, date_added) VALUES('CI124', 'C456', 'Loyola University', '123 Sheridan Rd, IL', '123456678');
 
 INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('BR123', 'This book is very great! yeahhhhhh', 'B123', 'C123', '12345656');
 INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('BR124', 'This book is very great!', 'B123', 'C123', '12345656');
 INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('BR125', 'This book is very great!', 'B123', 'C456', '12345656');
 
 INSERT INTO SHIPPING_ADDRESS(id, customerID, street, city, zipcode) VALUES('S123', 'C123', '7800 Nashville', 'Burbank', '60459');
-INSERT INTO CARD_PROFILE(id, customerID, amount, expires, date_added) VALUES('CP123', 'C123', 35.0, '06/23', '345345346');
-INSERT INTO CARD_PROFILE(id, customerID, amount, expires, date_added) VALUES('CP124', 'C456', 95.0, '06/23', '565676353');
+INSERT INTO SHIPPING_ADDRESS(id, customerID, street, city, zipcode) VALUES('S124', 'C456', '1234 ABC rd', 'Oak Lawn', '60652');
+
+INSERT INTO CARD_PROFILE(id, customerID, expires, date_added) VALUES('CP123', 'C123', '06/23', '345345346');
+INSERT INTO CARD_PROFILE(id, customerID, expires, date_added) VALUES('CP124', 'C456', '06/23', '565676353');
+
+INSERT INTO ORDER1(id, customerID, partnerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O123', 'C123', 'P1234', '234234234', 'delivered', 'S123', 'CP123', 123.00);
+INSERT INTO ORDER1(id, customerID, partnerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O124', 'C456', 'P1234', '123134234', 'shipping', 'S124', 'CP124', 55.00);
+
+INSERT INTO ORDER_BOOK(id, orderID, bookID, qty, total) VALUES('OB123', 'O123', 'B123', '1', 50.0);
+INSERT INTO ORDER_BOOK(id, orderID, bookID, qty, total) VALUES('OB124', 'O123', 'B456', '2', 50.0);

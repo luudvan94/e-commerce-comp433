@@ -72,4 +72,15 @@ public class BookRepositoryImpl extends AbstractRepository<Book, String> impleme
 		return result;
 	}
 
+	@Override
+	public List<Book> booksByIDList(List<String> idList) {
+		Criteria crit = getSession().createCriteria(Book.class);
+		crit.add(Restrictions.in("id", idList));
+		List<Book> result = new ArrayList();
+		
+		result = crit.list();
+		
+		return result;
+	}
+
 }

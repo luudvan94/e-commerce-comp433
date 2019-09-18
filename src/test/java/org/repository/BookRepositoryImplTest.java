@@ -2,6 +2,10 @@ package org.repository;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
@@ -106,6 +110,12 @@ public class BookRepositoryImplTest extends AbstractHibernateTest {
 		assertTrue(bookRepository.booksByPartnerID("P1234567").size() == 0);
 	}
 	
+	@Test
+	public void booksByIDList() {
+		List<Book> books = bookRepository.booksByIDList(Arrays.asList("B123", "B789"));
+		assertTrue(books != null);
+		assertTrue(books.size() == 2);
+	}
 	
 //	@Test
 //	public void create_WhenIDAlreadyExist() {

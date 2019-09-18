@@ -7,6 +7,8 @@ import entity.BookReview;
 import entity.CardProfile;
 import entity.Customer;
 import entity.CustomerInfo;
+import entity.Order1;
+import entity.Order_Book;
 import entity.Partner;
 import entity.PartnerInfo;
 import entity.ShippingAddress;
@@ -90,12 +92,35 @@ public class EntityUtil {
 		CardProfile info = new CardProfile();
 		info.setId(ID.generateID("CP"));
 		info.setCustomerID("C123");
-		info.setAmount(25.0);
 		info.setDate_added("12334234");
 		info.setExpires("06/22");
 		info.setFour_digit("1234");
 		
 		return info;
+	}
+	
+	public static Order1 orderSample() {
+		Order1 order = new Order1();
+		order.setId(ID.generateID("O"));
+		order.setCustomerID("C456");
+		order.setPartnerID("P4567");
+		order.setDate_updated("1233445545");
+		order.setShippingAddressID("S123");
+		order.setStatus("pending");
+		order.setTotal(100.25);
+		
+		return order;
+	}
+	
+	public static Order_Book order_bookSample() {
+		Order_Book order_book = new Order_Book();
+		order_book.setId(ID.generateID("OB"));
+		order_book.setBookID("B456");
+		order_book.setOrderID("O456");
+		order_book.setQty(3);
+		order_book.setTotal(15.0);
+		
+		return order_book;
 	}
 
 }
