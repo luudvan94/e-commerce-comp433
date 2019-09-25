@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ORDER_BOOK")
@@ -24,6 +25,9 @@ public class Order_Book {
 	
 	@Column(name="total")
 	private double total;
+	
+	@Transient
+	private Book book;
 	
 	
 	public Order_Book() {}
@@ -66,6 +70,14 @@ public class Order_Book {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	
 	

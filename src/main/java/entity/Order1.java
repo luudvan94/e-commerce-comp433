@@ -1,9 +1,12 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "ORDER1")
@@ -33,6 +36,21 @@ public class Order1 {
 	
 	@Column(name="shippingAddressID")
 	private String shippingAddressID;
+	
+	@Transient
+	private ShippingAddress address;
+	
+	@Transient
+	private CardProfile profile;
+	
+	@Transient
+	private Customer customerInfo;
+	
+	@Transient
+	private Partner partnerInfo;
+	
+	@Transient
+	private List<Order_Book> order_book;
 	
 	public Order1() {}
 
@@ -98,6 +116,46 @@ public class Order1 {
 
 	public void setShippingAddressID(String shippingAddressID) {
 		this.shippingAddressID = shippingAddressID;
+	}
+
+	public ShippingAddress getAddress() {
+		return address;
+	}
+
+	public void setAddress(ShippingAddress address) {
+		this.address = address;
+	}
+
+	public CardProfile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(CardProfile profile) {
+		this.profile = profile;
+	}
+
+	public Customer getCustomerInfo() {
+		return customerInfo;
+	}
+
+	public void setCustomerInfo(Customer customerInfo) {
+		this.customerInfo = customerInfo;
+	}
+
+	public Partner getPartnerInfo() {
+		return partnerInfo;
+	}
+
+	public void setPartnerInfo(Partner partnerInfo) {
+		this.partnerInfo = partnerInfo;
+	}
+
+	public List<Order_Book> getOrder_book() {
+		return order_book;
+	}
+
+	public void setOrder_book(List<Order_Book> order_book) {
+		this.order_book = order_book;
 	}
 	
 	

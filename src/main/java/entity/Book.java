@@ -1,6 +1,7 @@
 package entity;
 
-import java.util.Date;  
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -26,6 +27,9 @@ public class Book {
 	
 	@Column(name = "partnerID")
 	private String partnerID;
+	
+	@Transient
+	private List<BookReview> reviews;
 	
 	
 	public Book() {}
@@ -76,6 +80,14 @@ public class Book {
 
 	public void setPartnerID(String partnerID) {
 		this.partnerID = partnerID;
+	}
+
+	public List<BookReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<BookReview> reviews) {
+		this.reviews = reviews;
 	}
 	
 	

@@ -25,10 +25,6 @@ public class BookReview {
 	private String dateCreated;
 	
 	public BookReview() {}
-	
-	public static String generateID() {
-		return "BR" + new Date().getTime();
-	}
 
 	public String getId() {
 		return id;

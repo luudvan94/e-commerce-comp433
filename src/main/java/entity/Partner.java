@@ -20,6 +20,9 @@ public class Partner {
 	@Column(name = "password")
 	private String password;
 	
+	@Transient
+	private PartnerInfo info;
+	
 	public Partner() {}
 	
 	public static String generateID() {
@@ -52,6 +55,14 @@ public class Partner {
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public PartnerInfo getInfo() {
+		return info;
+	}
+
+	public void setInfo(PartnerInfo info) {
+		this.info = info;
 	}
 	
 	
