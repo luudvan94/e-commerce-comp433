@@ -20,16 +20,16 @@ This repository is the final project of Web Services Programming class, and it f
 ### Phrase 1: Domail Modeling
 #### Entity
 Based on the above functionalities, the entity model will consist of 9 models: 
-* Book: information about book and also partnerID where this book belong to.
-* BookReview: review for particular book, consist of customerID and bookID of which review belong to.
-* CardProfile: information of card which owned by customer, has customerID.
-* Customer: basic credentials of user.
-* CustomerInfo: information about specific user, has customerID of which customer belong to.
-* ShippingAddress: information of shipping address that own by customer, has customerID
-* Partner: basic credentials of partner.
-* PartnerInfo: information about specific user, has partnerID of which partner belong to.
-* Order1: consist information of one order, has bookID, customerID, partnerID, cardProfileID, shippingAddressID.
-* Order_Book: information about book which linked to particular order (quantity, total).
+* `Book`: information about book and also partnerID where this book belong to.
+* `BookReview`: review for particular book, consist of customerID and bookID of which review belong to.
+* `CardProfile`: information of card which owned by customer, has customerID.
+* `Customer`: basic credentials of user.
+* `CustomerInfo`: information about specific user, has customerID of which customer belong to.
+* `ShippingAddress`: information of shipping address that own by customer, has customerID
+* `Partner`: basic credentials of partner.
+* `PartnerInfo`: information about specific user, has partnerID of which partner belong to.
+* `Order1`: consist information of one order, has bookID, customerID, partnerID, cardProfileID, shippingAddressID.
+* `Order_Book`: information about book which linked to particular order (quantity, total).
 #### Persistence
 I'm using Hibernate as the Object-Relational Mapping for this project. Hibernate help "developers to more easily write applications whose data outlives the application process." For the purpose of configuration, I'm putting all of Hibernate setting including Database connection, entity registerating, etc. inside one XML file named `hibernate.cgf.xml`.
 The persistancance layer will basicly consist of:
@@ -39,14 +39,14 @@ The persistancance layer will basicly consist of:
 Service will asking data to data persistence by using repository. This package will basically consist of:
 * Repository: interface define basic operation (CRUD) on any object with any type of ID (`public interface Repository<T, ID>`).
 * AbstractRepository: implement `Repository` interface, and supply `Session` to its extends class by getting `Session` from `SessionHolder`.
-* `Table`Repository: extends `Repository`, add new operations depends on purpose of that table.
+* `Table`Repository: extends `Repository`, with new operations depends on the manner of that table.
 * `Table`RepositoryImpl: extends `AbstractRepository` and implements `Table`Repository, communicate with Hibernate through `Session` to extract and return data.
 #### Util
 * EntityUtil: make testing easier by returning sample data for each table (will move it to test package).
 * ID: generate ID for entity.
 * Password: encrypt and return a new password.
 #### Testing
-For the purpose of testing, I pick in-memory database as the data persistence, this way will make testing easier and faster. It is specified in `hibernate.cgf.xml`: 
+For the purpose of testing, I choose in-memory database as the data persistence, this way will make testing easier and faster. It is specified in `hibernate.cgf.xml`: 
 `
 <property name="hibernate.connection.url">jdbc:hsqldb:mem:myDB</property>   
 `
