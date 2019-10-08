@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+ 
+    <!-- to turn on annotation wiring == turns on only the registered beans through ApplicationContext -->
+    <context:annotation-config />
+ 
+    <!-- scans and register beans using annotation-config (metadata) -->
+    <context:component-scan base-package="service" />
+ 
+    <!-- to support Java-to-JSON and vice-versa conversion -->
+    <bean id="jacksonProvider" class="com.fasterxml.jackson.jaxrs.JacksonJsonProvider" />
+ 
+    <!-- to support Java-to-XML and vice-versa conversion -->
+    <bean id="jaxbXmlProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" />
+ 
+    <!-- CXFServlet configured in web.xml sends requests here -->
+    <jaxrs:server name="BookStoreService" address="http://localhost:8081">
+		<jaxrs:serviceBeans>
+			<ref bean="bookStoreServiceRest" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="jacksonProvider" />
+		</jaxrs:providers> 
+
+		<jaxrs:schemaLocations>
+			<!-- <jaxrs:schemaLocation>com.company.hr.service.representation.EmployeeRequest</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.company.hr.service.representation.EmployeeRepresentation</jaxrs:schemaLocation> -->
+		</jaxrs:schemaLocations>
+
+	</jaxrs:server>
+  	<!-- <bean id="bookStoreServiceRest" class="com.company.hr.service.EmployeeResource" /> -->
+  
+</beans>
