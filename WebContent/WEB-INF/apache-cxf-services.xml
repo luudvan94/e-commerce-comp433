@@ -8,7 +8,7 @@
     <context:component-scan base-package="service" />
  
     <!-- to support Java-to-JSON and vice-versa conversion -->
-    <bean id="jacksonProvider" class="com.fasterxml.jackson.jaxrs.JacksonJsonProvider" />
+    <bean id="jacksonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
  
     <!-- to support Java-to-XML and vice-versa conversion -->
     <bean id="jaxbXmlProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" />

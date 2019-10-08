@@ -15,6 +15,35 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>xjc</goal><!-- xjc/generate -->
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/generated/java/source</outputDirectory>
+							<schemaDirectory>${basedir}/src/main/resources/entities</schemaDirectory>
+							<schemaFiles>*.xsd</schemaFiles>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<extension>true</extension>
+							<args>
+								<arg>-XtoString</arg>
+							</args>
+							<plugins>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-basics</artifactId>
+									<version>0.6.4</version>
+								</plugin>
+							</plugins>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<properties>
