@@ -3,7 +3,7 @@
 	targetNamespace="representation" xmlns:tns="representation"
 	elementFormDefault="qualified">
 	
-	<xsd:element name="CustomerInfo">
+	<xsd:element name="CustomerInfoRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="customerId" type="xsd:string" />
@@ -13,7 +13,7 @@
 		</xsd:complexType>
 	</xsd:element>
 	
-	<xsd:element name="PartnerInfo">
+	<xsd:element name="PartnerInfoRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="partnerId" type="xsd:string" />
@@ -23,7 +23,7 @@
 		</xsd:complexType>
 	</xsd:element>
 	
-	<xsd:element name="ShippingAddress">
+	<xsd:element name="ShippingAddressRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="street" type="xsd:string" />
@@ -33,7 +33,7 @@
 		</xsd:complexType>
 	</xsd:element>
 	
-	<xsd:element name="CardProfile">
+	<xsd:element name="CardProfileRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="fourDigits" type="xsd:string" />
@@ -43,7 +43,7 @@
 	</xsd:element>
 
 	
-	<xsd:element name="Book">
+	<xsd:element name="BookRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="bookId" type="xsd:string" />
@@ -55,37 +55,37 @@
 		</xsd:complexType>
 	</xsd:element>
 	
-	<xsd:element name="BookReview">
+	<xsd:element name="BookReviewRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="bookReviewId" type="xsd:string"/>
 				<xsd:element name="content" type="xsd:string" />
 				<xsd:element name="dateCreated" type="xsd:string" />
-				<xsd:element ref="tns:CustomerInfo" minOccurs="0"/>
-				<xsd:element ref="tns:Book" minOccurs="0" /> 
+				<xsd:element ref="tns:CustomerInfoRepresentation" minOccurs="0"/>
+				<xsd:element ref="tns:BookRepresentation" minOccurs="0" /> 
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
 	
-	<xsd:element name="Order">
+	<xsd:element name="OrderRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="orderId" type="xsd:string" />
 				<xsd:element name="status" type="xsd:string" />
 				<xsd:element name="dateUpdated" type="xsd:string" />
 				<xsd:element name="total" type="xsd:double" />
-				<xsd:element ref="tns:CustomerInfo" />
-				<xsd:element ref="tns:PartnerInfo" /> 
-				<xsd:element ref="tns:CardProfile" /> 
-				<xsd:element ref="tns:ShippingAddress" /> 
+				<xsd:element ref="tns:CustomerInfoRepresentation" />
+				<xsd:element ref="tns:PartnerInfoRepresentation" /> 
+				<xsd:element ref="tns:CardProfileRepresentation" /> 
+				<xsd:element ref="tns:ShippingAddressRepresentation" /> 
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
 	
-	<xsd:element name="OrderInfo">
+	<xsd:element name="OrderInfoRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="tns:Book" />
+				<xsd:element ref="tns:BookRepresentation" />
 				<xsd:element name="quantity" type="xsd:int" />
 				<xsd:element name="total" type="xsd:double" />
 			</xsd:sequence>

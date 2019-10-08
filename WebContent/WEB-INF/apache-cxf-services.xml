@@ -5,7 +5,7 @@
     <context:annotation-config />
  
     <!-- scans and register beans using annotation-config (metadata) -->
-    <context:component-scan base-package="service" />
+    <context:component-scan base-package="service.impl" />
  
     <!-- to support Java-to-JSON and vice-versa conversion -->
     <bean id="jacksonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
@@ -14,9 +14,9 @@
     <bean id="jaxbXmlProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" />
  
     <!-- CXFServlet configured in web.xml sends requests here -->
-    <jaxrs:server name="BookStoreService" address="http://localhost:8081">
+    <jaxrs:server name="BookStoreService" address="/">
 		<jaxrs:serviceBeans>
-			<ref bean="bookStoreServiceRest" />
+			<ref bean="bookService" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
@@ -28,6 +28,6 @@
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>
-  	<!-- <bean id="bookStoreServiceRest" class="com.company.hr.service.EmployeeResource" /> -->
+  	<!-- <bean id="bookService" class="service.impl.BookServiceImpl" /> -->
   
 </beans>

@@ -42,7 +42,7 @@ public class ShippingAddressRepositoryImplTest extends AbstractHibernateTest {
 	
 	@Test
 	public void getAll() {
-		assertTrue(shippingAddressRepository.getAll().size() == 1);
+		assertTrue(shippingAddressRepository.getAll().size() == 2);
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class ShippingAddressRepositoryImplTest extends AbstractHibernateTest {
 		
 		flushAndClearSession();
 		
-		assertTrue(shippingAddressRepository.getAll().size() == 0);
+		assertTrue(shippingAddressRepository.getAll().size() == 1);
 	}
 	
 	@Test

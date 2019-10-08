@@ -42,7 +42,7 @@ public class CustomerInfoRepositoryImplTest extends AbstractHibernateTest {
 	
 	@Test
 	public void getAll() {
-		assertTrue(customerInfoRepository.getAll().size() == 1);
+		assertTrue(customerInfoRepository.getAll().size() == 2);
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class CustomerInfoRepositoryImplTest extends AbstractHibernateTest {
 		
 		flushAndClearSession();
 		
-		assertTrue(customerInfoRepository.getAll().size() == 0);
+		assertTrue(customerInfoRepository.getAll().size() == 1);
 	}
 	
 	@Test
