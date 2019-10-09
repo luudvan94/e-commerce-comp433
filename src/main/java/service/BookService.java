@@ -7,16 +7,30 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
 
 import representation.BookRepresentation;
 
-@Path("/bookservice")
+//@Path("/books")
+@WebService
 public interface BookService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("book/{bookId}")
-	public BookRepresentation get(@PathParam("bookId") String id);
+	@Path("/{bookId}")
+	public Response get(@PathParam("bookId") String id);
 	
-//	List<BookRepresentation> booksByTitle(String title);
+	
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	List<BookRepresentation> all();
+	
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Path("/query")
+	public Response searchByTitle(@QueryParam("title") String title);
 }

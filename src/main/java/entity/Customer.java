@@ -27,7 +27,7 @@ public class Customer {
 	private CustomerInfo info;
 	
 	@Transient
-	private List<CardProfile> profiles;
+	private List<Payment> profiles;
 	
 	@Transient
 	private List<ShippingAddress> shippingAddress;
@@ -66,11 +66,11 @@ public class Customer {
 		this.info = info;
 	}
 
-	public List<CardProfile> getProfiles() {
+	public List<Payment> getProfiles() {
 		return profiles;
 	}
 
-	public void setProfiles(List<CardProfile> profiles) {
+	public void setProfiles(List<Payment> profiles) {
 		this.profiles = profiles;
 	}
 

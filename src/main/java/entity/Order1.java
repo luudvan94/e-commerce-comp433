@@ -41,7 +41,7 @@ public class Order1 {
 	private ShippingAddress address;
 	
 	@Transient
-	private CardProfile profile;
+	private Payment profile;
 	
 	@Transient
 	private Customer customerInfo;
@@ -126,11 +126,11 @@ public class Order1 {
 		this.address = address;
 	}
 
-	public CardProfile getProfile() {
+	public Payment getProfile() {
 		return profile;
 	}
 
-	public void setProfile(CardProfile profile) {
+	public void setProfile(Payment profile) {
 		this.profile = profile;
 	}
 

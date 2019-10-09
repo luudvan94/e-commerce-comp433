@@ -28,6 +28,6 @@
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>
-  	<!-- <bean id="bookService" class="service.impl.BookServiceImpl" /> -->
+  	<bean id="bookService" class="service.impl.BookServiceImpl" />
   
 </beans>

@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CARD_PROFILE")
-public class CardProfile {
+@Table(name = "PAYMENT")
+public class Payment {
 	
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
@@ -18,16 +18,19 @@ public class CardProfile {
 	@Column(name="date_added")
 	private String date_added;
 	
-	@Column(name = "customerID")
-	private String customerID;
+	@Column(name = "orderID")
+	private String orderID;
 	
-	@Column(name="four_digit")
-	private String four_digit;
+	@Column(name="card_number")
+	private String cardNumber;
 	
 	@Column(name="expires")
 	private String expires;
 	
-	public CardProfile() {}
+	@Column(name="amount")
+	private double amount;
+	
+	public Payment() {}
 	
 	public static String generateID() {
 		return "CP" + new Date().getTime();
@@ -49,13 +52,7 @@ public class CardProfile {
 		this.date_added = date_added;
 	}
 
-	public String getFour_digit() {
-		return four_digit;
-	}
-
-	public void setFour_digit(String four_digit) {
-		this.four_digit = four_digit;
-	}
+	
 
 
 	public String getExpires() {
@@ -66,12 +63,29 @@ public class CardProfile {
 		this.expires = expires;
 	}
 
-	public String getCustomerID() {
-		return customerID;
+
+	public String getCardNumber() {
+		return cardNumber;
 	}
 
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 	
 }

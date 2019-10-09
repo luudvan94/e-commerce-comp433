@@ -4,7 +4,7 @@ import java.util.Date;
 
 import entity.Book;
 import entity.BookReview;
-import entity.CardProfile;
+import entity.Payment;
 import entity.Customer;
 import entity.CustomerInfo;
 import entity.Order1;
@@ -88,13 +88,14 @@ public class EntityUtil {
 		return info;
 	}
 	
-	public static CardProfile cardProfileSample() {
-		CardProfile info = new CardProfile();
+	public static Payment cardProfileSample() {
+		Payment info = new Payment();
 		info.setId(ID.generateID("CP"));
-		info.setCustomerID("C123");
+		info.setOrderID("O123");
 		info.setDate_added("12334234");
 		info.setExpires("06/22");
-		info.setFour_digit("1234");
+		info.setCardNumber("1234");
+		info.setAmount(500);
 		
 		return info;
 	}

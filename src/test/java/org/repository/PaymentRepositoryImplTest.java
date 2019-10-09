@@ -5,18 +5,18 @@ import static org.junit.Assert.assertTrue;
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
-import entity.CardProfile;
-import repository.CardProfileRepository;
-import repository.impl.CardProfileRepositoryImpl;
+import entity.Payment;
+import repository.PaymentRepository;
+import repository.impl.PaymentRepositoryImpl;
 import util.EntityUtil;
 
-public class CardProfileRepositoryImplTest extends AbstractHibernateTest {
-	private CardProfileRepository cardProfileRepository;
+public class PaymentRepositoryImplTest extends AbstractHibernateTest {
+	private PaymentRepository cardProfileRepository;
 	
 	@Override
 	public void setup() {
 		super.setup();
-		cardProfileRepository = new CardProfileRepositoryImpl();
+		cardProfileRepository = new PaymentRepositoryImpl();
 	}
 	
 	@Override
@@ -28,7 +28,7 @@ public class CardProfileRepositoryImplTest extends AbstractHibernateTest {
 	public void getCardProfile() {
 		flushAndClearSession();
 		
-		CardProfile cardProfileFromDb = cardProfileRepository.get("CP123");
+		Payment cardProfileFromDb = cardProfileRepository.get("CP123");
 		assertTrue(cardProfileFromDb.getId().equalsIgnoreCase("CP123"));
 	}
 	
@@ -36,7 +36,7 @@ public class CardProfileRepositoryImplTest extends AbstractHibernateTest {
 	public void getCardProfile_WhenNotExist() {
 		flushAndClearSession();
 		
-		CardProfile cardProfileFromDb = cardProfileRepository.get("CP123567");
+		Payment cardProfileFromDb = cardProfileRepository.get("CP123567");
 		assertTrue(cardProfileFromDb == null);
 	}
 	
@@ -57,15 +57,15 @@ public class CardProfileRepositoryImplTest extends AbstractHibernateTest {
 	
 	@Test
 	public void update() {
-		CardProfile info = cardProfileRepository.get("CP123");
+		Payment info = cardProfileRepository.get("CP123");
 		
-		info.setFour_digit("4567");
+		info.setCardNumber("4567");
 		cardProfileRepository.update(info);
 		
 		flushAndClearSession();
 		
 		info = cardProfileRepository.get("CP123");
-		assertTrue(info.getFour_digit().equalsIgnoreCase("4567"));
+		assertTrue(info.getCardNumber().equalsIgnoreCase("4567"));
 	}
 	
 	@Test
@@ -88,7 +88,7 @@ public class CardProfileRepositoryImplTest extends AbstractHibernateTest {
 	
 	@Test
 	public void cardProfileByCustomerID() {
-		assertTrue(cardProfileRepository.cardProfileByCustomerID("C123") != null);
+		assertTrue(cardProfileRepository.cardProfileByOrderID("O123") != null);
 	}
 
 }

@@ -20,7 +20,7 @@
         <mapping class="entity.Customer"></mapping>
         <mapping class="entity.CustomerInfo"></mapping>
         <mapping class="entity.ShippingAddress"></mapping>
-        <mapping class="entity.CardProfile"></mapping>
+        <mapping class="entity.Payment"></mapping>
         <mapping class="entity.Order1"></mapping>
         <mapping class="entity.Order_Book"></mapping>
     </session-factory>

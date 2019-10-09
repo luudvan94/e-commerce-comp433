@@ -22,8 +22,8 @@ INSERT INTO BOOK_REVIEW(id, content, bookID, customerID, date_created) VALUES('B
 INSERT INTO SHIPPING_ADDRESS(id, customerID, street, city, zipcode) VALUES('S123', 'C123', '7800 Nashville', 'Burbank', '60459');
 INSERT INTO SHIPPING_ADDRESS(id, customerID, street, city, zipcode) VALUES('S124', 'C456', '1234 ABC rd', 'Oak Lawn', '60652');
 
-INSERT INTO CARD_PROFILE(id, customerID, expires, date_added) VALUES('CP123', 'C123', '06/23', '345345346');
-INSERT INTO CARD_PROFILE(id, customerID, expires, date_added) VALUES('CP124', 'C456', '06/23', '565676353');
+INSERT INTO PAYMENT(id, orderID, expires, date_added, amount, card_number) VALUES('CP123', 'O123', '06/23', '345345346', 200, '13123123123');
+INSERT INTO PAYMENT(id, orderID, expires, date_added, amount, card_number) VALUES('CP124', 'O124', '06/23', '565676353', 250, '12312312312');
 
 INSERT INTO ORDER1(id, customerID, partnerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O123', 'C123', 'P1234', '234234234', 'delivered', 'S123', 'CP123', 123.00);
 INSERT INTO ORDER1(id, customerID, partnerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O124', 'C456', 'P1234', '123134234', 'shipping', 'S124', 'CP124', 55.00);
