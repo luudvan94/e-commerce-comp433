@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
-import entity.Partner;
-import repository.PartnerRepository;
-import repository.impl.PartnerRepositoryImpl;
+import dal.partner.PartnerRepository;
+import dal.partner.PartnerRepositoryImpl;
+import domain.partner.Partner;
 import util.EntityUtil;
 import util.Password;
 

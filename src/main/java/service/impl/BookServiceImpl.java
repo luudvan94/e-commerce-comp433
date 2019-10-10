@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import representation.BookRepresentation;
 import service.BookService;
+import service.exception.NoContentException;
 import service.exception.NotExistException;
 import service.workflow.BookServiceActivity;
 
@@ -35,9 +36,13 @@ public class BookServiceImpl implements BookService {
 		}
 	}
 	@Override
-	public List<BookRepresentation> all() {
+	public Response all() {
 		BookServiceActivity activity = new BookServiceActivity();
-		return activity.getAll();
+		try {
+			return Response.status(Response.Status.OK).entity(activity.getAll()).build();
+		} catch (NoContentException e) {
+			return Response.status(Response.Status.NO_CONTENT).build();
+		}
 	}
 	
 	@Override
@@ -45,9 +50,18 @@ public class BookServiceImpl implements BookService {
 		try {
 			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getBooksByTitle(title)).build();
 			
-		} catch (NotExistException ex) {
+		} catch (NoContentException ex) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 			
+		}
+	}
+	@Override
+	public Response getReviewsByBook(String id) {
+		BookServiceActivity activity = new BookServiceActivity();
+		try {
+			return Response.status(Response.Status.OK).entity(activity.getReviewsByBookID(id)).build();
+		} catch (NoContentException e) {
+			return Response.status(Response.Status.NO_CONTENT).build();
 		}
 	}
 

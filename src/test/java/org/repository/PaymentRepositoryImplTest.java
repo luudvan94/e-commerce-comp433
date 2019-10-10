@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
-import entity.Payment;
-import repository.PaymentRepository;
-import repository.impl.PaymentRepositoryImpl;
+import dal.payment.PaymentRepository;
+import dal.payment.PaymentRepositoryImpl;
+import domain.payment.Payment;
 import util.EntityUtil;
 
 public class PaymentRepositoryImplTest extends AbstractHibernateTest {

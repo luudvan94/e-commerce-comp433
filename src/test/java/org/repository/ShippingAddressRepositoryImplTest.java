@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
-import entity.ShippingAddress;
-import repository.ShippingAddressRepository;
-import repository.impl.ShippingAddressRepositoryImpl;
+import dal.shipping_address.ShippingAddressRepository;
+import dal.shipping_address.ShippingAddressRepositoryImpl;
+import domain.shipping_address.ShippingAddress;
 import util.EntityUtil;
 
 public class ShippingAddressRepositoryImplTest extends AbstractHibernateTest {

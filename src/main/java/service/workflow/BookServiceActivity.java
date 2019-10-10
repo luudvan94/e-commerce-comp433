@@ -1,33 +1,28 @@
 package service.workflow;
 
-import repository.BookRepository;
-import repository.impl.BookRepositoryImpl;
 import representation.BookRepresentation;
+import representation.BookReviewRepresentation;
 import representation.ObjectFactory;
+import service.exception.NoContentException;
 import service.exception.NotExistException;
+import service.util.RepresentationConverter;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import entity.Book;
+import dal.book.BookRepository;
+import dal.book.BookRepositoryImpl;
+import dal.book_review.BookReviewRepository;
+import dal.book_review.BookReviewRepositoryImpl;
+import domain.book.Book;
+import domain.book_review.BookReview;
 
 public class BookServiceActivity {
 	
 	private static BookRepository bo = new BookRepositoryImpl();
-	private static ObjectFactory factory = new ObjectFactory();
-	
-	private BookRepresentation toRepresentation(Book book) {
-		BookRepresentation bRepresent = factory.createBookRepresentation();
-		bRepresent.setBookId(book.getId());
-		bRepresent.setAuthor(book.getAuthor());
-		bRepresent.setTitle(book.getTitle());
-		bRepresent.setDescription(book.getDescription());
-		bRepresent.setPrice(book.getPrice());
-		
-		return bRepresent;
-	}
+	private static BookReviewRepository bRe = new BookReviewRepositoryImpl();
 	
 	public BookRepresentation get(String id) throws NotExistException {
 		Book book = bo.get(id);
@@ -36,45 +31,40 @@ public class BookServiceActivity {
 			throw new NotExistException("Book is not existed with provided ID");
 		}
 		
-		BookRepresentation bRepresent = factory.createBookRepresentation();
-		bRepresent.setBookId(book.getId());
-		bRepresent.setAuthor(book.getAuthor());
-		bRepresent.setTitle(book.getTitle());
-		bRepresent.setDescription(book.getDescription());
-		bRepresent.setPrice(book.getPrice());
-		
-		return bRepresent;
+		return RepresentationConverter.toBookRepresentation(book);
 	}
 	
-	public List<BookRepresentation> getBooksByTitle(String title) throws NotExistException {
+	public List<BookRepresentation> getBooksByTitle(String title) throws NoContentException {
 		List<Book> books = bo.booksByTitle(title);
 		
 		if (books.size() == 0) {
-			throw new NotExistException("Can't find any book with provided title");
+			throw new NoContentException("Can't find any book with provided title");
 		}
 		
-		return books.stream().map(book -> this.toRepresentation(book)).collect(Collectors.toList());
+		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book)).collect(Collectors.toList());
 	}
 	
-	public List<BookRepresentation> getAll() {
+	public List<BookRepresentation> getAll() throws NoContentException {
 		List<Book> books = bo.getAll();
 		
-		List<BookRepresentation> bRepresenList = new ArrayList();
+		if (books.size() == 0) {
+			throw new NoContentException("Can't find any book");
+		}
 		
-		Iterator<Book> it = books.iterator();
-		while(it.hasNext()) {
-			Book book = (Book)it.next();
-			BookRepresentation bRepresent = new BookRepresentation();
-			bRepresent.setBookId(book.getId());
-			bRepresent.setAuthor(book.getAuthor());
-			bRepresent.setTitle(book.getTitle());
-			bRepresent.setDescription(book.getDescription());
-			bRepresent.setPrice(book.getPrice());
-          
-          //now add this representation in the list
-			bRepresenList.add(bRepresent);
-        }
-		return bRepresenList;
+		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book)).collect(Collectors.toList());
+	}
+	
+	public List<BookReviewRepresentation> getReviewsByBookID(String id) throws NoContentException {
+		List<BookReview> bookReviews = bRe.bookReviewsByBookID(id);
+		System.out.println(id);
+		
+		if (bookReviews == null || bookReviews.size() == 0) {
+			throw new NoContentException("Can't find any book review with provided book id");
+		}
+		
+		System.out.println(bookReviews.size());
+		
+		return bookReviews.stream().map(bookReview -> RepresentationConverter.toBookReviewRepresentation(bookReview)).collect(Collectors.toList());
 	}
 
 }

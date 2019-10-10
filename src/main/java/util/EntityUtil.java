@@ -2,16 +2,16 @@ package util;
 
 import java.util.Date;
 
-import entity.Book;
-import entity.BookReview;
-import entity.Payment;
-import entity.Customer;
-import entity.CustomerInfo;
-import entity.Order1;
-import entity.Order_Book;
-import entity.Partner;
-import entity.PartnerInfo;
-import entity.ShippingAddress;
+import domain.book.Book;
+import domain.book_review.BookReview;
+import domain.customer.Customer;
+import domain.customer.CustomerInfo;
+import domain.order.Order1;
+import domain.order.Order_Book;
+import domain.partner.Partner;
+import domain.partner.PartnerInfo;
+import domain.payment.Payment;
+import domain.shipping_address.ShippingAddress;
 
 public class EntityUtil {
 	
@@ -52,8 +52,8 @@ public class EntityUtil {
 		review.setId(ID.generateID("BR"));
 		review.setContent("this is awesome!!");
 		review.setDateCreated("" + new Date().getTime());
-		review.setBook_id("B123");
-		
+		review.setBookID("B123");
+		review.setCustomerInfo(EntityUtil.customerInfoSample());
 		return review;
 	}
 	
@@ -68,7 +68,7 @@ public class EntityUtil {
 	
 	public static CustomerInfo customerInfoSample() {
 		CustomerInfo info = new CustomerInfo();
-		info.setId(ID.generateID("CI"));
+		info.setCustomerInfoID(ID.generateID("CI"));
 		info.setName("customer info");
 		info.setAddress("123 Sherindan Av");
 		info.setDate_added("" + new Date().getTime());

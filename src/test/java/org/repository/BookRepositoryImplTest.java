@@ -9,9 +9,9 @@ import java.util.List;
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
-import entity.Book;
-import repository.BookRepository;
-import repository.impl.BookRepositoryImpl;
+import dal.book.BookRepository;
+import dal.book.BookRepositoryImpl;
+import domain.book.Book;
 import util.EntityUtil;
 
 public class BookRepositoryImplTest extends AbstractHibernateTest {

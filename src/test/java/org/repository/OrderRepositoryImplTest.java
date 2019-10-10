@@ -7,9 +7,9 @@ import java.util.List;
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
-import entity.Order1;
-import repository.OrderRepository;
-import repository.impl.OrderRepositoryImpl;
+import dal.order.OrderRepository;
+import dal.order.OrderRepositoryImpl;
+import domain.order.Order1;
 import util.EntityUtil;
 
 public class OrderRepositoryImplTest extends AbstractHibernateTest {

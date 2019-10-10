@@ -9,8 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import persistance.HibernateUtil;
-import persistance.SessionHolder;
+import dal.persistence.HibernateUtil;
+import dal.persistence.SessionHolder;
 
 public abstract class AbstractHibernateTest {
 	

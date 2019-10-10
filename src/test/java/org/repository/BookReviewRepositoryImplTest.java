@@ -7,9 +7,10 @@ import java.util.List;
 import org.AbstractHibernateTest;
 import org.junit.Test;
 
-import entity.BookReview;
-import repository.BookReviewRepository;
-import repository.impl.BookReviewRepositoryImpl;
+import dal.book_review.BookReviewRepository;
+import dal.book_review.BookReviewRepositoryImpl;
+import domain.book_review.BookReview;
+import domain.customer.CustomerInfo;
 import util.EntityUtil;
 
 public class BookReviewRepositoryImplTest extends AbstractHibernateTest {
@@ -96,9 +97,18 @@ public class BookReviewRepositoryImplTest extends AbstractHibernateTest {
 	}
 	
 	@Test
-	public void bookReviewsByCustomerID() {
-		List<BookReview> reviews = bookReviewRepository.bookReviewsByCustomerID("C123");
+	public void bookReviewsByCustomerInfoID() {
+		List<BookReview> reviews = bookReviewRepository.bookReviewsByCustomerInfoID("CI123");
 		assertTrue(reviews != null);
 		assertTrue(reviews.size() == 2);
+	}
+	
+	@Test
+	public void customerInfoByReview() {
+		flushAndClearSession();
+		
+		BookReview bookReview = bookReviewRepository.get("BR123");
+		assertTrue(bookReview.getCustomerInfo() != null);
+		assertTrue(bookReview.getCustomerInfo().getCustomerInfoID().equalsIgnoreCase("CI123"));
 	}
 }

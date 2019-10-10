@@ -27,10 +27,15 @@ public interface BookService {
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	List<BookRepresentation> all();
+	Response all();
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
 	@Path("/query")
 	public Response searchByTitle(@QueryParam("title") String title);
+	
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Path("/{bookId}/reviews")
+	public Response getReviewsByBook(@PathParam("bookId") String id);
 }
