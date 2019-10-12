@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import dal.AbstractRepository;
-import domain.payment.Payment;
+import entity.payment.Payment;
 
 public class PaymentRepositoryImpl extends AbstractRepository<Payment, String> implements PaymentRepository {
 

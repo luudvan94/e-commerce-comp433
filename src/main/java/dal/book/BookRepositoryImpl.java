@@ -10,7 +10,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import dal.AbstractRepository;
-import domain.book.Book;
+import entity.book.Book;
 
 public class BookRepositoryImpl extends AbstractRepository<Book, String> implements BookRepository {
 

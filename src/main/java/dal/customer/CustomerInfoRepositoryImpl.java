@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import dal.AbstractRepository;
-import domain.customer.CustomerInfo;
+import entity.customer.CustomerInfo;
 
 public class CustomerInfoRepositoryImpl extends AbstractRepository<CustomerInfo, String> implements CustomerInfoRepository {
 

@@ -1,4 +1,4 @@
-package domain.order;
+package entity.order;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import domain.book.Book;
+import entity.book.Book;
 
 @Entity
 @Table(name = "ORDER_BOOK")

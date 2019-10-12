@@ -1,11 +1,11 @@
-package domain.book;
+package entity.book;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
-import domain.book_review.BookReview;
+import entity.book_review.BookReview;
 
 @Entity
 @Table(name = "BOOK")
@@ -27,6 +27,17 @@ public class Book {
 	@Column(name = "price")
 	private double price;
 	
+	@Column(name="quantity")
+	private int quantity;
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@Column(name = "partnerID")
 	private String partnerID;
 	

@@ -1,4 +1,4 @@
-package domain.payment;
+package entity.payment;
 
 import java.util.Date;
 

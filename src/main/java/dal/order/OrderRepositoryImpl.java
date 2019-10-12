@@ -8,8 +8,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import dal.AbstractRepository;
-import domain.book.Book;
-import domain.order.Order1;
+import entity.book.Book;
+import entity.order.Order1;
 
 public class OrderRepositoryImpl extends AbstractRepository<Order1, String> implements OrderRepository {
 	

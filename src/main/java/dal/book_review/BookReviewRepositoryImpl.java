@@ -8,8 +8,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import dal.AbstractRepository;
-import domain.book.Book;
-import domain.book_review.BookReview;
+import entity.book.Book;
+import entity.book_review.BookReview;
 
 public class BookReviewRepositoryImpl extends AbstractRepository<BookReview, String> implements BookReviewRepository {
 

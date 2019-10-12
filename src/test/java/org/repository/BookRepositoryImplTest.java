@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import dal.book.BookRepository;
 import dal.book.BookRepositoryImpl;
-import domain.book.Book;
+import entity.book.Book;
 import util.EntityUtil;
 
 public class BookRepositoryImplTest extends AbstractHibernateTest {

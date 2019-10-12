@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import dal.partner.PartnerInfoRepository;
 import dal.partner.PartnerInfoRepositoryImpl;
-import domain.partner.PartnerInfo;
+import entity.partner.PartnerInfo;
 import util.EntityUtil;
 
 public class PartnerInfoRepositoryImplTest extends AbstractHibernateTest {

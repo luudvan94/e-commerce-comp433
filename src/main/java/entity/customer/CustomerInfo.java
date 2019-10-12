@@ -1,4 +1,4 @@
-package domain.customer;
+package entity.customer;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
-import domain.book_review.BookReview;
+import entity.book_review.BookReview;
 
 @Entity
 @Table(name = "CUSTOMER_INFO")

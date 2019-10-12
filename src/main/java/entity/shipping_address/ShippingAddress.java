@@ -1,4 +1,4 @@
-package domain.shipping_address;
+package entity.shipping_address;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

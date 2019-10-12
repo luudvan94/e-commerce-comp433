@@ -1,4 +1,4 @@
-package domain.customer;
+package entity.customer;
 
 import java.util.Date;
 import java.util.List;
@@ -10,9 +10,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import domain.book_review.BookReview;
-import domain.payment.Payment;
-import domain.shipping_address.ShippingAddress;
+import entity.book_review.BookReview;
+import entity.payment.Payment;
+import entity.shipping_address.ShippingAddress;
 
 @Entity
 @Table(name = "CUSTOMER")

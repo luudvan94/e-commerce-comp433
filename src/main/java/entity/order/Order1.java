@@ -1,4 +1,4 @@
-package domain.order;
+package entity.order;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import domain.customer.Customer;
-import domain.partner.Partner;
-import domain.payment.Payment;
-import domain.shipping_address.ShippingAddress;
+import entity.customer.Customer;
+import entity.partner.Partner;
+import entity.payment.Payment;
+import entity.shipping_address.ShippingAddress;
 
 @Entity
 @Table(name = "ORDER1")
@@ -24,8 +24,8 @@ public class Order1 {
 	@Column(name="customerID")
 	private String customerID;
 	
-	@Column(name="partnerID")
-	private String partnerID;
+//	@Column(name="partnerID")
+//	private String partnerID;
 	
 	@Column(name="status")
 	private String status;
@@ -75,13 +75,13 @@ public class Order1 {
 		this.customerID = customerID;
 	}
 
-	public String getPartnerID() {
-		return partnerID;
-	}
-
-	public void setPartnerID(String partnerID) {
-		this.partnerID = partnerID;
-	}
+//	public String getPartnerID() {
+//		return partnerID;
+//	}
+//
+//	public void setPartnerID(String partnerID) {
+//		this.partnerID = partnerID;
+//	}
 
 	public String getStatus() {
 		return status;

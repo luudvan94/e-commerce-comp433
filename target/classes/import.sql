@@ -1,8 +1,8 @@
 
-INSERT INTO BOOK(bookID, title, author, description, price, partnerID) VALUES ('B123','Artificial Intelligence in Practice', 'Bernard Marr', 'Those looking for a practical means of understanding how artificial intelligence serves to enhance data science and use this knowledge to improve their data analytics strategies.', 50.0, 'P1234');
-INSERT INTO BOOK(bookID, title, author, description, price, partnerID) VALUES ('B456','Deep Learning', 'Ian Goodfellow, Yoshua Bengio and Aaron Courville', 'This best data science book is especially effective for those looking to enter the data-driven machine learning and deep learning avenues of the field.', 35.0, 'P1234');
-INSERT INTO BOOK(bookID, title, author, description, price, partnerID) VALUES ('B789','Advanced R', 'Hadley Wickham', 'Budding ‘R’ users and those looking to improve their overall programming talents and analytical skills as well as peruse the intricate nuances of this invaluable data-driven language.', 55.0, 'P1234');
-INSERT INTO BOOK(bookID, title, author, description, price, partnerID) VALUES ('B124','Machine Learning Yearning', 'Andrew Ng', 'Someone who has become all too aware of the machine learning and artificial intelligence craze but needs to get a grip on the subject. One of the best books for data science if you’re looking to hit the ground running with autonomous technologies.', 40.0, 'P1234');
+INSERT INTO BOOK(bookID, title, author, description, price, quantity, partnerID) VALUES ('B123','Artificial Intelligence in Practice', 'Bernard Marr', 'Those looking for a practical means of understanding how artificial intelligence serves to enhance data science and use this knowledge to improve their data analytics strategies.', 50.0, 100, 'P1234');
+INSERT INTO BOOK(bookID, title, author, description, price, quantity, partnerID) VALUES ('B456','Deep Learning', 'Ian Goodfellow, Yoshua Bengio and Aaron Courville', 'This best data science book is especially effective for those looking to enter the data-driven machine learning and deep learning avenues of the field.', 35.0, 10, 'P1234');
+INSERT INTO BOOK(bookID, title, author, description, price, quantity, partnerID) VALUES ('B789','Advanced R', 'Hadley Wickham', 'Budding ‘R’ users and those looking to improve their overall programming talents and analytical skills as well as peruse the intricate nuances of this invaluable data-driven language.', 55.0, 15, 'P1234');
+INSERT INTO BOOK(bookID, title, author, description, price, quantity, partnerID) VALUES ('B124','Machine Learning Yearning', 'Andrew Ng', 'Someone who has become all too aware of the machine learning and artificial intelligence craze but needs to get a grip on the subject. One of the best books for data science if you’re looking to hit the ground running with autonomous technologies.', 40.0, 5, 'P1234');
 
 INSERT INTO PARTNER(partnerID, username, password) VALUES('P1234', 'partner1', 'abcd');
 INSERT INTO PARTNER(partnerID, username, password) VALUES('P4567', 'partner2', 'abcd');
@@ -25,8 +25,8 @@ INSERT INTO SHIPPING_ADDRESS(shippingAddressID, customerID, street, city, zipcod
 INSERT INTO PAYMENT(paymentID, orderID, expires, date_added, amount, card_number) VALUES('CP123', 'O123', '06/23', '345345346', 200, '13123123123');
 INSERT INTO PAYMENT(paymentID, orderID, expires, date_added, amount, card_number) VALUES('CP124', 'O124', '06/23', '565676353', 250, '12312312312');
 
-INSERT INTO ORDER1(orderID, customerID, partnerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O123', 'C123', 'P1234', '234234234', 'delivered', 'S123', 'CP123', 123.00);
-INSERT INTO ORDER1(orderID, customerID, partnerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O124', 'C456', 'P1234', '123134234', 'shipping', 'S124', 'CP124', 55.00);
+INSERT INTO ORDER1(orderID, customerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O123', 'C123', '234234234', 'delivered', 'S123', 'CP123', 123.00);
+INSERT INTO ORDER1(orderID, customerID, date_updated, status, shippingAddressID, cardProfileID, total) VALUES('O124', 'C456', '123134234', 'shipping', 'S124', 'CP124', 55.00);
 
 INSERT INTO ORDER_BOOK(orderBookID, orderID, bookID, qty, total) VALUES('OB123', 'O123', 'B123', '1', 50.0);
 INSERT INTO ORDER_BOOK(orderBookID, orderID, bookID, qty, total) VALUES('OB124', 'O123', 'B456', '2', 50.0);

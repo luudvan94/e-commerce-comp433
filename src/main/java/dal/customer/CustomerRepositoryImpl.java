@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 
 import dal.AbstractRepository;
 import dal.partner.PartnerRepository;
-import domain.customer.Customer;
+import entity.customer.Customer;
 import util.Password;
 
 public class CustomerRepositoryImpl extends AbstractRepository<Customer, String> implements CustomerRepository {
@@ -54,7 +54,7 @@ public class CustomerRepositoryImpl extends AbstractRepository<Customer, String>
 	}
 
 	@Override
-	public Customer login(String username, String password) {
+	public Customer customerByUsernamePassword(String username, String password) {
 		Criteria crit = getSession().createCriteria(Customer.class);
 		crit.add(Restrictions.eq("username", username));
 		crit.add(Restrictions.eq("password", Password.encrypt(password)));

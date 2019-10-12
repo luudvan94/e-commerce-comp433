@@ -1,4 +1,4 @@
-package domain.partner;
+package entity.partner;
 
 import java.util.Date;  
 

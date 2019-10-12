@@ -1,10 +1,10 @@
 package dal.customer;
 
 import dal.Repository;
-import domain.customer.Customer;
+import entity.customer.Customer;
 
 public interface CustomerRepository extends Repository<Customer, String> {
-	Customer login(String username, String password);
+	Customer customerByUsernamePassword(String username, String password);
 	
 	boolean isUserAlreadyExist(String username);
 }

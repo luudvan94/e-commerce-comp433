@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import dal.shipping_address.ShippingAddressRepository;
 import dal.shipping_address.ShippingAddressRepositoryImpl;
-import domain.shipping_address.ShippingAddress;
+import entity.shipping_address.ShippingAddress;
 import util.EntityUtil;
 
 public class ShippingAddressRepositoryImplTest extends AbstractHibernateTest {

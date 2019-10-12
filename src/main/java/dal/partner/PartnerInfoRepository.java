@@ -1,7 +1,7 @@
 package dal.partner;
 
 import dal.Repository;
-import domain.partner.PartnerInfo;
+import entity.partner.PartnerInfo;
 
 public interface PartnerInfoRepository extends Repository<PartnerInfo, String> {
 	

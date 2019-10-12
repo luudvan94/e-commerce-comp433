@@ -3,7 +3,7 @@ package dal.book_review;
 import java.util.List;
 
 import dal.Repository;
-import domain.book_review.BookReview;
+import entity.book_review.BookReview;
 
 public interface BookReviewRepository extends Repository<BookReview, String> {
 

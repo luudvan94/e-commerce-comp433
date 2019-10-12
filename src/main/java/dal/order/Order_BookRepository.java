@@ -3,7 +3,7 @@ package dal.order;
 import java.util.List;
 
 import dal.Repository;
-import domain.order.Order_Book;
+import entity.order.Order_Book;
 
 public interface Order_BookRepository extends Repository<Order_Book, String> {
 

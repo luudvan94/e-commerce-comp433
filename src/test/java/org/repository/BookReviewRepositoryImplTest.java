@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import dal.book_review.BookReviewRepository;
 import dal.book_review.BookReviewRepositoryImpl;
-import domain.book_review.BookReview;
-import domain.customer.CustomerInfo;
+import entity.book_review.BookReview;
+import entity.customer.CustomerInfo;
 import util.EntityUtil;
 
 public class BookReviewRepositoryImplTest extends AbstractHibernateTest {

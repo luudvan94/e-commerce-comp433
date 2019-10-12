@@ -15,10 +15,10 @@ import org.springframework.hateoas.Resources;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import org.springframework.stereotype.Service;
 
+import exception.NoContentException;
+import exception.NotExistException;
 import representation.BookRepresentation;
 import service.BookService;
-import service.exception.NoContentException;
-import service.exception.NotExistException;
 import service.workflow.BookServiceActivity;
 
 @Path("/books")

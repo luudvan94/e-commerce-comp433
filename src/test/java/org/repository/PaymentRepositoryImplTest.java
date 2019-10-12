@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import dal.payment.PaymentRepository;
 import dal.payment.PaymentRepositoryImpl;
-import domain.payment.Payment;
+import entity.payment.Payment;
 import util.EntityUtil;
 
 public class PaymentRepositoryImplTest extends AbstractHibernateTest {

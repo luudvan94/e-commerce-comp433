@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import dal.order.Order_BookRepository;
 import dal.order.Order_BookRepositoryImpl;
-import domain.order.Order_Book;
+import entity.order.Order_Book;
 import util.EntityUtil;
 
 public class Order_BookRepositoryImplTest extends AbstractHibernateTest {

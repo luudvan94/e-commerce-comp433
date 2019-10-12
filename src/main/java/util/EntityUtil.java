@@ -2,16 +2,16 @@ package util;
 
 import java.util.Date;
 
-import domain.book.Book;
-import domain.book_review.BookReview;
-import domain.customer.Customer;
-import domain.customer.CustomerInfo;
-import domain.order.Order1;
-import domain.order.Order_Book;
-import domain.partner.Partner;
-import domain.partner.PartnerInfo;
-import domain.payment.Payment;
-import domain.shipping_address.ShippingAddress;
+import entity.book.Book;
+import entity.book_review.BookReview;
+import entity.customer.Customer;
+import entity.customer.CustomerInfo;
+import entity.order.Order1;
+import entity.order.Order_Book;
+import entity.partner.Partner;
+import entity.partner.PartnerInfo;
+import entity.payment.Payment;
+import entity.shipping_address.ShippingAddress;
 
 public class EntityUtil {
 	
@@ -104,7 +104,7 @@ public class EntityUtil {
 		Order1 order = new Order1();
 		order.setId(ID.generateID("O"));
 		order.setCustomerID("C456");
-		order.setPartnerID("P4567");
+//		order.setPartnerID("P4567");
 		order.setDate_updated("1233445545");
 		order.setShippingAddressID("S123");
 		order.setStatus("pending");

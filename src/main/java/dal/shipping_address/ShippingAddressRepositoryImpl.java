@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import dal.AbstractRepository;
-import domain.shipping_address.ShippingAddress;
+import entity.shipping_address.ShippingAddress;
 
 public class ShippingAddressRepositoryImpl extends AbstractRepository<ShippingAddress, String> implements ShippingAddressRepository {
 

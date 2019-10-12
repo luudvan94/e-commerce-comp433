@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import dal.customer.CustomerRepository;
 import dal.customer.CustomerRepositoryImpl;
-import domain.customer.Customer;
+import entity.customer.Customer;
 import util.EntityUtil;
 import util.Password;
 
@@ -101,7 +101,7 @@ public class CustomerRepositoryImplTest extends AbstractHibernateTest {
 		
 		flushAndClearSession();
 		
-		Customer customer = customerRepository.login("username", "password");
+		Customer customer = customerRepository.customerByUsernamePassword("username", "password");
 		
 		assertTrue(customer != null);
 		assertTrue(customer.getUsername().equalsIgnoreCase("username"));
@@ -113,7 +113,7 @@ public class CustomerRepositoryImplTest extends AbstractHibernateTest {
 		
 		flushAndClearSession();
 		
-		Customer partner = customerRepository.login("wrongusername", "password");
+		Customer partner = customerRepository.customerByUsernamePassword("wrongusername", "password");
 		
 		assertTrue(partner == null);
 	}
@@ -124,7 +124,7 @@ public class CustomerRepositoryImplTest extends AbstractHibernateTest {
 		
 		flushAndClearSession();
 		
-		Customer partner = customerRepository.login("username", "wrongpassword");
+		Customer partner = customerRepository.customerByUsernamePassword("username", "wrongpassword");
 		
 		assertTrue(partner == null);
 	}
@@ -135,7 +135,7 @@ public class CustomerRepositoryImplTest extends AbstractHibernateTest {
 		
 		flushAndClearSession();
 		
-		Customer partner = customerRepository.login("wrongusername", "wrongpassword");
+		Customer partner = customerRepository.customerByUsernamePassword("wrongusername", "wrongpassword");
 		
 		assertTrue(partner == null);
 	}

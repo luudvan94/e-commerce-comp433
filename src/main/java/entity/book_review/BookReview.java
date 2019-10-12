@@ -1,10 +1,10 @@
-package domain.book_review;
+package entity.book_review;
 
 import java.util.Date;  
 
 import javax.persistence.*;
 
-import domain.customer.CustomerInfo;
+import entity.customer.CustomerInfo;
 
 @Entity
 @Table(name="BOOK_REVIEW")

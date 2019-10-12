@@ -1,8 +1,8 @@
 package service.util;
 
-import domain.book.Book;
-import domain.book_review.BookReview;
-import domain.customer.CustomerInfo;
+import entity.book.Book;
+import entity.book_review.BookReview;
+import entity.customer.CustomerInfo;
 import representation.BookRepresentation;
 import representation.BookReviewRepresentation;
 import representation.CustomerInfoRepresentation;

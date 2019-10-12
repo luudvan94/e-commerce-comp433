@@ -3,8 +3,6 @@ package service.workflow;
 import representation.BookRepresentation;
 import representation.BookReviewRepresentation;
 import representation.ObjectFactory;
-import service.exception.NoContentException;
-import service.exception.NotExistException;
 import service.util.RepresentationConverter;
 
 import java.util.ArrayList;
@@ -16,8 +14,10 @@ import dal.book.BookRepository;
 import dal.book.BookRepositoryImpl;
 import dal.book_review.BookReviewRepository;
 import dal.book_review.BookReviewRepositoryImpl;
-import domain.book.Book;
-import domain.book_review.BookReview;
+import entity.book.Book;
+import entity.book_review.BookReview;
+import exception.NoContentException;
+import exception.NotExistException;
 
 public class BookServiceActivity {
 	

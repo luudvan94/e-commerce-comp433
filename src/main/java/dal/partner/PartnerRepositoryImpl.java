@@ -7,8 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 import dal.AbstractRepository;
-import domain.book.Book;
-import domain.partner.Partner;
+import entity.book.Book;
+import entity.partner.Partner;
 import util.Password;
 
 public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> implements PartnerRepository {
@@ -54,7 +54,7 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 	}
 
 	@Override
-	public Partner login(String username, String password) {
+	public Partner partnerWithUsernamePassword(String username, String password) {
 		Criteria crit = getSession().createCriteria(Partner.class);
 		crit.add(Restrictions.eq("username", username));
 		crit.add(Restrictions.eq("password", Password.encrypt(password)));

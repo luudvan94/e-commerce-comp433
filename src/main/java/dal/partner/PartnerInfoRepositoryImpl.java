@@ -6,9 +6,9 @@ import java.util.List;
 import org.hibernate.Query;
 
 import dal.AbstractRepository;
-import domain.book.Book;
-import domain.partner.Partner;
-import domain.partner.PartnerInfo;
+import entity.book.Book;
+import entity.partner.Partner;
+import entity.partner.PartnerInfo;
 
 public class PartnerInfoRepositoryImpl extends AbstractRepository<PartnerInfo, String> implements PartnerInfoRepository {
 

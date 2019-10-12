@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import dal.customer.CustomerInfoRepository;
 import dal.customer.CustomerInfoRepositoryImpl;
-import domain.customer.CustomerInfo;
+import entity.customer.CustomerInfo;
 import util.EntityUtil;
 
 public class CustomerInfoRepositoryImplTest extends AbstractHibernateTest {
