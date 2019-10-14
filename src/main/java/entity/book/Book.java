@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import entity.book_review.BookReview;
+import entity.partner.Partner;
+import entity.partner.PartnerInfo;
 
 @Entity
 @Table(name = "BOOK")
@@ -30,6 +32,19 @@ public class Book {
 	@Column(name="quantity")
 	private int quantity;
 	
+	@ManyToOne
+	@JoinColumn(name="partnerInfoID", nullable=true)
+	private PartnerInfo partnerInfo;
+	
+
+	public PartnerInfo getPartnerInfo() {
+		return partnerInfo;
+	}
+
+	public void setPartnerInfo(PartnerInfo partnerInfo) {
+		this.partnerInfo = partnerInfo;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -37,12 +52,9 @@ public class Book {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-	@Column(name = "partnerID")
-	private String partnerID;
 	
-	@Transient
-	private List<BookReview> reviews;
+//	@Transient
+//	private List<BookReview> reviews;
 	
 	
 	public Book() {}
@@ -87,21 +99,14 @@ public class Book {
 		this.description = description;
 	}
 
-	public String getPartnerID() {
-		return partnerID;
-	}
-
-	public void setPartnerID(String partnerID) {
-		this.partnerID = partnerID;
-	}
-
-	public List<BookReview> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<BookReview> reviews) {
-		this.reviews = reviews;
-	}
+//
+//	public List<BookReview> getReviews() {
+//		return reviews;
+//	}
+//
+//	public void setReviews(List<BookReview> reviews) {
+//		this.reviews = reviews;
+//	}
 	
 	
 }

@@ -22,14 +22,14 @@ public class EntityUtil {
 		book.setAuthor("John W. Foreman");
 		book.setDescription("Data Science gets thrown around in the press like it's magic. Major retailers are predicting everything from when their customers are pregnant to when they want a new pair of Chuck Taylors. It's a brave new world where seemingly meaningless data can be transformed into valuable insight to drive smart business decisions.");
 		book.setPrice(22.95);
-		book.setPartnerID("P1234");
+		book.setPartnerInfo(EntityUtil.partnerInfoSample());
 		
 		return book;
 	}
 	
 	public static Partner partnerSample() {
 		Partner partner = new Partner();
-		partner.setId(ID.generateID("B"));
+		partner.setPartnerID(ID.generateID("B"));
 		partner.setUsername("username");
 		partner.setPassword(Password.encrypt("password"));
 		
@@ -38,7 +38,7 @@ public class EntityUtil {
 	
 	public static PartnerInfo partnerInfoSample() {
 		PartnerInfo info = new PartnerInfo();
-		info.setId(ID.generateID("PI"));
+		info.setPartnerInfoID(ID.generateID("PI"));
 		info.setName("partner info");
 		info.setAddress("123 Sherindan Av");
 		info.setDate_added("" + new Date().getTime());

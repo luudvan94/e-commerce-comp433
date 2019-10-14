@@ -25,13 +25,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="bookId" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element ref="{representation}PartnerInfoRepresentation" minOccurs="0"/>
+ *         &lt;element name="partnerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,19 +41,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "bookId",
     "title",
     "author",
     "price",
     "description",
     "quantity",
-    "partnerInfoRepresentation"
+    "partnerID"
 })
-@XmlRootElement(name = "BookRepresentation")
-public class BookRepresentation {
+@XmlRootElement(name = "BookRequest")
+public class BookRequest {
 
-    @XmlElement(required = true)
-    protected String bookId;
     @XmlElement(required = true)
     protected String title;
     @XmlElement(required = true)
@@ -63,32 +59,8 @@ public class BookRepresentation {
     @XmlElement(required = true)
     protected String description;
     protected int quantity;
-    @XmlElement(name = "PartnerInfoRepresentation")
-    protected PartnerInfoRepresentation partnerInfoRepresentation;
-
-    /**
-     * Gets the value of the bookId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBookId() {
-        return bookId;
-    }
-
-    /**
-     * Sets the value of the bookId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBookId(String value) {
-        this.bookId = value;
-    }
+    @XmlElement(required = true)
+    protected String partnerID;
 
     /**
      * Gets the value of the title property.
@@ -195,27 +167,27 @@ public class BookRepresentation {
     }
 
     /**
-     * Gets the value of the partnerInfoRepresentation property.
+     * Gets the value of the partnerID property.
      * 
      * @return
      *     possible object is
-     *     {@link PartnerInfoRepresentation }
+     *     {@link String }
      *     
      */
-    public PartnerInfoRepresentation getPartnerInfoRepresentation() {
-        return partnerInfoRepresentation;
+    public String getPartnerID() {
+        return partnerID;
     }
 
     /**
-     * Sets the value of the partnerInfoRepresentation property.
+     * Sets the value of the partnerID property.
      * 
      * @param value
      *     allowed object is
-     *     {@link PartnerInfoRepresentation }
+     *     {@link String }
      *     
      */
-    public void setPartnerInfoRepresentation(PartnerInfoRepresentation value) {
-        this.partnerInfoRepresentation = value;
+    public void setPartnerID(String value) {
+        this.partnerID = value;
     }
 
 }

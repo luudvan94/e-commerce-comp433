@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import exception.NoContentException;
 import exception.NotExistException;
 import representation.BookRepresentation;
+import representation.BookRequest;
 import service.BookService;
 import service.workflow.BookServiceActivity;
 
@@ -40,7 +41,7 @@ public class BookServiceImpl implements BookService {
 		BookServiceActivity activity = new BookServiceActivity();
 		try {
 			return Response.status(Response.Status.OK).entity(activity.getAll()).build();
-		} catch (NoContentException e) {
+		} catch (NotExistException e) {
 			return Response.status(Response.Status.NO_CONTENT).build();
 		}
 	}
@@ -50,7 +51,7 @@ public class BookServiceImpl implements BookService {
 		try {
 			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getBooksByTitle(title)).build();
 			
-		} catch (NoContentException ex) {
+		} catch (NotExistException ex) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 			
 		}
@@ -60,8 +61,19 @@ public class BookServiceImpl implements BookService {
 		BookServiceActivity activity = new BookServiceActivity();
 		try {
 			return Response.status(Response.Status.OK).entity(activity.getReviewsByBookID(id)).build();
-		} catch (NoContentException e) {
+		} catch (NotExistException e) {
 			return Response.status(Response.Status.NO_CONTENT).build();
+		}
+	}
+	@Override
+	public Response createNewBook(BookRequest request) {
+		try {
+			BookRepresentation bo = new BookServiceActivity().createNewBook(request.getTitle(), request.getDescription(), request.getPrice(), request.getAuthor(), request.getQuantity(), request.getPartnerID());
+			return Response.status(Response.Status.OK).entity(bo).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+			
 		}
 	}
 

@@ -3,6 +3,47 @@
 	targetNamespace="representation" xmlns:tns="representation"
 	elementFormDefault="qualified">
 	
+	<xsd:element name="PartnerRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="username" type="xsd:string" />
+				<xsd:element name="password" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="BookRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="title" type="xsd:string" />
+				<xsd:element name="author" type="xsd:string" />
+				<xsd:element name="price" type="xsd:double" />
+				<xsd:element name="description" type="xsd:string" />
+				<xsd:element name="quantity" type="xsd:int" />
+				<xsd:element name="partnerID" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="PartnerInfoRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="partnerID" type="xsd:string" />
+				<xsd:element name="name" type="xsd:string" />
+				<xsd:element name="address" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="PartnerRepresentation">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="partnerID" type="xsd:string" />
+				<xsd:element name="username" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
 	<xsd:element name="CustomerInfoRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -51,6 +92,8 @@
 				<xsd:element name="author" type="xsd:string" />
 				<xsd:element name="price" type="xsd:double" />
 				<xsd:element name="description" type="xsd:string" />
+				<xsd:element name="quantity" type="xsd:int" />
+				<xsd:element ref="tns:PartnerInfoRepresentation" minOccurs="0" /> 
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>

@@ -15,7 +15,7 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 
 	@Override
 	public void delete(Partner t) {
-		Partner persistancePartner = get(t.getId());
+		Partner persistancePartner = get(t.getPartnerID());
 		getSession().delete(persistancePartner);	
 	}
 
@@ -28,7 +28,7 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 
 	@Override
 	public String create(Partner t) {
-		if (isUserAlreadyExist(t.getUsername())) {
+		if (this.partnerWithUsername(t.getUsername()) != null) {
 			return null;
 		}
 		
@@ -68,16 +68,16 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 	}
 
 	@Override
-	public boolean isUserAlreadyExist(String username) {
+	public Partner partnerWithUsername(String username) {
 		Criteria crit = getSession().createCriteria(Partner.class);
 		crit.add(Restrictions.eq("username", username));
 		List<Partner> result = crit.list();
 		
-		if (result.size() == 0) {
-			return false;
+		if (result.size() > 0) {
+			return result.get(0);
 		}
 		
-		return true;
+		return null;
 	}
 	
 	

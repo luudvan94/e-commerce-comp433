@@ -12,7 +12,7 @@ public class Partner {
 	
 	@Id
 	@Column(name = "partnerID", unique = true, nullable = false)
-	private String id;
+	private String partnerID;
 	
 	@Column(name = "username")
 	private String username;
@@ -29,12 +29,13 @@ public class Partner {
 		return "P" + new Date().getTime();
 	}
 
-	public String getId() {
-		return id;
+
+	public String getPartnerID() {
+		return partnerID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setPartnerID(String partnerID) {
+		this.partnerID = partnerID;
 	}
 
 	public String getUsername() {

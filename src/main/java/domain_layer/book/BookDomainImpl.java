@@ -23,8 +23,14 @@ public class BookDomainImpl implements BookDomain {
 	}
 
 	@Override
-	public List<Book> getAllBooks() {
-		return bookRepository.getAll();
+	public List<Book> getAllBooks() throws NotExistException {
+		List<Book> books =  bookRepository.getAll();
+		
+		if (books.size() == 0) {
+			throw new NotExistException("No book exists");
+		}
+		
+		return books;
 	}
 
 	@Override
@@ -63,6 +69,11 @@ public class BookDomainImpl implements BookDomain {
 	@Override
 	public void updateBook(Book book) {
 		bookRepository.update(book);
+	}
+
+	@Override
+	public List<Book> getBooksByParterInfoID(String partnerInfoID) {
+		return bookRepository.booksByPartnerInfoID(partnerInfoID);
 	}
 	
 	

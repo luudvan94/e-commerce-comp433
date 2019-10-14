@@ -10,7 +10,7 @@ public interface BookDomain {
 	
 	Book getBookById(String id) throws NotExistException;
 	
-	List<Book> getAllBooks();
+	List<Book> getAllBooks() throws NotExistException;
 	
 	List<Book> getBooksByTitle(String title) throws NotExistException;
 	
@@ -22,4 +22,5 @@ public interface BookDomain {
 	
 	void updateBook(Book book);
 
+	List<Book> getBooksByParterInfoID(String partnerInfoID);
 }

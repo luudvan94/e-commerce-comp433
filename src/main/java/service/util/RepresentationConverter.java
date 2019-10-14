@@ -3,10 +3,13 @@ package service.util;
 import entity.book.Book;
 import entity.book_review.BookReview;
 import entity.customer.CustomerInfo;
+import entity.partner.PartnerInfo;
 import representation.BookRepresentation;
 import representation.BookReviewRepresentation;
 import representation.CustomerInfoRepresentation;
 import representation.ObjectFactory;
+import representation.PartnerInfoRepresentation;
+import representation.PartnerRepresentation;
 
 public class RepresentationConverter {
 	
@@ -19,6 +22,10 @@ public class RepresentationConverter {
 		representation.setTitle(book.getTitle());
 		representation.setDescription(book.getDescription());
 		representation.setPrice(book.getPrice());
+		representation.setQuantity(book.getQuantity());
+		
+		PartnerInfo info = book.getPartnerInfo();
+		representation.setPartnerInfoRepresentation(RepresentationConverter.toPartnerInfoRepresentation(info.getPartnerID(), info.getName(), info.getAddress()));
 		
 		return representation;
 	}
@@ -40,6 +47,23 @@ public class RepresentationConverter {
 		representation.setName(customerInfo.getName());
 		
 		return representation;
+	}
+	
+	public static PartnerInfoRepresentation toPartnerInfoRepresentation(String partnerID, String name, String address) {
+		PartnerInfoRepresentation representation = factory.createPartnerInfoRepresentation();
+		representation.setPartnerId(partnerID);
+		representation.setName(name);
+		representation.setAddress(address);
+		
+		return representation;
+	}
+	
+	public static PartnerRepresentation toPartnerRepresentation(String id, String username) {
+		PartnerRepresentation representation = factory.createPartnerRepresentation();
+		representation.setPartnerID(id);
+		representation.setUsername(username);
+		
+		return representation; 
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.jws.WebService;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,6 +15,7 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 
 import representation.BookRepresentation;
+import representation.BookRequest;
 
 //@Path("/books")
 @WebService
@@ -38,4 +40,8 @@ public interface BookService {
 	@Produces({"application/xml" , "application/json"})
 	@Path("/{bookId}/reviews")
 	public Response getReviewsByBook(@PathParam("bookId") String id);
+	
+	@POST
+	@Produces({"application/xml" , "application/json"})
+	public Response createNewBook(BookRequest request);
 }

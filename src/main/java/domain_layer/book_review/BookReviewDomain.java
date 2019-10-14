@@ -7,7 +7,7 @@ import exception.NotExistException;
 
 public interface BookReviewDomain {
 
-	List<BookReview> getReviewsByBookId(String id);
+	List<BookReview> getReviewsByBookId(String id) throws NotExistException;
 	
 //	List<BookReview> getReviewsByCustomerId(String id) throws NotExistException;
 	

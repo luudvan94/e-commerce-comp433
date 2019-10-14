@@ -14,7 +14,7 @@ public class PartnerInfoRepositoryImpl extends AbstractRepository<PartnerInfo, S
 
 	@Override
 	public void delete(PartnerInfo t) {
-		PartnerInfo persistancePartnerinfo = get(t.getId());
+		PartnerInfo persistancePartnerinfo = get(t.getPartnerInfoID());
 		getSession().delete(persistancePartnerinfo);	
 	}
 

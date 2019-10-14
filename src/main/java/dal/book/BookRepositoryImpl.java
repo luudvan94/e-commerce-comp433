@@ -61,9 +61,9 @@ public class BookRepositoryImpl extends AbstractRepository<Book, String> impleme
 	}
 
 	@Override
-	public List<Book> booksByPartnerID(String id) {
+	public List<Book> booksByPartnerInfoID(String id) {
 		Criteria crit = getSession().createCriteria(Book.class);
-		crit.add(Restrictions.eq("partnerID",id));
+		crit.add(Restrictions.eq("partnerInfo.partnerInfoID",id));
 		List<Book> result = new ArrayList();
 		
 		result = crit.list();

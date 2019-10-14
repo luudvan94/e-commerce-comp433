@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="fourDigits" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="expires" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="partnerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +38,90 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "fourDigits",
-    "expires"
+    "partnerID",
+    "name",
+    "address"
 })
-@XmlRootElement(name = "CardProfileRepresentation")
-public class CardProfileRepresentation {
+@XmlRootElement(name = "PartnerInfoRequest")
+public class PartnerInfoRequest {
 
     @XmlElement(required = true)
-    protected String fourDigits;
+    protected String partnerID;
     @XmlElement(required = true)
-    protected String expires;
+    protected String name;
+    @XmlElement(required = true)
+    protected String address;
 
     /**
-     * Gets the value of the fourDigits property.
+     * Gets the value of the partnerID property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFourDigits() {
-        return fourDigits;
+    public String getPartnerID() {
+        return partnerID;
     }
 
     /**
-     * Sets the value of the fourDigits property.
+     * Sets the value of the partnerID property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setFourDigits(String value) {
-        this.fourDigits = value;
+    public void setPartnerID(String value) {
+        this.partnerID = value;
     }
 
     /**
-     * Gets the value of the expires property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getExpires() {
-        return expires;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the expires property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setExpires(String value) {
-        this.expires = value;
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    /**
+     * Gets the value of the address property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Sets the value of the address property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAddress(String value) {
+        this.address = value;
     }
 
 }

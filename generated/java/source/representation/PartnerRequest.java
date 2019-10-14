@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="fourDigits" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="expires" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +37,63 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "fourDigits",
-    "expires"
+    "username",
+    "password"
 })
-@XmlRootElement(name = "CardProfileRepresentation")
-public class CardProfileRepresentation {
+@XmlRootElement(name = "PartnerRequest")
+public class PartnerRequest {
 
     @XmlElement(required = true)
-    protected String fourDigits;
+    protected String username;
     @XmlElement(required = true)
-    protected String expires;
+    protected String password;
 
     /**
-     * Gets the value of the fourDigits property.
+     * Gets the value of the username property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFourDigits() {
-        return fourDigits;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * Sets the value of the fourDigits property.
+     * Sets the value of the username property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setFourDigits(String value) {
-        this.fourDigits = value;
+    public void setUsername(String value) {
+        this.username = value;
     }
 
     /**
-     * Gets the value of the expires property.
+     * Gets the value of the password property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getExpires() {
-        return expires;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * Sets the value of the expires property.
+     * Sets the value of the password property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setExpires(String value) {
-        this.expires = value;
+    public void setPassword(String value) {
+        this.password = value;
     }
 
 }

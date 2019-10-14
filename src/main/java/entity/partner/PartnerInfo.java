@@ -1,8 +1,12 @@
 package entity.partner;
 
-import java.util.Date;  
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
+
+import entity.book.Book;
+import entity.book_review.BookReview;
 
 
 @Entity
@@ -10,7 +14,7 @@ import javax.persistence.*;
 public class PartnerInfo {
 	@Id
 	@Column(name = "partnerInfoID", unique = true, nullable = false)
-	private String id;
+	private String partnerInfoID;
 	
 	@Column(name = "partnerID")
 	private String partnerID;
@@ -24,18 +28,30 @@ public class PartnerInfo {
 	@Column(name="date_added")
 	private String date_added;
 	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="partnerInfo")
+	private List<Book> books;
+	
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 	public PartnerInfo() {}
 	
 	public static String generateID() {
 		return "PI" + new Date().getTime();
 	}
 
-	public String getId() {
-		return id;
+
+	public String getPartnerInfoID() {
+		return partnerInfoID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setPartnerInfoID(String partnerInfoID) {
+		this.partnerInfoID = partnerInfoID;
 	}
 
 	public String getPartnerID() {

@@ -12,8 +12,12 @@ public class BookReviewDomainImpl implements BookReviewDomain {
 	private BookReviewRepository bookReviewRepository = new BookReviewRepositoryImpl();
 
 	@Override
-	public List<BookReview> getReviewsByBookId(String id) {
+	public List<BookReview> getReviewsByBookId(String id) throws NotExistException {
 		List<BookReview> reviews = bookReviewRepository.bookReviewsByBookID(id);
+		
+		if (reviews.size() == 0) {
+			throw new NotExistException("No reviews exist for provided book id");
+		}
 		
 		return reviews;
 	}

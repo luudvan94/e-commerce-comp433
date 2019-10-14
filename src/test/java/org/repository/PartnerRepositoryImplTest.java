@@ -31,7 +31,7 @@ public class PartnerRepositoryImplTest extends AbstractHibernateTest {
 		flushAndClearSession();
 		
 		Partner partnerFromDb = partnerRepository.get("P1234");
-		assertTrue(partnerFromDb.getId().equalsIgnoreCase("P1234"));
+		assertTrue(partnerFromDb.getPartnerID().equalsIgnoreCase("P1234"));
 	}
 	
 	@Test
