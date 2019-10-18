@@ -10,6 +10,7 @@ import dal.order.Order_BookRepositoryImpl;
 import entity.order.Order1;
 import entity.order.Order_Book;
 import exception.NotExistException;
+import exception.UnAuthorizedException;
 import util.ID;
 
 public class OrderDomainImpl implements OrderDomain {
@@ -32,8 +33,12 @@ public class OrderDomainImpl implements OrderDomain {
 	}
 
 	@Override
-	public void shippingOrder(String id) throws NotExistException {
+	public void shippingOrder(String id) throws NotExistException, UnAuthorizedException {
 		Order1 order = this.getOrder(id);
+		
+		if (order.getStatus() == "cancelled" || order.getStatus() == "shipping") {
+			throw new UnAuthorizedException("Order can not be shipped by this stage");
+		}
 		
 		order.setStatus("shipping");
 		
@@ -41,8 +46,13 @@ public class OrderDomainImpl implements OrderDomain {
 	}
 
 	@Override
-	public void cancellingOrder(String id) throws NotExistException {
+	public void cancellingOrder(String id) throws NotExistException, UnAuthorizedException {
 		Order1 order = this.getOrder(id);
+		
+		if (order.getStatus() == "shipping" || order.getStatus() == "delivered") {
+			throw new UnAuthorizedException("Order can not be cancelled by this stage");
+		}
+		
 		
 		order.setStatus("cancelled");
 		

@@ -15,7 +15,7 @@ public class CustomerRepositoryImpl extends AbstractRepository<Customer, String>
 	
 	@Override
 	public void delete(Customer t) {
-		Customer persistanceCustomer = get(t.getId());
+		Customer persistanceCustomer = get(t.getCustomerID());
 		getSession().delete(persistanceCustomer);	
 	}
 

@@ -6,13 +6,17 @@ import java.util.stream.Collectors;
 import domain_layer.partner.PartnerDomain;
 import domain_layer.partner.PartnerDomainImpl;
 import entity.book.Book;
+import entity.customer.CustomerInfo;
 import entity.partner.Partner;
 import entity.partner.PartnerInfo;
 import exception.AlreadyExistedException;
 import exception.NotExistException;
 import exception.UnAuthorizedException;
 import representation.BookRepresentation;
+import representation.CustomerInfoRepresentation;
+import representation.CustomerInfoRequest;
 import representation.PartnerInfoRepresentation;
+import representation.PartnerInfoRequest;
 import representation.PartnerRepresentation;
 import service.util.RepresentationConverter;
 
@@ -49,12 +53,18 @@ public class PartnerServiceActivity {
 		PartnerInfo info = partnerDomain.getPartnerInfo(partnerID);
 		List<Book> books = info.getBooks();
 		
-		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book)).collect(Collectors.toList());
+		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo())).collect(Collectors.toList());
 		
 	}
 	
 	public void deleteBook(String partnerID, String bookID) throws NotExistException, UnAuthorizedException {
 		partnerDomain.deleteBook(partnerID, bookID);
+	}
+	
+	public PartnerInfoRepresentation updatePartnerInfo(PartnerInfoRequest request) throws NotExistException, UnAuthorizedException {
+		PartnerInfo info = partnerDomain.updatePartnerInfo(request.getPartnerID(), request.getName(), request.getAddress());
+		
+		return RepresentationConverter.toPartnerInfoRepresentation(info.getPartnerID(), info.getName(), info.getAddress());
 	}
 
 }

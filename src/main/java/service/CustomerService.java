@@ -11,44 +11,44 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import representation.CustomerInfoRequest;
-import representation.PartnerInfoRequest;
-import representation.PartnerRequest;
+import representation.CustomerRequest;
 
 @WebService
-public interface PartnerService {
+public interface CustomerService {
+	@POST
+	@Produces({"application/xml" , "application/json"})
+	public Response createCustomer(CustomerRequest  request);
+	
 	
 	@POST
 	@Produces({"application/xml" , "application/json"})
-	public Response createPartner(PartnerRequest  request);
-	
-	
-	@POST
-	@Produces({"application/xml" , "application/json"})
-	@Path("/partnerInfo")
-	public Response createPartnerInfo(PartnerInfoRequest  request);
+	@Path("/customerInfo")
+	public Response createCustomerInfo(CustomerInfoRequest  request);
 	
 	@POST
 	@Produces({"application/xml" , "application/json"})
 	@Path("/login")
-	public Response login(PartnerRequest request);
+	public Response login(CustomerRequest request);
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{partnerID}")
-	public Response getPartnerInfo(@PathParam("partnerID") String id);
+	@Path("/{customerID}")
+	public Response getCustomerInfo(@PathParam("customerID") String id);
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{partnerID}/books")
-	public Response getPartnerBooks(@PathParam("partnerID") String id);
+	@Path("/{customerID}/reviews")
+	public Response getCustomerReviews(@PathParam("customerID") String id);
 	
 	@DELETE
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{partnerID}/books/{bookID}")
-	public Response deleteBook(@PathParam("partnerID") String id, @PathParam("bookID") String bookID);
+	@Path("/{customerID}/reviews/{reviewID}")
+	public Response deleteReview(@PathParam("customerID") String id, @PathParam("reviewID") String reviewID);
 	
 	@PUT
 	@Produces({"application/xml" , "application/json"})
-	@Path("/partnerInfo")
-	public Response updatePartnerInfo(PartnerInfoRequest request);
+	@Path("/customerInfo")
+	public Response updateCustomerInfo(CustomerInfoRequest request);
+	
+	
 }

@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="customerId" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="bookID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="content" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="customerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,90 +38,90 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "customerId",
-    "name",
-    "address"
+    "bookID",
+    "content",
+    "customerID"
 })
-@XmlRootElement(name = "CustomerInfoRepresentation")
-public class CustomerInfoRepresentation {
+@XmlRootElement(name = "BookReviewRequest")
+public class BookReviewRequest {
 
     @XmlElement(required = true)
-    protected String customerId;
+    protected String bookID;
     @XmlElement(required = true)
-    protected String name;
+    protected String content;
     @XmlElement(required = true)
-    protected String address;
+    protected String customerID;
 
     /**
-     * Gets the value of the customerId property.
+     * Gets the value of the bookID property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCustomerId() {
-        return customerId;
+    public String getBookID() {
+        return bookID;
     }
 
     /**
-     * Sets the value of the customerId property.
+     * Sets the value of the bookID property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCustomerId(String value) {
-        this.customerId = value;
+    public void setBookID(String value) {
+        this.bookID = value;
     }
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the content property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the content property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setContent(String value) {
+        this.content = value;
     }
 
     /**
-     * Gets the value of the address property.
+     * Gets the value of the customerID property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAddress() {
-        return address;
+    public String getCustomerID() {
+        return customerID;
     }
 
     /**
-     * Sets the value of the address property.
+     * Sets the value of the customerID property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAddress(String value) {
-        this.address = value;
+    public void setCustomerID(String value) {
+        this.customerID = value;
     }
 
 }

@@ -1,6 +1,7 @@
 package service.workflow;
 
 import representation.BookRepresentation;
+import representation.BookRequest;
 import representation.BookReviewRepresentation;
 import representation.ObjectFactory;
 import service.util.RepresentationConverter;
@@ -36,42 +37,33 @@ public class BookServiceActivity {
 	public BookRepresentation get(String id) throws NotExistException {
 		Book book = bookDomain.getBookById(id);
 		
-		return RepresentationConverter.toBookRepresentation(book);
+		return RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo());
 	}
 	
 	public List<BookRepresentation> getBooksByTitle(String title) throws NotExistException {
 		List<Book> books = bookDomain.getBooksByTitle(title);
 		
-		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book)).collect(Collectors.toList());
+		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo())).collect(Collectors.toList());
 	}
 	
 	public List<BookRepresentation> getAll() throws NotExistException {
 		List<Book> books = bookDomain.getAllBooks();
 		
-		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book)).collect(Collectors.toList());
+		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo())).collect(Collectors.toList());
 	}
 	
 	public List<BookReviewRepresentation> getReviewsByBookID(String id) throws NotExistException {
 		List<BookReview> bookReviews = bookReviewDomain.getReviewsByBookId(id);
 		
-		return bookReviews.stream().map(bookReview -> RepresentationConverter.toBookReviewRepresentation(bookReview)).collect(Collectors.toList());
+		return bookReviews.stream().map(bookReview -> RepresentationConverter.toBookReviewRepresentation(bookReview.getId(), bookReview.getBook(), bookReview.getCustomerInfo(), bookReview.getContent())).collect(Collectors.toList());
 	}
 	
-	public BookRepresentation createNewBook(String title, String description, double price, String author, int quantity, String partnerID) throws NotExistException {
-		PartnerInfo partnerInfo = partnerDomain.getPartnerInfo(partnerID);
+	public BookRepresentation createNewBook(BookRequest request) throws NotExistException {
+		PartnerInfo partnerInfo = partnerDomain.getPartnerInfo(request.getPartnerID());
 		
-		Book book = new Book();
-		book.setId(ID.generateID("B"));
-		book.setTitle(title);
-		book.setAuthor(author);
-		book.setDescription(description);
-		book.setPrice(price);
-		book.setQuantity(quantity);
-		book.setPartnerInfo(partnerInfo);
+		String newID = bookDomain.addBook(request.getTitle(), request.getAuthor(), request.getDescription(), request.getPrice(), request.getQuantity(), partnerInfo);
 		
-		bookDomain.addBook(book);
-		
-		return RepresentationConverter.toBookRepresentation(book);
+		return RepresentationConverter.toBookRepresentation(newID, request.getTitle(), request.getAuthor(), request.getDescription(), request.getPrice(), request.getQuantity(), partnerInfo);
 	}
 
 }

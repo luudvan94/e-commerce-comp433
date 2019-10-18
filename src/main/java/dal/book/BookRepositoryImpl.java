@@ -16,7 +16,7 @@ public class BookRepositoryImpl extends AbstractRepository<Book, String> impleme
 
 	@Override
 	public void delete(Book t) {
-		Book persistanceBook = get(t.getId());
+		Book persistanceBook = get(t.getBookID());
 		getSession().delete(persistanceBook);		
 	}
 

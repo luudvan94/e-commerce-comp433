@@ -5,6 +5,7 @@ import java.util.List;
 import entity.order.Order1;
 import entity.order.Order_Book;
 import exception.NotExistException;
+import exception.UnAuthorizedException;
 
 public interface OrderDomain {
 	
@@ -12,9 +13,9 @@ public interface OrderDomain {
 	
 	List<String> addOrderDetail(List<Order_Book> orderBooks);
 	
-	void shippingOrder(String id) throws NotExistException;
+	void shippingOrder(String id) throws NotExistException, UnAuthorizedException;
 	
-	void cancellingOrder(String id) throws NotExistException;
+	void cancellingOrder(String id) throws NotExistException, UnAuthorizedException;
 	
 	String getStatusByOrder(String id) throws NotExistException;
 	

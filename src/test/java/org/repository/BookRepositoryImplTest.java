@@ -34,7 +34,7 @@ public class BookRepositoryImplTest extends AbstractHibernateTest {
 		flushAndClearSession();
 		
 		Book bookFromDb = bookRepository.get("B456");
-		assertTrue(bookFromDb.getId().equalsIgnoreCase("B456"));
+		assertTrue(bookFromDb.getBookID().equalsIgnoreCase("B456"));
 	}
 	
 	@Test
@@ -81,14 +81,14 @@ public class BookRepositoryImplTest extends AbstractHibernateTest {
 		assertTrue(bookRepository.getAll().size() == 3);
 	}
 	
-	@Test
-	public void deleteAll() {
-		bookRepository.deleteAll();
-		
-		flushAndClearSession();
-		
-		assertTrue(bookRepository.getAll().size() == 0);
-	}
+//	@Test
+//	public void deleteAll() {
+//		bookRepository.deleteAll();
+//		
+//		flushAndClearSession();
+//		
+//		assertTrue(bookRepository.getAll().size() == 0);
+//	}
 	
 	@Test
 	public void booksByTitle() {

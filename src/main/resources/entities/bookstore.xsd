@@ -12,6 +12,25 @@
 		</xsd:complexType>
 	</xsd:element>
 	
+	<xsd:element name="CustomerRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="username" type="xsd:string" />
+				<xsd:element name="password" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="CustomerInfoRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="customerID" type="xsd:string" />
+				<xsd:element name="name" type="xsd:string" />
+				<xsd:element name="address" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
 	<xsd:element name="BookRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -21,6 +40,26 @@
 				<xsd:element name="description" type="xsd:string" />
 				<xsd:element name="quantity" type="xsd:int" />
 				<xsd:element name="partnerID" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="BookReviewRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="bookID" type="xsd:string" />
+				<xsd:element name="content" type="xsd:string" />
+				<xsd:element name="customerID" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="BookReviewUpdateRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="bookReviewID" type="xsd:string" />
+				<xsd:element name="content" type="xsd:string" />
+				<xsd:element name="customerID" type="xsd:string" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
@@ -39,6 +78,15 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="partnerID" type="xsd:string" />
+				<xsd:element name="username" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="CustomerRepresentation">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="customerID" type="xsd:string" />
 				<xsd:element name="username" type="xsd:string" />
 			</xsd:sequence>
 		</xsd:complexType>

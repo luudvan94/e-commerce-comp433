@@ -18,6 +18,8 @@
 		<jaxrs:serviceBeans>
 			<ref bean="bookService" />
 			<ref bean="partnerService" />
+			<ref bean="customerService" />
+			<ref bean="bookReviewService" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
@@ -32,5 +34,6 @@
 	</jaxrs:server>
   	<bean id="bookService" class="service.impl.BookServiceImpl" />
   	<bean id="partnerService" class="service.impl.PartnerServiceImpl" />
-  
+  	<bean id="customerService" class="service.impl.CustomerServiceImpl" />
+  	<bean id="bookReviewService" class="service.impl.BookReviewServiceImpl" />
 </beans>

@@ -14,6 +14,7 @@ import representation.PartnerInfoRequest;
 import representation.PartnerRepresentation;
 import representation.PartnerRequest;
 import service.PartnerService;
+import service.workflow.CustomerServiceActivity;
 import service.workflow.PartnerServiceActivity;
 
 @Path("/partners")
@@ -78,9 +79,22 @@ public class PartnerServiceImpl implements PartnerService {
 	}
 
 	@Override
-	public Response getPartnerBooks(String id, String bookID) {
+	public Response deleteBook(String id, String bookID) {
 		try {
 			new PartnerServiceActivity().deleteBook(id, bookID);
+			return Response.status(Response.Status.OK).build();
+			
+		} catch(UnAuthorizedException ex) {
+			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+		}
+	}
+
+	@Override
+	public Response updatePartnerInfo(PartnerInfoRequest request) {
+		try {
+			new PartnerServiceActivity().updatePartnerInfo(request);
 			return Response.status(Response.Status.OK).build();
 			
 		} catch(UnAuthorizedException ex) {

@@ -25,9 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="customerId" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,90 +37,63 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "customerId",
-    "name",
-    "address"
+    "username",
+    "password"
 })
-@XmlRootElement(name = "CustomerInfoRepresentation")
-public class CustomerInfoRepresentation {
+@XmlRootElement(name = "CustomerRequest")
+public class CustomerRequest {
 
     @XmlElement(required = true)
-    protected String customerId;
+    protected String username;
     @XmlElement(required = true)
-    protected String name;
-    @XmlElement(required = true)
-    protected String address;
+    protected String password;
 
     /**
-     * Gets the value of the customerId property.
+     * Gets the value of the username property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCustomerId() {
-        return customerId;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * Sets the value of the customerId property.
+     * Sets the value of the username property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCustomerId(String value) {
-        this.customerId = value;
+    public void setUsername(String value) {
+        this.username = value;
     }
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the password property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the password property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    /**
-     * Gets the value of the address property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * Sets the value of the address property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAddress(String value) {
-        this.address = value;
+    public void setPassword(String value) {
+        this.password = value;
     }
 
 }

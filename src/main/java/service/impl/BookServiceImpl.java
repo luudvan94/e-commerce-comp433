@@ -38,11 +38,10 @@ public class BookServiceImpl implements BookService {
 	}
 	@Override
 	public Response all() {
-		BookServiceActivity activity = new BookServiceActivity();
 		try {
-			return Response.status(Response.Status.OK).entity(activity.getAll()).build();
+			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getAll()).build();
 		} catch (NotExistException e) {
-			return Response.status(Response.Status.NO_CONTENT).build();
+			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 	}
 	
@@ -62,13 +61,13 @@ public class BookServiceImpl implements BookService {
 		try {
 			return Response.status(Response.Status.OK).entity(activity.getReviewsByBookID(id)).build();
 		} catch (NotExistException e) {
-			return Response.status(Response.Status.NO_CONTENT).build();
+			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 	}
 	@Override
 	public Response createNewBook(BookRequest request) {
 		try {
-			BookRepresentation bo = new BookServiceActivity().createNewBook(request.getTitle(), request.getDescription(), request.getPrice(), request.getAuthor(), request.getQuantity(), request.getPartnerID());
+			BookRepresentation bo = new BookServiceActivity().createNewBook(request);
 			return Response.status(Response.Status.OK).entity(bo).build();
 			
 		} catch (NotExistException ex) {

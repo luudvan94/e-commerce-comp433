@@ -15,7 +15,7 @@ public class Book {
 	
 	@Id
 	@Column(name = "bookID", unique = true, nullable = false)
-	private String id;
+	private String bookID;
 	
 	@Column(name = "title")
 	private String title;
@@ -35,6 +35,9 @@ public class Book {
 	@ManyToOne
 	@JoinColumn(name="partnerInfoID", nullable=true)
 	private PartnerInfo partnerInfo;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="book")
+	private List<BookReview> reviews;
 	
 
 	public PartnerInfo getPartnerInfo() {
@@ -57,14 +60,24 @@ public class Book {
 //	private List<BookReview> reviews;
 	
 	
-	public Book() {}
-
-	public String getId() {
-		return id;
+	public List<BookReview> getReviews() {
+		return reviews;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setReviews(List<BookReview> reviews) {
+		this.reviews = reviews;
+	}
+
+	public Book() {}
+
+	
+
+	public String getBookID() {
+		return bookID;
+	}
+
+	public void setBookID(String bookID) {
+		this.bookID = bookID;
 	}
 
 	public String getTitle() {

@@ -47,12 +47,6 @@ public class PartnerDomainImpl implements PartnerDomain {
 			throw new NotExistException("Partner with provided user name and password does not exist");
 		}
 		
-//		PartnerInfo partnerInfo = partnerInfoRepository.partnerInfobyPartnerID(partner.getId());
-//		
-//		if (partnerInfo == null) {
-//			throw new NotExistException("Partner info with provided id does not exist");
-//		}
-		
 		return partner;
 	}
 
@@ -138,6 +132,18 @@ public class PartnerDomainImpl implements PartnerDomain {
 		
 		bookDomain.deleteBook(bookID);
 		
+	}
+
+	@Override
+	public PartnerInfo updatePartnerInfo(String partnerID, String name, String address) throws NotExistException {
+		PartnerInfo info = this.getPartnerInfo(partnerID);
+		
+		info.setName(name);
+		info.setAddress(address);
+		
+		partnerInfoRepository.update(info);
+		
+		return info;
 	}
 
 	

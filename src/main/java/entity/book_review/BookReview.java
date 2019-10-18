@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import entity.book.Book;
 import entity.customer.CustomerInfo;
 
 @Entity
@@ -17,8 +18,9 @@ public class BookReview {
 	@Column(name="content")
 	private String content;
 	
-	@Column(name="bookID")
-	private String bookID;
+	@ManyToOne
+    @JoinColumn(name="bookID", nullable=true)
+	private Book book;
 	
 	@Column(name="date_created")
 	private String dateCreated;
@@ -61,16 +63,17 @@ public class BookReview {
 //		this.customerID = customerID;
 //	}
 
-	public String getBookID() {
-		return bookID;
-	}
-
-	public void setBookID(String bookID) {
-		this.bookID = bookID;
-	}
 
 	public CustomerInfo getCustomerInfo() {
 		return customerInfo;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public void setCustomerInfo(CustomerInfo customerInfo) {

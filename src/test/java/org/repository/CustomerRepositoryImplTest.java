@@ -30,7 +30,7 @@ public class CustomerRepositoryImplTest extends AbstractHibernateTest {
 		flushAndClearSession();
 		
 		Customer customerFromDb = customerRepository.get("C123");
-		assertTrue(customerFromDb.getId().equalsIgnoreCase("C123"));
+		assertTrue(customerFromDb.getCustomerID().equalsIgnoreCase("C123"));
 	}
 	
 	@Test

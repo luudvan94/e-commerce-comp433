@@ -20,7 +20,7 @@ public class Customer {
 
 	@Id
 	@Column(name = "customerID", unique = true, nullable = false)
-	private String id;
+	private String customerID;
 	
 	@Column(name = "username")
 	private String username;
@@ -37,13 +37,16 @@ public class Customer {
 	
 	public Customer() {}
 
-	public String getId() {
-		return id;
+
+	public String getCustomerID() {
+		return customerID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
+
 
 	public String getUsername() {
 		return username;

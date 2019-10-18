@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="customerId" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="customerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -38,42 +38,42 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "customerId",
+    "customerID",
     "name",
     "address"
 })
-@XmlRootElement(name = "CustomerInfoRepresentation")
-public class CustomerInfoRepresentation {
+@XmlRootElement(name = "CustomerInfoRequest")
+public class CustomerInfoRequest {
 
     @XmlElement(required = true)
-    protected String customerId;
+    protected String customerID;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
     protected String address;
 
     /**
-     * Gets the value of the customerId property.
+     * Gets the value of the customerID property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomerID() {
+        return customerID;
     }
 
     /**
-     * Sets the value of the customerId property.
+     * Sets the value of the customerID property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCustomerId(String value) {
-        this.customerId = value;
+    public void setCustomerID(String value) {
+        this.customerID = value;
     }
 
     /**

@@ -51,7 +51,7 @@ public class BookReviewRepositoryImpl extends AbstractRepository<BookReview, Str
 	@Override
 	public List<BookReview> bookReviewsByBookID(String id) {
 		Criteria crit = getSession().createCriteria(BookReview.class);
-		crit.add(Restrictions.eq("bookID",id));
+		crit.add(Restrictions.eq("book.bookID",id));
 		List<BookReview> result = new ArrayList();
 		
 		result = crit.list();

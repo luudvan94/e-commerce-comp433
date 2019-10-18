@@ -4,11 +4,17 @@ import java.util.List;
 
 import dal.book.BookRepository;
 import dal.book.BookRepositoryImpl;
+import domain_layer.partner.PartnerDomain;
+import domain_layer.partner.PartnerDomainImpl;
 import entity.book.Book;
+import entity.partner.PartnerInfo;
 import exception.NotExistException;
+import exception.UnAvailableException;
+import util.ID;
 
 public class BookDomainImpl implements BookDomain {
 	
+//	private PartnerDomain partnerDomain = new PartnerDomainImpl();
 	private BookRepository bookRepository = new BookRepositoryImpl();
 
 	@Override
@@ -44,16 +50,11 @@ public class BookDomainImpl implements BookDomain {
 	}
 
 	@Override
-	public String addBook(Book book) {
-		return bookRepository.create(book);
-	}
-
-	@Override
-	public boolean isBookStillAvailable(String id) throws NotExistException {
+	public boolean isBookStillAvailable(String id) throws NotExistException, UnAvailableException {
 		Book book = getBookById(id);
 		
 		if (book.getQuantity() == 0) {
-			return false;
+			throw new UnAvailableException("The quantity of this book is un-available for purchase");
 		}
 		
 		return true;
@@ -75,7 +76,21 @@ public class BookDomainImpl implements BookDomain {
 	public List<Book> getBooksByParterInfoID(String partnerInfoID) {
 		return bookRepository.booksByPartnerInfoID(partnerInfoID);
 	}
-	
-	
+
+	@Override
+	public String addBook(String title, String author, String description, double price, int quantity,
+			PartnerInfo partnerInfo) throws NotExistException {
+		
+		Book book = new Book();
+		book.setBookID(ID.generateID("B"));
+		book.setTitle(title);
+		book.setAuthor(author);
+		book.setDescription(description);
+		book.setPrice(price);
+		book.setQuantity(quantity);
+		book.setPartnerInfo(partnerInfo);
+		
+		return bookRepository.create(book);
+	}
 	
 }

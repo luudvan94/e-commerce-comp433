@@ -17,7 +17,7 @@ public class EntityUtil {
 	
 	public static Book bookSample() {
 		Book book = new Book();
-		book.setId(ID.generateID("B"));
+		book.setBookID(ID.generateID("B"));
 		book.setTitle("Data Smart: Using Data Science to Transform Information into Insight");
 		book.setAuthor("John W. Foreman");
 		book.setDescription("Data Science gets thrown around in the press like it's magic. Major retailers are predicting everything from when their customers are pregnant to when they want a new pair of Chuck Taylors. It's a brave new world where seemingly meaningless data can be transformed into valuable insight to drive smart business decisions.");
@@ -52,14 +52,14 @@ public class EntityUtil {
 		review.setId(ID.generateID("BR"));
 		review.setContent("this is awesome!!");
 		review.setDateCreated("" + new Date().getTime());
-		review.setBookID("B123");
+		review.setBook(EntityUtil.bookSample());
 		review.setCustomerInfo(EntityUtil.customerInfoSample());
 		return review;
 	}
 	
 	public static Customer customerSample() {
 		Customer customer = new Customer();
-		customer.setId(ID.generateID("C"));
+		customer.setCustomerID(ID.generateID("C"));
 		customer.setUsername("username");
 		customer.setPassword(Password.encrypt("password"));
 		
