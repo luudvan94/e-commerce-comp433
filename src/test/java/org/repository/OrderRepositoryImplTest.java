@@ -31,7 +31,7 @@ public class OrderRepositoryImplTest extends AbstractHibernateTest {
 		flushAndClearSession();
 		
 		Order1 orderFromDb = orderRepository.get("O123");
-		assertTrue(orderFromDb.getId().equalsIgnoreCase("O123"));
+		assertTrue(orderFromDb.getOrderID().equalsIgnoreCase("O123"));
 	}
 	
 	@Test
@@ -61,13 +61,13 @@ public class OrderRepositoryImplTest extends AbstractHibernateTest {
 	public void update() {
 		Order1 info = orderRepository.get("O123");
 		
-		info.setShippingAddressID("S456");
+		info.setShippingAddress("This is updated Address");
 		orderRepository.update(info);
 		
 		flushAndClearSession();
 		
 		info = orderRepository.get("O123");
-		assertTrue(info.getShippingAddressID().equalsIgnoreCase("S456"));
+		assertTrue(info.getShippingAddress().equalsIgnoreCase("This is updated Address"));
 	}
 	
 	@Test
@@ -78,19 +78,19 @@ public class OrderRepositoryImplTest extends AbstractHibernateTest {
 		
 		assertTrue(orderRepository.getAll().size() == 1);
 	}
-	
-	@Test
-	public void deleteAll() {
-		orderRepository.deleteAll();
-		
-		flushAndClearSession();
-		
-		assertTrue(orderRepository.getAll().size() == 0);
-	}
+//	
+//	@Test
+//	public void deleteAll() {
+//		orderRepository.deleteAll();
+//		
+//		flushAndClearSession();
+//		
+//		assertTrue(orderRepository.getAll().size() == 0);
+//	}
 	
 	@Test
 	public void orderByCustomerID() {
-		List<Order1> orders = orderRepository.ordersByCustomerID("C123");
+		List<Order1> orders = orderRepository.ordersByCustomerID("CI123");
 		
 		assertTrue(orders != null);
 		assertTrue(orders.size() == 1);

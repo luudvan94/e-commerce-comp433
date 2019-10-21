@@ -3,10 +3,13 @@ package entity.order;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import entity.book.Book;
+import entity.customer.CustomerInfo;
 
 @Entity
 @Table(name = "ORDER_BOOK")
@@ -16,11 +19,9 @@ public class Order_Book {
 	@Column(name = "orderBookID", unique = true, nullable = false)
 	private String id;
 	
-	@Column(name="orderID")
-	private String orderID;
-	
-	@Column(name="bookID")
-	private String bookID;
+	@ManyToOne
+    @JoinColumn(name="bookID", nullable=true)
+    private Book book;
 	
 	@Column(name="qty")
 	private int qty;
@@ -28,11 +29,23 @@ public class Order_Book {
 	@Column(name="total")
 	private double total;
 	
-	@Transient
-	private Book book;
+//	@Transient
+//	private Book book;
+	
+	@ManyToOne
+    @JoinColumn(name="orderID", nullable=true)
+    private Order1 order;
 	
 	
 	public Order_Book() {}
+
+	public Order1 getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order1 order) {
+		this.order = order;
+	}
 
 	public String getId() {
 		return id;
@@ -42,20 +55,12 @@ public class Order_Book {
 		this.id = id;
 	}
 
-	public String getOrderID() {
-		return orderID;
+	public Book getBook() {
+		return book;
 	}
 
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
-	}
-
-	public String getBookID() {
-		return bookID;
-	}
-
-	public void setBookID(String bookID) {
-		this.bookID = bookID;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public int getQty() {
@@ -73,15 +78,6 @@ public class Order_Book {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
-	
 	
 	
 

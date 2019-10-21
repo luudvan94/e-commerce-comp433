@@ -126,20 +126,6 @@ public class CustomerDomainImpl implements CustomerDomain {
 	}
 
 	@Override
-	public void deleteReview(String customerID, String bookReviewID) throws NotExistException, UnAuthorizedException {
-		BookReviewDomain bookReviewDomain = new BookReviewDomainImpl();
-		
-		BookReview review = bookReviewDomain.getBookReview(bookReviewID);
-		
-		if (!review.getCustomerInfo().getCustomerID().equalsIgnoreCase(customerID)) {
-			throw new UnAuthorizedException("This book review can not be deleted by customer with provided ID");
-		}
-		
-		bookReviewDomain.deleteReview(review.getId());	
-		
-	}
-
-	@Override
 	public CustomerInfo updateCustomerInfo(String customerID, String name, String address) throws NotExistException, UnAuthorizedException {
 		CustomerInfo info = this.getCustomerInfo(customerID);
 		

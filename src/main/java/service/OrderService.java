@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import javax.jws.WebService;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -9,43 +7,39 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
-
 import representation.BookDeleteRequest;
-import representation.BookRepresentation;
 import representation.BookRequest;
+import representation.OrderRequest;
 
 @WebService
-public interface BookService {
-
+public interface OrderService {
+	
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{bookId}")
-	public Response get(@PathParam("bookId") String id);
+	@Path("/{orderID}")
+	public Response get(@PathParam("orderID") String id);
+	
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Path("/customer/{id}")
+	public Response ordersByCustomer(@PathParam("id") String id);
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
 	@Path("/partner/{id}")
-	public Response booksByPartnerID(@PathParam("id") String id);
-	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/title/{title}")
-	public Response searchByTitle(@PathParam("title") String title);
+	public Response ordersByPartner(@PathParam("id") String title);
 	
 	
 	@POST
 	@Produces({"application/xml" , "application/json"})
-	public Response createNewBook(BookRequest request);
+	public Response createNewOrder(OrderRequest request);
 	
 	@DELETE
 	@Produces({"application/xml" , "application/json"})
 	@Path("/delete")
-	public Response deleteBook(BookDeleteRequest request);
+	public Response deleteOrder(BookDeleteRequest request);
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})

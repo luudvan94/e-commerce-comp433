@@ -20,6 +20,6 @@ public interface BookReviewDomain {
 	
 	BookReview updateReview(String bookReviewID, String content, String customerID) throws NotExistException, UnAuthorizedException;
 	
-	void deleteReview(String id) throws NotExistException;
+	void deleteReview(String customerID, String bookReviewID) throws NotExistException, UnAuthorizedException;
 	
 }

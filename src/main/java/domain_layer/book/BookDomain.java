@@ -6,6 +6,7 @@ import entity.book.Book;
 import entity.partner.PartnerInfo;
 import exception.NotExistException;
 import exception.OperationFailedException;
+import exception.UnAuthorizedException;
 import exception.UnAvailableException;
 
 public interface BookDomain {
@@ -20,9 +21,9 @@ public interface BookDomain {
 	
 	boolean isBookStillAvailable(String id) throws NotExistException, UnAvailableException;
 	
-	void deleteBook(String id) throws NotExistException;
-	
 	void updateBook(Book book);
 
 	List<Book> getBooksByParterInfoID(String partnerInfoID);
+	
+	void deleteBook(String partnerID, String bookID) throws NotExistException, UnAuthorizedException;
 }

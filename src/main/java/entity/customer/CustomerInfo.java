@@ -7,12 +7,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
 import entity.book_review.BookReview;
+import entity.order.Order1;
+import entity.payment.Payment;
 
 @Entity
 @Table(name = "CUSTOMER_INFO")
@@ -37,6 +41,17 @@ public class CustomerInfo {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="customerInfo")
 	private List<BookReview> reviews;
 	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="customerInfo")
+	private List<Order1> orders;
+	
+	public List<Order1> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order1> orders) {
+		this.orders = orders;
+	}
+
 	public CustomerInfo() {}
 	
 	public static String generateID() {

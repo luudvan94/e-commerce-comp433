@@ -90,8 +90,7 @@ public class EntityUtil {
 	
 	public static Payment cardProfileSample() {
 		Payment info = new Payment();
-		info.setId(ID.generateID("CP"));
-		info.setOrderID("O123");
+		info.setPaymentID(ID.generateID("CP"));
 		info.setDate_added("12334234");
 		info.setExpires("06/22");
 		info.setCardNumber("1234");
@@ -102,22 +101,22 @@ public class EntityUtil {
 	
 	public static Order1 orderSample() {
 		Order1 order = new Order1();
-		order.setId(ID.generateID("O"));
-		order.setCustomerID("C456");
+		order.setOrderID(ID.generateID("O"));
+		order.setCustomerInfo(EntityUtil.customerInfoSample());
 //		order.setPartnerID("P4567");
 		order.setDate_updated("1233445545");
-		order.setShippingAddressID("S123");
+		order.setShippingAddress("This is new Address");
 		order.setStatus("pending");
 		order.setTotal(100.25);
-		
+		order.setPayment(EntityUtil.cardProfileSample());
 		return order;
 	}
 	
 	public static Order_Book order_bookSample() {
 		Order_Book order_book = new Order_Book();
 		order_book.setId(ID.generateID("OB"));
-		order_book.setBookID("B456");
-		order_book.setOrderID("O456");
+		order_book.setBook(EntityUtil.bookSample());
+		order_book.setOrder(EntityUtil.orderSample());
 		order_book.setQty(3);
 		order_book.setTotal(15.0);
 		

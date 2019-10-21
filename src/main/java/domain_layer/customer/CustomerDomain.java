@@ -27,8 +27,6 @@ public interface CustomerDomain {
 	String addCustomerInfo(String customerID, String name, String address) throws NotExistException, AlreadyExistedException;
 	
 	CustomerInfo getCustomerInfo(String customerID) throws NotExistException;
-
-	void deleteReview(String customerID, String bookReviewID) throws NotExistException, UnAuthorizedException;
 	
 	CustomerInfo updateCustomerInfo(String customerID, String name, String address) throws NotExistException, UnAuthorizedException;
 }

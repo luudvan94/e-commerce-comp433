@@ -5,7 +5,10 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import entity.order.Order1;
 
 @Entity
 @Table(name = "PAYMENT")
@@ -13,13 +16,13 @@ public class Payment {
 	
 	@Id
 	@Column(name = "paymentID", unique = true, nullable = false)
-	private String id;
+	private String paymentID;
 	
 	@Column(name="date_added")
 	private String date_added;
 	
-	@Column(name = "orderID")
-	private String orderID;
+//	@Column(name = "orderID")
+//	private String orderID;
 	
 	@Column(name="card_number")
 	private String cardNumber;
@@ -30,18 +33,31 @@ public class Payment {
 	@Column(name="amount")
 	private double amount;
 	
+//	@OneToOne(mappedBy="order")
+//	private Order1 order;
+	
 	public Payment() {}
 	
+//	public Order1 getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(Order1 order) {
+//		this.order = order;
+//	}
+
 	public static String generateID() {
 		return "CP" + new Date().getTime();
 	}
 
-	public String getId() {
-		return id;
+
+
+	public String getPaymentID() {
+		return paymentID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setPaymentID(String paymentID) {
+		this.paymentID = paymentID;
 	}
 
 	public String getDate_added() {
@@ -80,12 +96,12 @@ public class Payment {
 		this.amount = amount;
 	}
 
-	public String getOrderID() {
-		return orderID;
-	}
-
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
-	}
+//	public String getOrderID() {
+//		return orderID;
+//	}
+//
+//	public void setOrderID(String orderID) {
+//		this.orderID = orderID;
+//	}
 	
 }

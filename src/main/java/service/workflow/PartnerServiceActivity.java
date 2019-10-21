@@ -49,18 +49,6 @@ public class PartnerServiceActivity {
 		return RepresentationConverter.toPartnerInfoRepresentation(partnerInfo.getPartnerID(), partnerInfo.getName(), partnerInfo.getAddress());
 	}
 	
-	public List<BookRepresentation> getPartnerBooks(String partnerID) throws NotExistException {
-		PartnerInfo info = partnerDomain.getPartnerInfo(partnerID);
-		List<Book> books = info.getBooks();
-		
-		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo())).collect(Collectors.toList());
-		
-	}
-	
-	public void deleteBook(String partnerID, String bookID) throws NotExistException, UnAuthorizedException {
-		partnerDomain.deleteBook(partnerID, bookID);
-	}
-	
 	public PartnerInfoRepresentation updatePartnerInfo(PartnerInfoRequest request) throws NotExistException, UnAuthorizedException {
 		PartnerInfo info = partnerDomain.updatePartnerInfo(request.getPartnerID(), request.getName(), request.getAddress());
 		

@@ -11,7 +11,7 @@ public class PaymentRepositoryImpl extends AbstractRepository<Payment, String> i
 
 	@Override
 	public void delete(Payment t) {
-		Payment persistanceCardProfile = get(t.getId());
+		Payment persistanceCardProfile = get(t.getPaymentID());
 		getSession().delete(persistanceCardProfile);	
 	}
 
@@ -42,19 +42,6 @@ public class PaymentRepositoryImpl extends AbstractRepository<Payment, String> i
 		Query query = getSession().createQuery("DELETE FROM Payment");
 		query.executeUpdate();
 		
-	}
-
-	@Override
-	public Payment cardProfileByOrderID(String id) {
-		Query query = getSession().createQuery("FROM Payment WHERE orderID = :orderID");
-		query.setParameter("orderID", id);
-		List<Payment> result = query.list();
-		
-		if (result.size() > 0) {
-			return result.get(0);
-		}
-		
-		return null;
 	}
 
 	

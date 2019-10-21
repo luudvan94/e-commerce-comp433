@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="partnerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="bookReviewID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="customerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +37,63 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "partnerID",
-    "username"
+    "bookReviewID",
+    "customerID"
 })
-@XmlRootElement(name = "PartnerRepresentation")
-public class PartnerRepresentation {
+@XmlRootElement(name = "BookReviewDeleteRequest")
+public class BookReviewDeleteRequest {
 
     @XmlElement(required = true)
-    protected String partnerID;
+    protected String bookReviewID;
     @XmlElement(required = true)
-    protected String username;
+    protected String customerID;
 
     /**
-     * Gets the value of the partnerID property.
+     * Gets the value of the bookReviewID property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPartnerID() {
-        return partnerID;
+    public String getBookReviewID() {
+        return bookReviewID;
     }
 
     /**
-     * Sets the value of the partnerID property.
+     * Sets the value of the bookReviewID property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPartnerID(String value) {
-        this.partnerID = value;
+    public void setBookReviewID(String value) {
+        this.bookReviewID = value;
     }
 
     /**
-     * Gets the value of the username property.
+     * Gets the value of the customerID property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getUsername() {
-        return username;
+    public String getCustomerID() {
+        return customerID;
     }
 
     /**
-     * Sets the value of the username property.
+     * Sets the value of the customerID property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setUsername(String value) {
-        this.username = value;
+    public void setCustomerID(String value) {
+        this.customerID = value;
     }
 
 }

@@ -2,13 +2,20 @@ package entity.order;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import entity.book_review.BookReview;
 import entity.customer.Customer;
+import entity.customer.CustomerInfo;
 import entity.partner.Partner;
 import entity.payment.Payment;
 import entity.shipping_address.ShippingAddress;
@@ -19,10 +26,11 @@ public class Order1 {
 	
 	@Id
 	@Column(name = "orderID", unique = true, nullable = false)
-	private String id;
+	private String orderID;
 	
-	@Column(name="customerID")
-	private String customerID;
+	@ManyToOne
+    @JoinColumn(name="customerInfoID", nullable=true)
+    private CustomerInfo customerInfo;
 	
 //	@Column(name="partnerID")
 //	private String partnerID;
@@ -36,52 +44,66 @@ public class Order1 {
 	@Column(name="total")
 	private double total;
 	
-	@Column(name="cardProfileID")
-	private String cardProfileID;
+	@Column(name="shippingAddress")
+	private String shippingAddress;
 	
-	@Column(name="shippingAddressID")
-	private String shippingAddressID;
+//	@Transient
+//	private ShippingAddress address;
+//	
+//	@Transient
+//	private Payment profile;
+//	
+//	@Transient
+//	private Customer customerInfo;
+//	
+//	@Transient
+//	private Partner partnerInfo;
+//	
+//	@Transient
+//	private List<Order_Book> order_book;
 	
-	@Transient
-	private ShippingAddress address;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="order")
+	private List<Order_Book> products;
 	
-	@Transient
-	private Payment profile;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="paymentID")
+	private Payment payment;
 	
-	@Transient
-	private Customer customerInfo;
-	
-	@Transient
-	private Partner partnerInfo;
-	
-	@Transient
-	private List<Order_Book> order_book;
-	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	public List<Order_Book> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Order_Book> products) {
+		this.products = products;
+	}
+
 	public Order1() {}
 
-	public String getId() {
-		return id;
+
+	public String getOrderID() {
+		return orderID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 
-	public String getCustomerID() {
-		return customerID;
+
+	public CustomerInfo getCustomerInfo() {
+		return customerInfo;
 	}
 
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public void setCustomerInfo(CustomerInfo customerInfo) {
+		this.customerInfo = customerInfo;
 	}
-
-//	public String getPartnerID() {
-//		return partnerID;
-//	}
-//
-//	public void setPartnerID(String partnerID) {
-//		this.partnerID = partnerID;
-//	}
 
 	public String getStatus() {
 		return status;
@@ -107,63 +129,13 @@ public class Order1 {
 		this.total = total;
 	}
 
-	public String getCardProfileID() {
-		return cardProfileID;
+	public String getShippingAddress() {
+		return shippingAddress;
 	}
 
-	public void setCardProfileID(String cardProfileID) {
-		this.cardProfileID = cardProfileID;
+	public void setShippingAddress(String shippingAddress) {
+		this.shippingAddress = shippingAddress;
 	}
 
-	public String getShippingAddressID() {
-		return shippingAddressID;
-	}
 
-	public void setShippingAddressID(String shippingAddressID) {
-		this.shippingAddressID = shippingAddressID;
-	}
-
-	public ShippingAddress getAddress() {
-		return address;
-	}
-
-	public void setAddress(ShippingAddress address) {
-		this.address = address;
-	}
-
-	public Payment getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Payment profile) {
-		this.profile = profile;
-	}
-
-	public Customer getCustomerInfo() {
-		return customerInfo;
-	}
-
-	public void setCustomerInfo(Customer customerInfo) {
-		this.customerInfo = customerInfo;
-	}
-
-	public Partner getPartnerInfo() {
-		return partnerInfo;
-	}
-
-	public void setPartnerInfo(Partner partnerInfo) {
-		this.partnerInfo = partnerInfo;
-	}
-
-	public List<Order_Book> getOrder_book() {
-		return order_book;
-	}
-
-	public void setOrder_book(List<Order_Book> order_book) {
-		this.order_book = order_book;
-	}
-	
-	
-	
-	
 }

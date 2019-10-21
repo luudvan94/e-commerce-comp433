@@ -9,6 +9,7 @@ import domain_layer.partner.PartnerDomainImpl;
 import entity.book.Book;
 import entity.partner.PartnerInfo;
 import exception.NotExistException;
+import exception.UnAuthorizedException;
 import exception.UnAvailableException;
 import util.ID;
 
@@ -61,13 +62,6 @@ public class BookDomainImpl implements BookDomain {
 	}
 
 	@Override
-	public void deleteBook(String id) throws NotExistException {
-		Book book = this.getBookById(id);
-		
-		bookRepository.delete(book);
-	}
-
-	@Override
 	public void updateBook(Book book) {
 		bookRepository.update(book);
 	}
@@ -91,6 +85,18 @@ public class BookDomainImpl implements BookDomain {
 		book.setPartnerInfo(partnerInfo);
 		
 		return bookRepository.create(book);
+	}
+	
+	@Override
+	public void deleteBook(String partnerID, String bookID) throws NotExistException, UnAuthorizedException {
+		Book book = this.getBookById(bookID);
+		
+		if (!book.getPartnerInfo().getPartnerID().equalsIgnoreCase(partnerID)) {
+			throw new UnAuthorizedException("This book can not be deleted by partner with provided ID");
+		}
+		
+		bookRepository.delete(book);
+		
 	}
 	
 }

@@ -69,30 +69,6 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Response getCustomerReviews(String id) {
-		try {
-			List<BookReviewRepresentation> representation = new CustomerServiceActivity().getBookReviews(id);
-			return Response.status(Response.Status.OK).entity(representation).build();
-			
-		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build(); 
-		}
-	}
-
-	@Override
-	public Response deleteReview(String id, String reviewID) {
-		try {
-			new CustomerServiceActivity().deleteReview(id, reviewID);
-			return Response.status(Response.Status.OK).build();
-			
-		} catch(UnAuthorizedException ex) {
-			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
-		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
-		}
-	}
-
-	@Override
 	public Response updateCustomerInfo(CustomerInfoRequest request) {
 		try {
 			return Response.status(Response.Status.OK).entity(new CustomerServiceActivity().updateCustomerInfo(request)).build();

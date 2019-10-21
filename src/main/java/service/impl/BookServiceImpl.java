@@ -17,10 +17,13 @@ import org.springframework.stereotype.Service;
 
 import exception.NoContentException;
 import exception.NotExistException;
+import exception.UnAuthorizedException;
+import representation.BookDeleteRequest;
 import representation.BookRepresentation;
 import representation.BookRequest;
 import service.BookService;
 import service.workflow.BookServiceActivity;
+import service.workflow.PartnerServiceActivity;
 
 @Path("/books")
 public class BookServiceImpl implements BookService {
@@ -36,14 +39,7 @@ public class BookServiceImpl implements BookService {
 			
 		}
 	}
-	@Override
-	public Response all() {
-		try {
-			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getAll()).build();
-		} catch (NotExistException e) {
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
-	}
+
 	
 	@Override
 	public Response searchByTitle(String title) {
@@ -55,15 +51,7 @@ public class BookServiceImpl implements BookService {
 			
 		}
 	}
-	@Override
-	public Response getReviewsByBook(String id) {
-		BookServiceActivity activity = new BookServiceActivity();
-		try {
-			return Response.status(Response.Status.OK).entity(activity.getReviewsByBookID(id)).build();
-		} catch (NotExistException e) {
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
-	}
+
 	@Override
 	public Response createNewBook(BookRequest request) {
 		try {
@@ -73,6 +61,39 @@ public class BookServiceImpl implements BookService {
 		} catch (NotExistException ex) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 			
+		}
+	}
+	
+	@Override
+	public Response deleteBook(BookDeleteRequest request) {
+		try {
+			new BookServiceActivity().deleteBook(request.getPartnerID(), request.getBookID());
+			return Response.status(Response.Status.OK).build();
+			
+		} catch(UnAuthorizedException ex) {
+			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+		}
+	}
+	@Override
+	public Response booksByPartnerID(String id) {
+		try {
+//			System.out.println(id);
+			List<BookRepresentation> representation = new BookServiceActivity().getPartnerBooks(id);
+			return Response.status(Response.Status.OK).entity(representation).build();
+			
+		} catch(NotExistException ex) {
+			return Response.status(Response.Status.NOT_FOUND).build(); 
+		}
+	}
+	
+	@Override
+	public Response getAll() {
+		try {
+			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getAll()).build();
+		} catch (NotExistException e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 	}
 

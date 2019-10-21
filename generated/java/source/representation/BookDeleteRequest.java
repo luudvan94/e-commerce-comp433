@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="bookID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="partnerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,16 +37,40 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "partnerID",
-    "username"
+    "bookID",
+    "partnerID"
 })
-@XmlRootElement(name = "PartnerRepresentation")
-public class PartnerRepresentation {
+@XmlRootElement(name = "BookDeleteRequest")
+public class BookDeleteRequest {
 
     @XmlElement(required = true)
-    protected String partnerID;
+    protected String bookID;
     @XmlElement(required = true)
-    protected String username;
+    protected String partnerID;
+
+    /**
+     * Gets the value of the bookID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBookID() {
+        return bookID;
+    }
+
+    /**
+     * Sets the value of the bookID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBookID(String value) {
+        this.bookID = value;
+    }
 
     /**
      * Gets the value of the partnerID property.
@@ -70,30 +94,6 @@ public class PartnerRepresentation {
      */
     public void setPartnerID(String value) {
         this.partnerID = value;
-    }
-
-    /**
-     * Gets the value of the username property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * Sets the value of the username property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUsername(String value) {
-        this.username = value;
     }
 
 }

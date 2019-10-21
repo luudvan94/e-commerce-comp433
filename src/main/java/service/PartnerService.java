@@ -37,16 +37,6 @@ public interface PartnerService {
 	@Path("/{partnerID}")
 	public Response getPartnerInfo(@PathParam("partnerID") String id);
 	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/{partnerID}/books")
-	public Response getPartnerBooks(@PathParam("partnerID") String id);
-	
-	@DELETE
-	@Produces({"application/xml" , "application/json"})
-	@Path("/{partnerID}/books/{bookID}")
-	public Response deleteBook(@PathParam("partnerID") String id, @PathParam("bookID") String bookID);
-	
 	@PUT
 	@Produces({"application/xml" , "application/json"})
 	@Path("/partnerInfo")

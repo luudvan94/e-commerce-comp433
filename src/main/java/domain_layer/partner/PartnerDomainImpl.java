@@ -108,6 +108,7 @@ public class PartnerDomainImpl implements PartnerDomain {
 
 	@Override
 	public PartnerInfo getPartnerInfo(String partnerID) throws NotExistException {
+		System.out.println(partnerID);
 		PartnerInfo partnerInfo = partnerInfoRepository.partnerInfobyPartnerID(partnerID);
 		
 		if (partnerInfo == null) {
@@ -120,18 +121,6 @@ public class PartnerDomainImpl implements PartnerDomain {
 	@Override
 	public List<Book> getBooksByPartnerID(String id) {
 		return bookDomain.getBooksByParterInfoID(id);
-	}
-
-	@Override
-	public void deleteBook(String partnerID, String bookID) throws NotExistException, UnAuthorizedException {
-		Book book = bookDomain.getBookById(bookID);
-		
-		if (!book.getPartnerInfo().getPartnerID().equalsIgnoreCase(partnerID)) {
-			throw new UnAuthorizedException("This book can not be deleted by partner with provided ID");
-		}
-		
-		bookDomain.deleteBook(bookID);
-		
 	}
 
 	@Override

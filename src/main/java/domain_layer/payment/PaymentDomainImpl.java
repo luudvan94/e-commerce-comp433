@@ -1,5 +1,7 @@
 package domain_layer.payment;
 
+import java.util.Date;
+
 import dal.payment.PaymentRepository;
 import dal.payment.PaymentRepositoryImpl;
 import entity.payment.Payment;
@@ -11,24 +13,17 @@ public class PaymentDomainImpl implements PaymentDomain {
 	private PaymentRepository paymentRepository = new PaymentRepositoryImpl();
 
 	@Override
-	public String addNewPayment(String orderID, String cardNumber, String expires, String dateAdded, double amount) {
+	public Payment addNewPayment(String cardNumber, String expires, double amount) {
 		Payment payment = new Payment();
 		payment.setAmount(amount);
 		payment.setCardNumber(cardNumber);
-		payment.setDate_added(dateAdded);
+		payment.setDate_added(Long.toString(new Date().getTime()));
 		payment.setExpires(expires);
-		payment.setOrderID(orderID);
-		payment.setId(ID.generateID("CP"));
+		payment.setPaymentID(ID.generateID("CP"));
 		
-		return paymentRepository.create(payment);
-	}
-
-	@Override
-	public void deletePayment(String id) {
-		Payment payment = paymentRepository.get(id);
+		paymentRepository.create(payment);
 		
-		paymentRepository.delete(payment);
-		
+		return payment;
 	}
 
 	@Override

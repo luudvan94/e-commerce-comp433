@@ -50,7 +50,7 @@ public class Order_BookRepositoryImpl extends AbstractRepository<Order_Book, Str
 	@Override
 	public List<Order_Book> byOrderID(String id) {
 		Criteria crit = getSession().createCriteria(Order_Book.class);
-		crit.add(Restrictions.eq("orderID",id));
+		crit.add(Restrictions.eq("order.orderID",id));
 		List<Order_Book> result = new ArrayList();
 		
 		result = crit.list();
@@ -61,7 +61,7 @@ public class Order_BookRepositoryImpl extends AbstractRepository<Order_Book, Str
 	@Override
 	public List<Order_Book> byBookID(String id) {
 		Criteria crit = getSession().createCriteria(Order_Book.class);
-		crit.add(Restrictions.eq("bookID",id));
+		crit.add(Restrictions.eq("book.bookID",id));
 		List<Order_Book> result = new ArrayList();
 		
 		result = crit.list();

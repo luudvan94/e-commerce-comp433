@@ -1,16 +1,24 @@
 package service.util;
 
+import java.util.List;
+
 import entity.book.Book;
 import entity.book_review.BookReview;
 import entity.customer.CustomerInfo;
+import entity.order.Order1;
+import entity.order.Order_Book;
 import entity.partner.PartnerInfo;
+import entity.payment.Payment;
 import representation.BookRepresentation;
 import representation.BookReviewRepresentation;
 import representation.CustomerInfoRepresentation;
 import representation.CustomerRepresentation;
 import representation.ObjectFactory;
+import representation.OrderBookRepresentation;
+import representation.OrderRepresentation;
 import representation.PartnerInfoRepresentation;
 import representation.PartnerRepresentation;
+import representation.PaymentRepresentation;
 
 public class RepresentationConverter {
 	
@@ -72,6 +80,49 @@ public class RepresentationConverter {
 		representation.setUsername(username);
 		
 		return representation; 
+	}
+	
+	public static PaymentRepresentation toPaymentRepresentation(String id, String cardNumber, String expires, double amount, String dateAdded) {
+		PaymentRepresentation representation = factory.createPaymentRepresentation();
+		representation.setPaymentID(id);
+		representation.setCardNumber(cardNumber);
+		representation.setExpires(expires);
+		representation.setAmount(amount);
+		representation.setDateAdded(dateAdded);
+		
+		return representation;
+	}
+	
+	public static OrderBookRepresentation toOrderBookRepresentaiton(Book book, int quantity, double total) {
+		OrderBookRepresentation representation = factory.createOrderBookRepresentation();
+		representation.setBookRepresentation(RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo()));
+		representation.setQuantity(quantity);
+		representation.setTotal(total);
+		
+		return representation;
+	}
+	
+	public static OrderRepresentation toOrderRepresentation(Order1 order) {
+		OrderRepresentation representation = factory.createOrderRepresentation();
+		representation.setOrderId(order.getOrderID());
+		
+		CustomerInfo customerInfo = order.getCustomerInfo();
+		representation.setCustomerInfoRepresentation(RepresentationConverter.toCustomerInfoRepresentation(customerInfo.getCustomerID(), customerInfo.getName(), customerInfo.getAddress()));
+		
+		representation.setDateUpdated(order.getDate_updated());
+		representation.setShippingAddress(order.getShippingAddress());
+		representation.setStatus(order.getStatus());
+		representation.setTotal(order.getTotal());
+		
+		Payment payment = order.getPayment();
+		representation.setPaymentRepresentation(RepresentationConverter.toPaymentRepresentation(payment.getPaymentID(), payment.getCardNumber(), payment.getExpires(), payment.getAmount(), payment.getDate_added()));
+		
+		List<Order_Book> orderBooks = order.getProducts();
+		for(Order_Book orderBook: orderBooks) {
+			representation.getOrderBookRepresentation().add(RepresentationConverter.toOrderBookRepresentaiton(orderBook.getBook(), orderBook.getQty(), orderBook.getTotal()));
+		}
+		
+		return representation;
 	}
 
 }

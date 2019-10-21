@@ -68,34 +68,9 @@ public class PartnerServiceImpl implements PartnerService {
 	}
 
 	@Override
-	public Response getPartnerBooks(String id) {
-		try {
-			List<BookRepresentation> representation = new PartnerServiceActivity().getPartnerBooks(id);
-			return Response.status(Response.Status.OK).entity(representation).build();
-			
-		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build(); 
-		}
-	}
-
-	@Override
-	public Response deleteBook(String id, String bookID) {
-		try {
-			new PartnerServiceActivity().deleteBook(id, bookID);
-			return Response.status(Response.Status.OK).build();
-			
-		} catch(UnAuthorizedException ex) {
-			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
-		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
-		}
-	}
-
-	@Override
 	public Response updatePartnerInfo(PartnerInfoRequest request) {
 		try {
-			new PartnerServiceActivity().updatePartnerInfo(request);
-			return Response.status(Response.Status.OK).build();
+			return Response.status(Response.Status.OK).entity(new PartnerServiceActivity().updatePartnerInfo(request)).build();
 			
 		} catch(UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 

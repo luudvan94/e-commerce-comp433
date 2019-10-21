@@ -27,6 +27,7 @@ import entity.book_review.BookReview;
 import entity.partner.PartnerInfo;
 import exception.NoContentException;
 import exception.NotExistException;
+import exception.UnAuthorizedException;
 
 public class BookServiceActivity {
 	
@@ -52,12 +53,6 @@ public class BookServiceActivity {
 		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo())).collect(Collectors.toList());
 	}
 	
-	public List<BookReviewRepresentation> getReviewsByBookID(String id) throws NotExistException {
-		List<BookReview> bookReviews = bookReviewDomain.getReviewsByBookId(id);
-		
-		return bookReviews.stream().map(bookReview -> RepresentationConverter.toBookReviewRepresentation(bookReview.getId(), bookReview.getBook(), bookReview.getCustomerInfo(), bookReview.getContent())).collect(Collectors.toList());
-	}
-	
 	public BookRepresentation createNewBook(BookRequest request) throws NotExistException {
 		PartnerInfo partnerInfo = partnerDomain.getPartnerInfo(request.getPartnerID());
 		
@@ -65,5 +60,17 @@ public class BookServiceActivity {
 		
 		return RepresentationConverter.toBookRepresentation(newID, request.getTitle(), request.getAuthor(), request.getDescription(), request.getPrice(), request.getQuantity(), partnerInfo);
 	}
+	
+	public void deleteBook(String partnerID, String bookID) throws NotExistException, UnAuthorizedException {
+		bookDomain.deleteBook(partnerID, bookID);
+	}
 
+	public List<BookRepresentation> getPartnerBooks(String partnerID) throws NotExistException {
+//		System.out.println(partnerID);
+		PartnerInfo info = new PartnerDomainImpl().getPartnerInfo(partnerID);
+		List<Book> books = info.getBooks();
+		
+		return books.stream().map(book -> RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo())).collect(Collectors.toList());
+		
+	}
 }

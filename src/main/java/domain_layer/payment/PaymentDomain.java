@@ -5,9 +5,7 @@ import exception.NotExistException;
 
 public interface PaymentDomain {
 	
-	String addNewPayment(String orderID, String cardNumber, String expires, String dateAdded, double amount);
-	
-	void deletePayment(String id);
+	Payment addNewPayment(String cardNumber, String expires, double amount);
 	
 	Payment getPayment(String id) throws NotExistException;
 

@@ -26,9 +26,7 @@ public interface PartnerDomain {
 	
 	PartnerInfo getPartnerInfo(String partnerID) throws NotExistException;
 	
-	List<Book> getBooksByPartnerID(String id);
-	
-	void deleteBook(String partnerID, String bookID) throws NotExistException, UnAuthorizedException;
+	List<Book> getBooksByPartnerID(String id);	
 	
 	PartnerInfo updatePartnerInfo(String partnerID, String name, String address) throws NotExistException;
 }

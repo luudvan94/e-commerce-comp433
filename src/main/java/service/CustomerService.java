@@ -35,16 +35,6 @@ public interface CustomerService {
 	@Path("/{customerID}")
 	public Response getCustomerInfo(@PathParam("customerID") String id);
 	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/{customerID}/reviews")
-	public Response getCustomerReviews(@PathParam("customerID") String id);
-	
-	@DELETE
-	@Produces({"application/xml" , "application/json"})
-	@Path("/{customerID}/reviews/{reviewID}")
-	public Response deleteReview(@PathParam("customerID") String id, @PathParam("reviewID") String reviewID);
-	
 	@PUT
 	@Produces({"application/xml" , "application/json"})
 	@Path("/customerInfo")

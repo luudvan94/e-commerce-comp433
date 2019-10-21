@@ -90,7 +90,7 @@ public class Order_BookRepositoryImplTest extends AbstractHibernateTest {
 	}
 	
 	@Test
-	public void orderByCustomerID() {
+	public void orderBookByOrderID() {
 		List<Order_Book> orders = orderRepository.byOrderID("O123");
 		
 		assertTrue(orders != null);
@@ -98,7 +98,7 @@ public class Order_BookRepositoryImplTest extends AbstractHibernateTest {
 	}
 	
 	@Test 
-	public void orderByPartnerID() {
+	public void orderBookByBookID() {
 		List<Order_Book> orders = orderRepository.byBookID("B123");
 		
 		assertTrue(orders != null);

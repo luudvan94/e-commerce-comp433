@@ -49,19 +49,6 @@ public class CustomerServiceActivity {
 		return RepresentationConverter.toCustomerInfoRepresentation(customerInfo.getCustomerID(), customerInfo.getName(), customerInfo.getAddress());
 	}
 	
-	public List<BookReviewRepresentation> getBookReviews(String customerID) throws NotExistException {
-		CustomerInfo customerInfo = customerDomain.getCustomerInfo(customerID);
-		
-		List<BookReview> reviews = bookReviewDomain.getReviewsByCustomerInfoId(customerInfo.getCustomerInfoID());
-		
-		return reviews.stream().map(bookReview -> RepresentationConverter.toBookReviewRepresentation(bookReview.getId(), bookReview.getBook(), bookReview.getCustomerInfo(), bookReview.getContent())).collect(Collectors.toList());
-		
-	}
-	
-	public void deleteReview(String customerID, String reviewID) throws NotExistException, UnAuthorizedException {
-		customerDomain.deleteReview(customerID, reviewID);
-	}
-	
 	public CustomerInfoRepresentation updateCustomerInfo(CustomerInfoRequest request) throws NotExistException, UnAuthorizedException {
 		CustomerInfo info = customerDomain.updateCustomerInfo(request.getCustomerID(), request.getName(), request.getAddress());
 		
