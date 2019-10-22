@@ -9,17 +9,17 @@ import exception.UnAuthorizedException;
 
 public interface OrderDomain {
 	
-	String addOrder(String customerID, String dateUpdated, String shippingAddressID, double total) throws NotExistException;
+	Order1 addOrder(String customerID, String shippingAddress, double total, String paymentID) throws NotExistException;
 	
-	String addOrderBook(String bookID, int quantity, double total) throws NotExistException;
+	Order_Book addOrderBook(String bookID, int quantity, double total, Order1 order) throws NotExistException;
 	
-	List<String> addOrderDetail(List<Order_Book> orderBooks);
+//	List<String> addOrderDetail(List<Order_Book> orderBooks);
 	
-	void shippingOrder(String id) throws NotExistException, UnAuthorizedException;
+	Order1 shippingOrder(String id) throws NotExistException, UnAuthorizedException;
 	
-	void cancellingOrder(String id) throws NotExistException, UnAuthorizedException;
+	Order1 cancellingOrder(String id) throws NotExistException, UnAuthorizedException;
 	
-	void orderDelivered(String id) throws NotExistException, UnAuthorizedException;
+	Order1 orderDelivered(String id) throws NotExistException, UnAuthorizedException;
 	
 	Order1 updateShippingAddress(String orderID, String shippingAddress) throws NotExistException;
 	

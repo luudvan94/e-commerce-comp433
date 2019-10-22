@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="partnerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="orderID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +37,63 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "partnerID",
-    "username"
+    "orderID",
+    "status"
 })
-@XmlRootElement(name = "PartnerRepresentation")
-public class PartnerRepresentation {
+@XmlRootElement(name = "OrderStatus")
+public class OrderStatus {
 
     @XmlElement(required = true)
-    protected String partnerID;
+    protected String orderID;
     @XmlElement(required = true)
-    protected String username;
+    protected String status;
 
     /**
-     * Gets the value of the partnerID property.
+     * Gets the value of the orderID property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPartnerID() {
-        return partnerID;
+    public String getOrderID() {
+        return orderID;
     }
 
     /**
-     * Sets the value of the partnerID property.
+     * Sets the value of the orderID property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPartnerID(String value) {
-        this.partnerID = value;
+    public void setOrderID(String value) {
+        this.orderID = value;
     }
 
     /**
-     * Gets the value of the username property.
+     * Gets the value of the status property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getUsername() {
-        return username;
+    public String getStatus() {
+        return status;
     }
 
     /**
-     * Sets the value of the username property.
+     * Sets the value of the status property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setUsername(String value) {
-        this.username = value;
+    public void setStatus(String value) {
+        this.status = value;
     }
 
 }

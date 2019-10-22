@@ -8,17 +8,26 @@
 			<xsd:sequence>
 				<xsd:element name="customerID" type="xsd:string" />
 				<xsd:element name="paymentID" type="xsd:string" />
-				<xsd:element name="shippingAddress" type="xsd:double" />
+				<xsd:element name="shippingAddress" type="xsd:string" minOccurs="0" />
 				<xsd:element name="total" type="xsd:double" />
 				<xsd:element name="products" maxOccurs="unbounded">
 					<xsd:complexType>
 						<xsd:sequence>
 							<xsd:element name="bookID" type="xsd:string" />
-							<xsd:element name="quantity" type="xsd:integer" />
+							<xsd:element name="quantity" type="xsd:int" />
 							<xsd:element name="total" type="xsd:double" />
 						</xsd:sequence>
 					</xsd:complexType>
 				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="OrderStatus">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="orderID" type="xsd:string" />
+				<xsd:element name="status" type="xsd:string" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>

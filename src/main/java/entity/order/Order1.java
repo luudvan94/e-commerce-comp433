@@ -44,7 +44,7 @@ public class Order1 {
 	@Column(name="total")
 	private double total;
 	
-	@Column(name="shippingAddress")
+	@Column(name="shippingAddress", nullable=true)
 	private String shippingAddress;
 	
 //	@Transient

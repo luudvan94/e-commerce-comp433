@@ -16,6 +16,7 @@ import representation.CustomerRepresentation;
 import representation.ObjectFactory;
 import representation.OrderBookRepresentation;
 import representation.OrderRepresentation;
+import representation.OrderStatus;
 import representation.PartnerInfoRepresentation;
 import representation.PartnerRepresentation;
 import representation.PaymentRepresentation;
@@ -104,7 +105,7 @@ public class RepresentationConverter {
 	
 	public static OrderRepresentation toOrderRepresentation(Order1 order) {
 		OrderRepresentation representation = factory.createOrderRepresentation();
-		representation.setOrderId(order.getOrderID());
+		representation.setOrderId(order.getOrderID());		
 		
 		CustomerInfo customerInfo = order.getCustomerInfo();
 		representation.setCustomerInfoRepresentation(RepresentationConverter.toCustomerInfoRepresentation(customerInfo.getCustomerID(), customerInfo.getName(), customerInfo.getAddress()));
@@ -121,6 +122,14 @@ public class RepresentationConverter {
 		for(Order_Book orderBook: orderBooks) {
 			representation.getOrderBookRepresentation().add(RepresentationConverter.toOrderBookRepresentaiton(orderBook.getBook(), orderBook.getQty(), orderBook.getTotal()));
 		}
+		
+		return representation;
+	}
+	
+	public static OrderStatus toOrderStatus(Order1 order) {
+		OrderStatus representation = factory.createOrderStatus();
+		representation.setOrderID(order.getOrderID());
+		representation.setStatus(order.getStatus());
 		
 		return representation;
 	}
