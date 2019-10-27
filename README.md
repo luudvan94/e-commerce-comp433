@@ -30,17 +30,20 @@ Based on the above functionalities, the entity model will consist of 9 models:
 * `PartnerInfo`: information about specific user, has partnerID of which partner belong to.
 * `Order1`: consist information of one order, has bookID, customerID, partnerID, cardProfileID, shippingAddressID.
 * `Order_Book`: information about book which linked to particular order (quantity, total).
-#### Persistence
-I'm using Hibernate as the Object-Relational Mapping for this project. Hibernate help "developers to more easily write applications whose data outlives the application process." For the purpose of configuration, I'm putting all of Hibernate setting including Database connection, entity registerating, etc. inside one XML file named `hibernate.cgf.xml`.
+#### Data Access Layer
+##### `Repository`: interface define basic operation (CRUD) on any object with any type of ID (`public interface Repository<T, ID>`).
+##### `AbstractRepository`: implement `Repository` interface, and supply `Session` to its extends class by getting `Session` from `SessionHolder`.
+##### `Persistence` package: I'm using Hibernate as the Object-Relational Mapping for this project. Hibernate help "developers to more easily write applications whose data outlives the application process." For the purpose of configuration, I'm putting all of Hibernate setting including Database connection, entity registerating, etc. inside one XML file named `hibernate.cgf.xml`.
 The persistancance layer will basicly consist of:
 * `HibernateUtil`: load the configuration from `hibernate.cgf.xml` into application and construct a `Session Factory` which allows returning `Session` which used for data transactions.
 * `SessionHolder`: help managing `Session`, ensure all operations on Session will happen on only single thread.
-#### Repository
-Service will asking data to data persistence by using repository. This package will basically consist of:
-* `Repository`: interface define basic operation (CRUD) on any object with any type of ID (`public interface Repository<T, ID>`).
-* `AbstractRepository`: implement `Repository` interface, and supply `Session` to its extends class by getting `Session` from `SessionHolder`.
+##### `Table` package: This will consist the data access login of each table.
 * `Table`Repository: extends `Repository`, with new operations depends on the manner of that table.
 * `Table`RepositoryImpl: extends `AbstractRepository` and implements `Table`Repository, communicate with Hibernate through `Session` to extract and return data.
+
+#### Domain Layer: This package will be the bussiness of the application. Domain will make calls to DAL to perform operations on Data.
+##### `Table` package: this will consist of interface and the implementation of the domain. 
+
 #### Util
 * `EntityUtil`: make testing easier by returning sample data for each table (will move it to test package).
 * `ID`: generate ID for entity.
@@ -54,3 +57,9 @@ For the purpose of testing, I choose in-memory database as the data persistence,
 This package will consist of:
 * `AbstractHibernateTest`: init `SessionFactory` and assign `Session` to `SessionHolder`, method to close and clear transactions.
 * `Table`RepositoryImplTest: extends `AbstractHibernateTest`, consist of test cases for every table in database that define in `Table`Repository
+### Phrase 2: Expose Service
+This phrase will implement services layer to expose the API using the functionalities from `Domain Layer`. It will consist of:
+##### `impl` package: service implementation, will implements service interface. The end point of exception handlers. API calls will be assign to `Acitivity` class.
+##### `util` package: Transforming the Database Object to Representation Object
+##### `workdflow` package: classes that work with Domain Layer to extract data and return the representation objects to service implementation.
+##### `service` interface: define paths as well as parameters for each API.
