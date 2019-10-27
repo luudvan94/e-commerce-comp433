@@ -239,6 +239,7 @@
 				<xsd:element ref="tns:BookRepresentation" />
 				<xsd:element name="quantity" type="xsd:int" />
 				<xsd:element name="total" type="xsd:double" />
+				<xsd:element name="status" type="xsd:string" minOccurs="0" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>

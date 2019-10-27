@@ -28,5 +28,9 @@ public interface OrderDomain {
 	List<Order_Book> getOrderDetailByOrder(String id);
 	
 	Order1 getOrder(String id) throws NotExistException;
+	
+	List<Order1> getOrderByCustomerInfo(String id) throws NotExistException;
+	
+	List<Order_Book> getOrderByPartnerInfo(String id) throws NotExistException;
 
 }

@@ -21,6 +21,6 @@ public interface PaymentService {
 	
 	@POST
 	@Produces({"application/xml" , "application/json"})
-	public Response createNewBook(PaymentRequest request);
+	public Response createNewPayment(PaymentRequest request);
 
 }

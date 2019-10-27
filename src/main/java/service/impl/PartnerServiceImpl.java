@@ -41,7 +41,7 @@ public class PartnerServiceImpl implements PartnerService {
 		} catch(AlreadyExistedException ex) {
 			return Response.status(Response.Status.CONFLICT).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 	}
 
@@ -52,7 +52,7 @@ public class PartnerServiceImpl implements PartnerService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).build(); 
 		}
 	}
 
@@ -63,7 +63,7 @@ public class PartnerServiceImpl implements PartnerService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).build(); 
 		}
 	}
 
@@ -75,7 +75,7 @@ public class PartnerServiceImpl implements PartnerService {
 		} catch(UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
 

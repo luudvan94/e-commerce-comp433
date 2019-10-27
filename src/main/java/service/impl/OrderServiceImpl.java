@@ -20,21 +20,31 @@ public class OrderServiceImpl implements OrderService {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().get(id)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		}
 	}
 
 	@Override
 	public Response ordersByCustomer(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderByCustomerInfo(id)).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+			
+		}
 	}
 
 	@Override
-	public Response ordersByPartner(String title) {
-		// TODO Auto-generated method stub
-		return null;
+	public Response ordersByPartnerInfo(String id) {
+		try {
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderByPartnerInfo(id)).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+			
+		}
 	}
 
 	@Override
@@ -43,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().createNewOrder(request)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		}
 	}
@@ -66,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().shippingOrder(id)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		} catch (UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build();
@@ -79,7 +89,7 @@ public class OrderServiceImpl implements OrderService {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().cancelOrder(id)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		} catch (UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build();
@@ -92,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().orderDelivered(id)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		} catch (UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build();
@@ -105,7 +115,18 @@ public class OrderServiceImpl implements OrderService {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderStatus(id)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+			
+		}
+	}
+
+	@Override
+	public Response ordersByPartnerInfoByStatus(String id, String status) {
+		try {
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrdersByPartnerInfoByStatus(id, status)).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		}
 	}

@@ -10,6 +10,7 @@ import javax.persistence.Transient;
 
 import entity.book.Book;
 import entity.customer.CustomerInfo;
+import entity.partner.PartnerInfo;
 
 @Entity
 @Table(name = "ORDER_BOOK")
@@ -17,15 +18,27 @@ public class Order_Book {
 	
 	@Id
 	@Column(name = "orderBookID", unique = true, nullable = false)
-	private String id;
+	private String orderBookID;
 	
 	@ManyToOne
     @JoinColumn(name="bookID", nullable=true)
     private Book book;
 	
+	@ManyToOne
+    @JoinColumn(name="partnerInfoID", nullable=true)
+    private PartnerInfo partnerInfo;
+	
 	@Column(name="qty")
 	private int qty;
 	
+	public PartnerInfo getPartnerInfo() {
+		return partnerInfo;
+	}
+
+	public void setPartnerInfo(PartnerInfo partnerInfo) {
+		this.partnerInfo = partnerInfo;
+	}
+
 	@Column(name="total")
 	private double total;
 	
@@ -47,12 +60,13 @@ public class Order_Book {
 		this.order = order;
 	}
 
-	public String getId() {
-		return id;
+
+	public String getOrderBookID() {
+		return orderBookID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setOrderBookID(String orderBookID) {
+		this.orderBookID = orderBookID;
 	}
 
 	public Book getBook() {

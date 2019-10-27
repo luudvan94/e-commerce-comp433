@@ -20,13 +20,13 @@ public class PaymentServiceImpl implements PaymentService {
 			return Response.status(Response.Status.OK).entity(new PaymentServiceActivity().get(id)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		}
 	}
 
 	@Override
-	public Response createNewBook(PaymentRequest request) {
+	public Response createNewPayment(PaymentRequest request) {
 		return Response.status(Response.Status.OK).entity(new PaymentServiceActivity().createNewPayment(request)).build();
 	}
 

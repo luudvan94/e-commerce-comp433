@@ -26,7 +26,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 			return Response.status(Response.Status.OK).entity(new BookReviewServiceActivity().createNewBookReview(request)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
 		}
 	}
@@ -39,7 +39,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 		} catch(UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
 
@@ -51,7 +51,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
 		}
 	}
 	
@@ -64,7 +64,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 		} catch(UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
 
@@ -74,7 +74,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 		try {
 			return Response.status(Response.Status.OK).entity(new BookReviewServiceActivity().getReviewsByBookID(id)).build();
 		} catch (NotExistException e) {
-			return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
 	}
 

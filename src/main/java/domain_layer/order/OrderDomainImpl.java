@@ -11,11 +11,13 @@ import dal.order.OrderRepository;
 import dal.order.OrderRepositoryImpl;
 import dal.order.Order_BookRepository;
 import dal.order.Order_BookRepositoryImpl;
+import dal.partner.PartnerInfoRepositoryImpl;
 import dal.payment.PaymentRepositoryImpl;
 import entity.book.Book;
 import entity.customer.CustomerInfo;
 import entity.order.Order1;
 import entity.order.Order_Book;
+import entity.partner.PartnerInfo;
 import entity.payment.Payment;
 import exception.NotExistException;
 import exception.UnAuthorizedException;
@@ -138,13 +140,15 @@ public class OrderDomainImpl implements OrderDomain {
 	@Override
 	public Order_Book addOrderBook(String bookID, int quantity, double total, Order1 order) throws NotExistException {
 		Book book = new BookRepositoryImpl().get(bookID);
+		PartnerInfo partnerInfo = book.getPartnerInfo();
 		
 		Order_Book orderBook = new Order_Book();
 		orderBook.setBook(book);
 		orderBook.setQty(quantity);
 		orderBook.setTotal(total);
 		orderBook.setOrder(order);
-		orderBook.setId(ID.generateID("OB"));
+		orderBook.setPartnerInfo(partnerInfo);
+		orderBook.setOrderBookID(ID.generateID("OB"));
 		
 		order_bookRepository.create(orderBook);
 		return orderBook;
@@ -159,6 +163,28 @@ public class OrderDomainImpl implements OrderDomain {
 		orderRepository.update(order);
 		
 		return order;
+	}
+
+	@Override
+	public List<Order1> getOrderByCustomerInfo(String id) throws NotExistException {
+		List<Order1> orders = orderRepository.ordersByCustomerID(id);
+		
+		if (orders.size() == 0) {
+			throw new NotExistException("No order connects with provided customer info id");
+		}
+		
+		return orders;
+	}
+
+	@Override
+	public List<Order_Book> getOrderByPartnerInfo(String id) throws NotExistException {
+		List<Order_Book> orderBooks = order_bookRepository.byPartnerInfoId(id);
+		
+		if (orderBooks.size() == 0) {
+			throw new NotExistException("No order connect with partner info id");
+		}
+		
+		return orderBooks;
 	}
 
 }

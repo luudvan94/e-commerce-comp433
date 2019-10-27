@@ -94,11 +94,12 @@ public class RepresentationConverter {
 		return representation;
 	}
 	
-	public static OrderBookRepresentation toOrderBookRepresentaiton(Book book, int quantity, double total) {
+	public static OrderBookRepresentation toOrderBookRepresentaiton(Book book, int quantity, double total, String status) {
 		OrderBookRepresentation representation = factory.createOrderBookRepresentation();
 		representation.setBookRepresentation(RepresentationConverter.toBookRepresentation(book.getBookID(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPrice(), book.getQuantity(), book.getPartnerInfo()));
 		representation.setQuantity(quantity);
 		representation.setTotal(total);
+		representation.setStatus(status);
 		
 		return representation;
 	}
@@ -120,7 +121,7 @@ public class RepresentationConverter {
 		
 		List<Order_Book> orderBooks = order.getProducts();
 		for(Order_Book orderBook: orderBooks) {
-			representation.getOrderBookRepresentation().add(RepresentationConverter.toOrderBookRepresentaiton(orderBook.getBook(), orderBook.getQty(), orderBook.getTotal()));
+			representation.getOrderBookRepresentation().add(RepresentationConverter.toOrderBookRepresentaiton(orderBook.getBook(), orderBook.getQty(), orderBook.getTotal(), null));
 		}
 		
 		return representation;

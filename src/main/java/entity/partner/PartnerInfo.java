@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import entity.book.Book;
 import entity.book_review.BookReview;
+import entity.order.Order_Book;
 
 
 @Entity
@@ -31,6 +32,17 @@ public class PartnerInfo {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="partnerInfo")
 	private List<Book> books;
 	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="partnerInfo")
+	private List<Order_Book> orderBooks;
+	
+	public List<Order_Book> getOrderBooks() {
+		return orderBooks;
+	}
+
+	public void setOrderBooks(List<Order_Book> orderBooks) {
+		this.orderBooks = orderBooks;
+	}
+
 	public List<Book> getBooks() {
 		return books;
 	}

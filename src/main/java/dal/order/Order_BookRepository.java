@@ -9,4 +9,5 @@ public interface Order_BookRepository extends Repository<Order_Book, String> {
 
 	List<Order_Book> byOrderID(String id);
 	List<Order_Book> byBookID(String id);
+	List<Order_Book> byPartnerInfoId(String id);
 }

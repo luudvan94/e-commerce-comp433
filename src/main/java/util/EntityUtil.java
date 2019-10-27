@@ -114,8 +114,9 @@ public class EntityUtil {
 	
 	public static Order_Book order_bookSample() {
 		Order_Book order_book = new Order_Book();
-		order_book.setId(ID.generateID("OB"));
+		order_book.setOrderBookID(ID.generateID("OB"));
 		order_book.setBook(EntityUtil.bookSample());
+		order_book.setPartnerInfo(EntityUtil.partnerInfoSample());
 		order_book.setOrder(EntityUtil.orderSample());
 		order_book.setQty(3);
 		order_book.setTotal(15.0);

@@ -15,7 +15,7 @@ public class Order_BookRepositoryImpl extends AbstractRepository<Order_Book, Str
 	
 	@Override
 	public void delete(Order_Book t) {
-		Order_Book persistanceOrder_Book = get(t.getId());
+		Order_Book persistanceOrder_Book = get(t.getOrderBookID());
 		getSession().delete(persistanceOrder_Book);
 	}
 
@@ -62,6 +62,17 @@ public class Order_BookRepositoryImpl extends AbstractRepository<Order_Book, Str
 	public List<Order_Book> byBookID(String id) {
 		Criteria crit = getSession().createCriteria(Order_Book.class);
 		crit.add(Restrictions.eq("book.bookID",id));
+		List<Order_Book> result = new ArrayList();
+		
+		result = crit.list();
+		
+		return result;
+	}
+
+	@Override
+	public List<Order_Book> byPartnerInfoId(String id) {
+		Criteria crit = getSession().createCriteria(Order_Book.class);
+		crit.add(Restrictions.eq("partnerInfo.partnerInfoID",id));
 		List<Order_Book> result = new ArrayList();
 		
 		result = crit.list();

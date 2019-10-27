@@ -35,7 +35,7 @@ public class BookServiceImpl implements BookService {
 			return Response.status(Response.Status.OK).entity(bo).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.status(Response.Status.BAD_REQUEST).build();
 			
 		}
 	}
@@ -47,7 +47,7 @@ public class BookServiceImpl implements BookService {
 			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getBooksByTitle(title)).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.status(Response.Status.BAD_REQUEST).build();
 			
 		}
 	}
@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
 			return Response.status(Response.Status.OK).entity(bo).build();
 			
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.status(Response.Status.BAD_REQUEST).build();
 			
 		}
 	}
@@ -73,7 +73,7 @@ public class BookServiceImpl implements BookService {
 		} catch(UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
 	@Override
@@ -84,7 +84,7 @@ public class BookServiceImpl implements BookService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).build(); 
 		}
 	}
 	
@@ -93,7 +93,7 @@ public class BookServiceImpl implements BookService {
 		try {
 			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getAll()).build();
 		} catch (NotExistException e) {
-			return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 	}
 

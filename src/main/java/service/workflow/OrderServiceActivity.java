@@ -2,6 +2,7 @@ package service.workflow;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import domain_layer.order.OrderDomain;
 import domain_layer.order.OrderDomainImpl;
@@ -9,6 +10,7 @@ import entity.order.Order1;
 import entity.order.Order_Book;
 import exception.NotExistException;
 import exception.UnAuthorizedException;
+import representation.OrderBookRepresentation;
 import representation.OrderRepresentation;
 import representation.OrderRequest;
 import representation.OrderStatus;
@@ -60,6 +62,36 @@ public class OrderServiceActivity {
 		Order1 order = orderDomain.getOrder(id);
 		
 		return RepresentationConverter.toOrderStatus(order);
+	}
+	
+	public List<OrderRepresentation> getOrderByCustomerInfo(String id) throws NotExistException {
+		List<Order1> orders = orderDomain.getOrderByCustomerInfo(id);
+		
+		return orders.stream().map(order -> RepresentationConverter.toOrderRepresentation(order)).collect(Collectors.toList());
+	}
+	
+	public List<OrderBookRepresentation> getOrderByPartnerInfo(String id) throws NotExistException {
+		List<Order_Book> orders = orderDomain.getOrderByPartnerInfo(id);
+		
+		return orders.stream().map(order -> RepresentationConverter.toOrderBookRepresentaiton(order.getBook(), order.getQty(), order.getTotal(), order.getOrder().getStatus())).collect(Collectors.toList());
+	}
+	
+	public List<OrderBookRepresentation> getOrdersByPartnerInfoByStatus(String id, String status) throws NotExistException {
+		
+		if (!status.equalsIgnoreCase("pending") && !status.equalsIgnoreCase("shipping") && !status.equalsIgnoreCase("cancelled") && !status.equalsIgnoreCase("delivered")) {
+			throw new NotExistException("Not supported status");
+		}
+		
+		List<Order_Book> orders = orderDomain.getOrderByPartnerInfo(id);
+		
+		orders = orders.stream().filter(order -> order.getOrder().getStatus().equalsIgnoreCase(status)).collect(Collectors.toList());
+		
+		if(orders.size() == 0) {
+			throw new NotExistException("No order connect to partner info id by status");
+		}
+		
+
+		return orders.stream().map(order -> RepresentationConverter.toOrderBookRepresentaiton(order.getBook(), order.getQty(), order.getTotal(), order.getOrder().getStatus())).collect(Collectors.toList());
 	}
 
 }

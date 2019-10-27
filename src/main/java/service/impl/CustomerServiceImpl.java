@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 		} catch(AlreadyExistedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
 
@@ -53,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
 		}
 	}
 
@@ -64,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
 		}
 	}
 
@@ -76,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
 		} catch(UnAuthorizedException ex) {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.NOT_FOUND).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
 
