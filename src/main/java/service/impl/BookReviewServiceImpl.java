@@ -17,7 +17,7 @@ import service.workflow.BookReviewServiceActivity;
 import service.workflow.BookServiceActivity;
 import service.workflow.CustomerServiceActivity;
 
-@Path("/reviews")
+@Path("/v1/reviews")
 public class BookReviewServiceImpl implements BookReviewService {
 
 	@Override
@@ -43,17 +43,6 @@ public class BookReviewServiceImpl implements BookReviewService {
 		}
 	}
 
-	@Override
-	public Response reviewsByCustomerID(String id) {
-		System.out.println("customer");
-		try {
-			List<BookReviewRepresentation> representation = new BookReviewServiceActivity().getBookReviews(id);
-			return Response.status(Response.Status.OK).entity(representation).build();
-			
-		} catch(NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
-		}
-	}
 	
 	@Override
 	public Response deleteReview(BookReviewDeleteRequest request) {
@@ -65,16 +54,6 @@ public class BookReviewServiceImpl implements BookReviewService {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
-		}
-	}
-
-	@Override
-	public Response reviewsByBookID(String id) {
-		System.out.println("book");
-		try {
-			return Response.status(Response.Status.OK).entity(new BookReviewServiceActivity().getReviewsByBookID(id)).build();
-		} catch (NotExistException e) {
-			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
 	}
 

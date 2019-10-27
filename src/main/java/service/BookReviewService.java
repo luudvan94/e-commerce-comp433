@@ -27,16 +27,6 @@ public interface BookReviewService {
 	@Produces({"application/xml" , "application/json"})
 	public Response updateBookReview(BookReviewUpdateRequest request);
 	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/customer/{id}")
-	public Response reviewsByCustomerID(@PathParam("id") String id);
-	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/book/{id}")
-	public Response reviewsByBookID(@PathParam("id") String id);
-	
 	@DELETE
 	@Produces({"application/xml" , "application/json"})
 	@Path("/delete")

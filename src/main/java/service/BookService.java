@@ -29,11 +29,6 @@ public interface BookService {
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("/partner/{id}")
-	public Response booksByPartnerID(@PathParam("id") String id);
-	
-	@GET
-	@Produces({"application/xml" , "application/json"})
 	@Path("/title/{title}")
 	public Response searchByTitle(@PathParam("title") String title);
 	
@@ -50,4 +45,9 @@ public interface BookService {
 	@GET
 	@Produces({"application/xml" , "application/json"})
 	public Response getAll();
+	
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Path("/{bookID}/reviews")
+	public Response reviewsByBookID(@PathParam("bookID") String id);
 }

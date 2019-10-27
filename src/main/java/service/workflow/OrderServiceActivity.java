@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import domain_layer.customer.CustomerDomainImpl;
 import domain_layer.order.OrderDomain;
 import domain_layer.order.OrderDomainImpl;
+import domain_layer.partner.PartnerDomainImpl;
+import entity.customer.CustomerInfo;
 import entity.order.Order1;
 import entity.order.Order_Book;
+import entity.partner.PartnerInfo;
 import exception.NotExistException;
 import exception.UnAuthorizedException;
 import representation.OrderBookRepresentation;
@@ -65,13 +69,18 @@ public class OrderServiceActivity {
 	}
 	
 	public List<OrderRepresentation> getOrderByCustomerInfo(String id) throws NotExistException {
-		List<Order1> orders = orderDomain.getOrderByCustomerInfo(id);
+		CustomerInfo customerInfo = new CustomerDomainImpl().getCustomerInfo(id);
+		
+		List<Order1> orders = orderDomain.getOrderByCustomerInfo(customerInfo.getCustomerInfoID());
 		
 		return orders.stream().map(order -> RepresentationConverter.toOrderRepresentation(order)).collect(Collectors.toList());
 	}
 	
-	public List<OrderBookRepresentation> getOrderByPartnerInfo(String id) throws NotExistException {
-		List<Order_Book> orders = orderDomain.getOrderByPartnerInfo(id);
+	public List<OrderBookRepresentation> getOrderByPartnerID(String id) throws NotExistException {
+		
+		PartnerInfo partnerInfo = new PartnerDomainImpl().getPartnerInfo(id);
+		
+		List<Order_Book> orders = orderDomain.getOrderByPartnerInfo(partnerInfo.getPartnerInfoID());
 		
 		return orders.stream().map(order -> RepresentationConverter.toOrderBookRepresentaiton(order.getBook(), order.getQty(), order.getTotal(), order.getOrder().getStatus())).collect(Collectors.toList());
 	}
@@ -82,7 +91,9 @@ public class OrderServiceActivity {
 			throw new NotExistException("Not supported status");
 		}
 		
-		List<Order_Book> orders = orderDomain.getOrderByPartnerInfo(id);
+		PartnerInfo partnerInfo = new PartnerDomainImpl().getPartnerInfo(id);
+		
+		List<Order_Book> orders = orderDomain.getOrderByPartnerInfo(partnerInfo.getPartnerInfoID());
 		
 		orders = orders.stream().filter(order -> order.getOrder().getStatus().equalsIgnoreCase(status)).collect(Collectors.toList());
 		

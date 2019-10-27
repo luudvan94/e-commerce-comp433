@@ -40,5 +40,14 @@ public interface CustomerService {
 	@Path("/customerInfo")
 	public Response updateCustomerInfo(CustomerInfoRequest request);
 	
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Path("/{customerID}/reviews")
+	public Response reviewsByCustomerID(@PathParam("customerID") String id);
+	
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Path("/{customerID}/orders")
+	public Response ordersByCustomer(@PathParam("customerID") String id);
 	
 }

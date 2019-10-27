@@ -16,10 +16,12 @@ import representation.CustomerRequest;
 import representation.PartnerInfoRepresentation;
 import representation.PartnerRepresentation;
 import service.CustomerService;
+import service.workflow.BookReviewServiceActivity;
 import service.workflow.CustomerServiceActivity;
+import service.workflow.OrderServiceActivity;
 import service.workflow.PartnerServiceActivity;
 
-@Path("/customers")
+@Path("/v1/customers")
 public class CustomerServiceImpl implements CustomerService {
 
 	@Override
@@ -77,6 +79,28 @@ public class CustomerServiceImpl implements CustomerService {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+		}
+	}
+
+	@Override
+	public Response reviewsByCustomerID(String id) {
+		try {
+			List<BookReviewRepresentation> representation = new BookReviewServiceActivity().getBookReviews(id);
+			return Response.status(Response.Status.OK).entity(representation).build();
+			
+		} catch(NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
+		}
+	}
+
+	@Override
+	public Response ordersByCustomer(String id) {
+		try {
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderByCustomerInfo(id)).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+			
 		}
 	}
 

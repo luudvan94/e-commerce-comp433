@@ -43,22 +43,6 @@ public interface OrderService {
 	@Path("/{orderID}/status")
 	public Response getOrderStatus(@PathParam("orderID") String id);
 	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/customer/{id}")
-	public Response ordersByCustomer(@PathParam("id") String id);
-	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/partner/{id}")
-	public Response ordersByPartnerInfo(@PathParam("id") String id);
-	
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Path("/partner/{id}/status/{status}")
-	public Response ordersByPartnerInfoByStatus(@PathParam("id") String id, @PathParam("status") String status);
-	
-	
 	@POST
 	@Produces({"application/xml" , "application/json"})
 	public Response createNewOrder(OrderRequest request);

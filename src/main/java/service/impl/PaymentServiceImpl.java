@@ -10,7 +10,7 @@ import service.PaymentService;
 import service.workflow.BookServiceActivity;
 import service.workflow.PaymentServiceActivity;
 
-@Path("/payments")
+@Path("/v1/payments")
 public class PaymentServiceImpl implements PaymentService {
 
 	@Override

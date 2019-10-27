@@ -22,10 +22,11 @@ import representation.BookDeleteRequest;
 import representation.BookRepresentation;
 import representation.BookRequest;
 import service.BookService;
+import service.workflow.BookReviewServiceActivity;
 import service.workflow.BookServiceActivity;
 import service.workflow.PartnerServiceActivity;
 
-@Path("/books")
+@Path("/v1/books")
 public class BookServiceImpl implements BookService {
 
 	@Override
@@ -76,17 +77,6 @@ public class BookServiceImpl implements BookService {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
-	@Override
-	public Response booksByPartnerID(String id) {
-		try {
-//			System.out.println(id);
-			List<BookRepresentation> representation = new BookServiceActivity().getPartnerBooks(id);
-			return Response.status(Response.Status.OK).entity(representation).build();
-			
-		} catch(NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).build(); 
-		}
-	}
 	
 	@Override
 	public Response getAll() {
@@ -94,6 +84,16 @@ public class BookServiceImpl implements BookService {
 			return Response.status(Response.Status.OK).entity(new BookServiceActivity().getAll()).build();
 		} catch (NotExistException e) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+	}
+
+
+	@Override
+	public Response reviewsByBookID(String id) {
+		try {
+			return Response.status(Response.Status.OK).entity(new BookReviewServiceActivity().getReviewsByBookID(id)).build();
+		} catch (NotExistException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
 	}
 

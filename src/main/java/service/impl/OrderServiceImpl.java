@@ -11,35 +11,13 @@ import service.OrderService;
 import service.workflow.OrderServiceActivity;
 import service.workflow.PaymentServiceActivity;
 
-@Path("/orders")
+@Path("/v1/orders")
 public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Response get(String id) {
 		try {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().get(id)).build();
-			
-		} catch (NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
-			
-		}
-	}
-
-	@Override
-	public Response ordersByCustomer(String id) {
-		try {
-			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderByCustomerInfo(id)).build();
-			
-		} catch (NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
-			
-		}
-	}
-
-	@Override
-	public Response ordersByPartnerInfo(String id) {
-		try {
-			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderByPartnerInfo(id)).build();
 			
 		} catch (NotExistException ex) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
@@ -113,17 +91,6 @@ public class OrderServiceImpl implements OrderService {
 	public Response getOrderStatus(String id) {
 		try {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderStatus(id)).build();
-			
-		} catch (NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
-			
-		}
-	}
-
-	@Override
-	public Response ordersByPartnerInfoByStatus(String id, String status) {
-		try {
-			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrdersByPartnerInfoByStatus(id, status)).build();
 			
 		} catch (NotExistException ex) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();

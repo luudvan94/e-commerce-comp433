@@ -14,10 +14,12 @@ import representation.PartnerInfoRequest;
 import representation.PartnerRepresentation;
 import representation.PartnerRequest;
 import service.PartnerService;
+import service.workflow.BookServiceActivity;
 import service.workflow.CustomerServiceActivity;
+import service.workflow.OrderServiceActivity;
 import service.workflow.PartnerServiceActivity;
 
-@Path("/partners")
+@Path("/v1/partners")
 public class PartnerServiceImpl implements PartnerService {
 
 	@Override
@@ -27,7 +29,7 @@ public class PartnerServiceImpl implements PartnerService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(AlreadyExistedException ex) {
-			return Response.status(Response.Status.CONFLICT).build(); 
+			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		}
 	}
 
@@ -41,7 +43,7 @@ public class PartnerServiceImpl implements PartnerService {
 		} catch(AlreadyExistedException ex) {
 			return Response.status(Response.Status.CONFLICT).build(); 
 		} catch (NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).build();
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 		}
 	}
 
@@ -52,7 +54,7 @@ public class PartnerServiceImpl implements PartnerService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
 		}
 	}
 
@@ -63,7 +65,7 @@ public class PartnerServiceImpl implements PartnerService {
 			return Response.status(Response.Status.OK).entity(representation).build();
 			
 		} catch(NotExistException ex) {
-			return Response.status(Response.Status.BAD_REQUEST).build(); 
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
 		}
 	}
 
@@ -76,6 +78,39 @@ public class PartnerServiceImpl implements PartnerService {
 			return Response.status(Response.Status.CONFLICT).entity(ex.getMessage()).build(); 
 		} catch (NotExistException ex) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+		}
+	}
+
+	@Override
+	public Response booksByPartnerID(String id) {
+		try {
+			List<BookRepresentation> representation = new BookServiceActivity().getPartnerBooks(id);
+			return Response.status(Response.Status.OK).entity(representation).build();
+			
+		} catch(NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).build(); 
+		}
+	}
+
+	@Override
+	public Response ordersByPartnerInfo(String id) {
+		try {
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrderByPartnerID(id)).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+			
+		}
+	}
+
+	@Override
+	public Response ordersByPartnerInfoByStatus(String id, String status) {
+		try {
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrdersByPartnerInfoByStatus(id, status)).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+			
 		}
 	}
 
