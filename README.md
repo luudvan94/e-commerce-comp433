@@ -63,3 +63,9 @@ This phrase will implement services layer to expose the API using the functional
 ##### `util` package: Transforming the Database Object to Representation Object
 ##### `workdflow` package: classes that work with Domain Layer to extract data and return the representation objects to service implementation.
 ##### `service` interface: define paths as well as parameters for each API.
+### Phrase 3: Adding HATEOS
+This phrase will focus on adding a addition `links` on the response of any object. This `links` will act as the guidance for client to navigate through the applications.
+Each `links` will contain of 3 main components:
+- `media-type`: determine the type of data returned, either JSON or XML
+- `rel`: the relationship with current route
+- `url`: the up-to-date url to the desire route from current route
