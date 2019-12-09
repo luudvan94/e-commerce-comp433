@@ -106,9 +106,9 @@ public class EntityUtil {
 //		order.setPartnerID("P4567");
 		order.setDate_updated("1233445545");
 		order.setShippingAddress("This is new Address");
+		order.setBillingAddress("This is Billing Address");
 		order.setStatus("pending");
 		order.setTotal(100.25);
-		order.setPayment(EntityUtil.cardProfileSample());
 		return order;
 	}
 	

@@ -104,4 +104,15 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 	}
 
+	@Override
+	public Response deleteCustomer(String id) {
+		try {
+			new CustomerServiceActivity().deleteCustomer(id);
+			return Response.status(Response.Status.OK).build();
+			
+		} catch(NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
+		}
+	}
+
 }

@@ -23,12 +23,14 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{representation}AbstractRepresentation">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="customerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="customerID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="shippingAddress" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="billingAddress" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="total" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -38,17 +40,19 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "customerID",
-    "username"
+    "shippingAddress",
+    "billingAddress",
+    "total"
 })
-@XmlRootElement(name = "CustomerRepresentation")
-public class CustomerRepresentation
-    extends AbstractRepresentation
-{
+@XmlRootElement(name = "OrderInfoRequest")
+public class OrderInfoRequest {
 
-    @XmlElement(required = true)
     protected String customerID;
     @XmlElement(required = true)
-    protected String username;
+    protected String shippingAddress;
+    @XmlElement(required = true)
+    protected String billingAddress;
+    protected double total;
 
     /**
      * Gets the value of the customerID property.
@@ -75,27 +79,67 @@ public class CustomerRepresentation
     }
 
     /**
-     * Gets the value of the username property.
+     * Gets the value of the shippingAddress property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getUsername() {
-        return username;
+    public String getShippingAddress() {
+        return shippingAddress;
     }
 
     /**
-     * Sets the value of the username property.
+     * Sets the value of the shippingAddress property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setUsername(String value) {
-        this.username = value;
+    public void setShippingAddress(String value) {
+        this.shippingAddress = value;
+    }
+
+    /**
+     * Gets the value of the billingAddress property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    /**
+     * Sets the value of the billingAddress property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBillingAddress(String value) {
+        this.billingAddress = value;
+    }
+
+    /**
+     * Gets the value of the total property.
+     * 
+     */
+    public double getTotal() {
+        return total;
+    }
+
+    /**
+     * Sets the value of the total property.
+     * 
+     */
+    public void setTotal(double value) {
+        this.total = value;
     }
 
 }

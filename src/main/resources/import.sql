@@ -26,8 +26,8 @@ INSERT INTO SHIPPING_ADDRESS(shippingAddressID, customerID, street, city, zipcod
 INSERT INTO PAYMENT(paymentID, expires, date_added, amount, card_number) VALUES('CP123', '06/23', '345345346', 200, '13123123123');
 INSERT INTO PAYMENT(paymentID, expires, date_added, amount, card_number) VALUES('CP124', '06/23', '565676353', 250, '12312312312');
 
-INSERT INTO ORDER1(orderID, customerInfoID, date_updated, status, shippingAddress, paymentID, total) VALUES('O123', 'CI123', '234234234', 'pending', '7800 Nashville Ave, Burbank, IL 60459', 'CP123', 123.00);
-INSERT INTO ORDER1(orderID, customerInfoID, date_updated, status, shippingAddress, paymentID, total) VALUES('O124', 'CI124', '123134234', 'shipping', '7926 Lorel Ave, Burbank, IL 60459', 'CP124', 55.00);
+INSERT INTO ORDER1(orderID, customerInfoID, date_updated, status, shippingAddress, billingAddress, total) VALUES('O123', 'CI123', '234234234', 'pending', '7800 Nashville Ave, Burbank, IL 60459', '7800 Nashville Ave, Burbank, IL 60459', 123.00);
+INSERT INTO ORDER1(orderID, customerInfoID, date_updated, status, shippingAddress, billingAddress, total) VALUES('O124', 'CI124', '123134234', 'shipping', '7926 Lorel Ave, Burbank, IL 60459', '7800 Nashville Ave, Burbank, IL 60459', 55.00);
 
 INSERT INTO ORDER_BOOK(orderBookID, orderID, bookID, partnerInfoID, qty, total) VALUES('OB123', 'O123', 'B123', 'PI1234', '1', 50.0);
 INSERT INTO ORDER_BOOK(orderBookID, orderID, bookID, partnerInfoID, qty, total) VALUES('OB124', 'O123', 'B456', 'PI1234', '2', 50.0);

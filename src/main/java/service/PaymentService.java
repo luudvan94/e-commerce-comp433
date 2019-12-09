@@ -1,6 +1,7 @@
 package service;
 
 import javax.jws.WebService;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,6 +21,7 @@ public interface PaymentService {
 	public Response get(@PathParam("paymentID") String id);
 	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	public Response createNewPayment(PaymentRequest request);
 

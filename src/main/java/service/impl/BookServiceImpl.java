@@ -66,7 +66,7 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public Response deleteBook(BookDeleteRequest request) {
+	public Response deleteBook(String id, BookDeleteRequest request) {
 		try {
 			new BookServiceActivity().deleteBook(request.getPartnerID(), request.getBookID());
 			return Response.status(Response.Status.OK).build();

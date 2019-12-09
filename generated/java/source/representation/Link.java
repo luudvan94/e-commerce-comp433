@@ -23,12 +23,13 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{representation}AbstractRepresentation">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="customerID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="mediaType" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="rel" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -37,65 +38,90 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "customerID",
-    "username"
+    "mediaType",
+    "rel",
+    "url"
 })
-@XmlRootElement(name = "CustomerRepresentation")
-public class CustomerRepresentation
-    extends AbstractRepresentation
-{
+@XmlRootElement(name = "Link")
+public class Link {
 
     @XmlElement(required = true)
-    protected String customerID;
+    protected String mediaType;
     @XmlElement(required = true)
-    protected String username;
+    protected String rel;
+    @XmlElement(required = true)
+    protected String url;
 
     /**
-     * Gets the value of the customerID property.
+     * Gets the value of the mediaType property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCustomerID() {
-        return customerID;
+    public String getMediaType() {
+        return mediaType;
     }
 
     /**
-     * Sets the value of the customerID property.
+     * Sets the value of the mediaType property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCustomerID(String value) {
-        this.customerID = value;
+    public void setMediaType(String value) {
+        this.mediaType = value;
     }
 
     /**
-     * Gets the value of the username property.
+     * Gets the value of the rel property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getUsername() {
-        return username;
+    public String getRel() {
+        return rel;
     }
 
     /**
-     * Sets the value of the username property.
+     * Sets the value of the rel property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setUsername(String value) {
-        this.username = value;
+    public void setRel(String value) {
+        this.rel = value;
+    }
+
+    /**
+     * Gets the value of the url property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * Sets the value of the url property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUrl(String value) {
+        this.url = value;
     }
 
 }

@@ -1,6 +1,7 @@
 package service;
 
 import javax.jws.WebService;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,17 +16,21 @@ import representation.CustomerRequest;
 
 @WebService
 public interface CustomerService {
+	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	public Response createCustomer(CustomerRequest  request);
 	
 	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
-	@Path("/customerInfo")
+	@Path("/{customerID}")
 	public Response createCustomerInfo(CustomerInfoRequest  request);
 	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	@Path("/login")
 	public Response login(CustomerRequest request);
@@ -36,9 +41,15 @@ public interface CustomerService {
 	public Response getCustomerInfo(@PathParam("customerID") String id);
 	
 	@PUT
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
-	@Path("/customerInfo")
+	@Path("/{customerID}")
 	public Response updateCustomerInfo(CustomerInfoRequest request);
+	
+	@DELETE
+	@Produces({"application/xml" , "application/json"})
+	@Path("/{customerID}")
+	public Response deleteCustomer(@PathParam("customerID") String id);
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})

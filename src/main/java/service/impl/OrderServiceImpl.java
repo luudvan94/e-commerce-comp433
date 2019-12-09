@@ -6,6 +6,7 @@ import javax.ws.rs.core.Response;
 import exception.NotExistException;
 import exception.UnAuthorizedException;
 import representation.BookDeleteRequest;
+import representation.OrderInfoRequest;
 import representation.OrderRequest;
 import service.OrderService;
 import service.workflow.OrderServiceActivity;
@@ -27,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Response createNewOrder(OrderRequest request) {
+		System.out.println("create order");
 		try {
 			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().createNewOrder(request)).build();
 			
@@ -97,5 +99,18 @@ public class OrderServiceImpl implements OrderService {
 			
 		}
 	}
+
+	@Override
+	public Response fullfillOrder(OrderInfoRequest request, String id) {
+		System.out.println(id);
+		try {
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().fullfilOrder(request, id)).build();
+			
+		} catch (NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
+			
+		}
+	}
+
 
 }

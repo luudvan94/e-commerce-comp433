@@ -57,7 +57,8 @@ public class CustomerRepositoryImpl extends AbstractRepository<Customer, String>
 	public Customer customerByUsernamePassword(String username, String password) {
 		Criteria crit = getSession().createCriteria(Customer.class);
 		crit.add(Restrictions.eq("username", username));
-		crit.add(Restrictions.eq("password", Password.encrypt(password)));
+		crit.add(Restrictions.eq("password", password));
+//		crit.add(Restrictions.eq("password", Password.encrypt(password)));
 		List<Customer> result = crit.list();
 		
 		if (result.size() > 0) {

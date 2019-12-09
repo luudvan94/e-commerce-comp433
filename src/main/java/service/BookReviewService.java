@@ -1,6 +1,7 @@
 package service;
 
 import javax.jws.WebService;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,10 +21,12 @@ import representation.BookReviewUpdateRequest;
 public interface BookReviewService {
 
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	public Response createNewBookReview(BookReviewRequest request);
 	
 	@PUT
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	public Response updateBookReview(BookReviewUpdateRequest request);
 	

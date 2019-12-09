@@ -29,21 +29,17 @@ public class OrderDomainImpl implements OrderDomain {
 	private Order_BookRepository order_bookRepository = new Order_BookRepositoryImpl();
 
 	@Override
-	public Order1 addOrder(String customerID, String shippingAddress,
-			double total, String paymentID) throws NotExistException {
+	public Order1 updateOrder(String orderID, String customerID, String shippingAddress, String billingAddress,
+			double total) throws NotExistException {
+		Order1 order = this.getOrder(orderID);
 		CustomerInfo info = new CustomerInfoRepositoryImpl().customerInfoByCustomerID(customerID);
-		Payment payment = new PaymentRepositoryImpl().get(paymentID);
 		
-		Order1 order = new Order1();
 		order.setCustomerInfo(info);
-		order.setPayment(payment);
 		order.setShippingAddress(shippingAddress);
-		order.setDate_updated(Long.toString(new Date().getTime()));
+		order.setBillingAddress(billingAddress);
 		order.setTotal(total);
-		order.setStatus("pending");
-		order.setOrderID(ID.generateID("O"));
 		
-		orderRepository.create(order);
+		orderRepository.update(order);
 		
 		return order;
 	}
@@ -185,6 +181,18 @@ public class OrderDomainImpl implements OrderDomain {
 		}
 		
 		return orderBooks;
+	}
+
+	@Override
+	public Order1 newOrder() {
+		Order1 order = new Order1();
+		
+		order.setOrderID(ID.generateID("O"));
+		order.setStatus("pending");
+		order.setDate_updated(Long.toString(new Date().getTime()));
+		orderRepository.create(order);
+		
+		return order;
 	}
 
 }

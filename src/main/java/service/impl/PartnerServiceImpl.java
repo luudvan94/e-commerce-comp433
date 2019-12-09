@@ -104,13 +104,24 @@ public class PartnerServiceImpl implements PartnerService {
 	}
 
 	@Override
-	public Response ordersByPartnerInfoByStatus(String id, String status) {
+	public Response newOrder(String id) {
 		try {
-			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrdersByPartnerInfoByStatus(id, status)).build();
+			return Response.status(Response.Status.OK).entity(new OrderServiceActivity().getOrdersByPartnerInfoByStatus(id, "pending")).build();
 			
 		} catch (NotExistException ex) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
 			
+		}
+	}
+
+	@Override
+	public Response deleteCustomer(String id) {
+		try {
+			new PartnerServiceActivity().deletePartner(id);
+			return Response.status(Response.Status.OK).build();
+			
+		} catch(NotExistException ex) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build(); 
 		}
 	}
 

@@ -47,6 +47,9 @@ public class Order1 {
 	@Column(name="shippingAddress", nullable=true)
 	private String shippingAddress;
 	
+	@Column(name="billingAddress", nullable=true)
+	private String billingAddress;
+	
 //	@Transient
 //	private ShippingAddress address;
 //	
@@ -64,17 +67,25 @@ public class Order1 {
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="order")
 	private List<Order_Book> products;
+//	
+//	@OneToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="paymentID")
+//	private Payment payment;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="paymentID")
-	private Payment payment;
-	
-	public Payment getPayment() {
-		return payment;
+//	public Payment getPayment() {
+//		return payment;
+//	}
+//
+//	public void setPayment(Payment payment) {
+//		this.payment = payment;
+//	}
+
+	public String getBillingAddress() {
+		return billingAddress;
 	}
 
-	public void setPayment(Payment payment) {
-		this.payment = payment;
+	public void setBillingAddress(String billingAddress) {
+		this.billingAddress = billingAddress;
 	}
 
 	public List<Order_Book> getProducts() {

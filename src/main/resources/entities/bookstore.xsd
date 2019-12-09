@@ -2,27 +2,47 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="representation" xmlns:tns="representation"
 	elementFormDefault="qualified">
-	
-	<xsd:element name="OrderRequest">
+
+	<xsd:element name="Link">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="customerID" type="xsd:string" />
-				<xsd:element name="paymentID" type="xsd:string" />
-				<xsd:element name="shippingAddress" type="xsd:string" minOccurs="0" />
-				<xsd:element name="total" type="xsd:double" />
-				<xsd:element name="products" maxOccurs="unbounded">
-					<xsd:complexType>
-						<xsd:sequence>
-							<xsd:element name="bookID" type="xsd:string" />
-							<xsd:element name="quantity" type="xsd:int" />
-							<xsd:element name="total" type="xsd:double" />
-						</xsd:sequence>
-					</xsd:complexType>
-				</xsd:element>
+				<xsd:element name="mediaType" type="xsd:string" />
+				<xsd:element name="rel" type="xsd:string" />
+				<xsd:element name="url" type="xsd:string" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
+	<xsd:complexType name="AbstractRepresentation"
+		abstract="true">
+		<xsd:sequence>
+			<xsd:element ref="tns:Link" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="OrderInfoRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="customerID" type="xsd:string"
+					minOccurs="0" />
+				<xsd:element name="shippingAddress" type="xsd:string" />
+				<xsd:element name="billingAddress" type="xsd:string" />
+				<xsd:element name="total" type="xsd:double" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="OrderRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="bookID" type="xsd:string" />
+				<xsd:element name="qty" type="xsd:int" />
+				<xsd:element name="total" type="xsd:double" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
 	<xsd:element name="OrderStatus">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -31,7 +51,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="PaymentRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -41,19 +61,23 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="PaymentRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="paymentID" type="xsd:string" />
-				<xsd:element name="cardNumber" type="xsd:string" />
-				<xsd:element name="expires" type="xsd:string" />
-				<xsd:element name="amount" type="xsd:double" />
-				<xsd:element name="dateAdded" type="xsd:string" />
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="paymentID" type="xsd:string" />
+						<xsd:element name="cardNumber" type="xsd:string" />
+						<xsd:element name="expires" type="xsd:string" />
+						<xsd:element name="amount" type="xsd:double" />
+						<xsd:element name="dateAdded" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="PartnerRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -62,7 +86,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="CustomerRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -71,7 +95,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="CustomerInfoRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -81,7 +105,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="BookRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -94,7 +118,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="BookDeleteRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -103,7 +127,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="BookReviewRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -113,7 +137,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="BookReviewUpdateRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -123,7 +147,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="BookReviewDeleteRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -132,7 +156,7 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="PartnerInfoRequest">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -142,45 +166,61 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="PartnerRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="partnerID" type="xsd:string" />
-				<xsd:element name="username" type="xsd:string" />
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="partnerID" type="xsd:string" />
+						<xsd:element name="username" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="CustomerRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="customerID" type="xsd:string" />
-				<xsd:element name="username" type="xsd:string" />
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="customerID" type="xsd:string" />
+						<xsd:element name="username" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="CustomerInfoRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="customerId" type="xsd:string" />
-				<xsd:element name="name" type="xsd:string" />
-				<xsd:element name="address" type="xsd:string" />
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="customerId" type="xsd:string" />
+						<xsd:element name="name" type="xsd:string" />
+						<xsd:element name="address" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="PartnerInfoRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="partnerId" type="xsd:string" />
-				<xsd:element name="name" type="xsd:string" />
-				<xsd:element name="address" type="xsd:string" />
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="partnerId" type="xsd:string" />
+						<xsd:element name="name" type="xsd:string" />
+						<xsd:element name="address" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="ShippingAddressRepresentation">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -191,56 +231,83 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	
+
 	<xsd:element name="BookRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="bookId" type="xsd:string" />
-				<xsd:element name="title" type="xsd:string" />
-				<xsd:element name="author" type="xsd:string" />
-				<xsd:element name="price" type="xsd:double" />
-				<xsd:element name="description" type="xsd:string" />
-				<xsd:element name="quantity" type="xsd:int" />
-				<xsd:element ref="tns:PartnerInfoRepresentation" minOccurs="0" /> 
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="bookId" type="xsd:string" />
+						<xsd:element name="title" type="xsd:string" />
+						<xsd:element name="author" type="xsd:string" />
+						<xsd:element name="price" type="xsd:double" />
+						<xsd:element name="description" type="xsd:string" />
+						<xsd:element name="quantity" type="xsd:int" />
+						<xsd:element ref="tns:PartnerInfoRepresentation"
+							minOccurs="0" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="BookReviewRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="bookReviewId" type="xsd:string"/>
-				<xsd:element name="content" type="xsd:string" />
-				<xsd:element name="dateCreated" type="xsd:string" />
-				<xsd:element ref="tns:CustomerInfoRepresentation" minOccurs="0"/>
-				<xsd:element ref="tns:BookRepresentation" minOccurs="0" /> 
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="bookReviewId" type="xsd:string" />
+						<xsd:element name="content" type="xsd:string" />
+						<xsd:element name="dateCreated" type="xsd:string" />
+						<xsd:element ref="tns:CustomerInfoRepresentation"
+							minOccurs="0" />
+						<xsd:element ref="tns:BookRepresentation"
+							minOccurs="0" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="OrderRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element name="orderId" type="xsd:string" />
-				<xsd:element name="status" type="xsd:string" />
-				<xsd:element name="dateUpdated" type="xsd:string" />
-				<xsd:element name="total" type="xsd:double" />
-				<xsd:element name="shippingAddress" type="xsd:string" />
-				<xsd:element ref="tns:CustomerInfoRepresentation" />
-				<xsd:element ref="tns:PaymentRepresentation" />
-				<xsd:element ref="tns:OrderBookRepresentation" minOccurs="0" maxOccurs="unbounded" /> 
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element name="orderId" type="xsd:string" />
+						<xsd:element name="status" type="xsd:string"
+							minOccurs="0" />
+						<xsd:element name="dateUpdated" type="xsd:string"
+							minOccurs="0" />
+						<xsd:element name="total" type="xsd:double"
+							minOccurs="0" />
+						<xsd:element name="shippingAddress" type="xsd:string"
+							minOccurs="0" />
+						<xsd:element name="billingAddress" type="xsd:string"
+							minOccurs="0" />
+						<xsd:element ref="tns:CustomerInfoRepresentation"
+							minOccurs="0" />
+						<xsd:element ref="tns:OrderBookRepresentation"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="OrderBookRepresentation">
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element ref="tns:BookRepresentation" />
-				<xsd:element name="quantity" type="xsd:int" />
-				<xsd:element name="total" type="xsd:double" />
-				<xsd:element name="status" type="xsd:string" minOccurs="0" />
-			</xsd:sequence>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractRepresentation">
+					<xsd:sequence>
+						<xsd:element ref="tns:BookRepresentation" />
+						<xsd:element name="quantity" type="xsd:int" />
+						<xsd:element name="total" type="xsd:double" />
+						<xsd:element name="status" type="xsd:string"
+							minOccurs="0" />
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
 

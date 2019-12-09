@@ -9,8 +9,10 @@ import exception.UnAuthorizedException;
 
 public interface OrderDomain {
 	
-	Order1 addOrder(String customerID, String shippingAddress, double total, String paymentID) throws NotExistException;
+	Order1 updateOrder(String orderID, String customerID, String shippingAddress, String billingAddress,
+			double total) throws NotExistException;
 	
+	Order1 newOrder();
 	Order_Book addOrderBook(String bookID, int quantity, double total, Order1 order) throws NotExistException;
 	
 //	List<String> addOrderDetail(List<Order_Book> orderBooks);

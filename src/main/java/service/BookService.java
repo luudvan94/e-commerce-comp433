@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import javax.jws.WebService;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,13 +35,14 @@ public interface BookService {
 	
 	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	public Response createNewBook(BookRequest request);
 	
 	@DELETE
 	@Produces({"application/xml" , "application/json"})
-	@Path("/delete")
-	public Response deleteBook(BookDeleteRequest request);
+	@Path("/{bookID}")
+	public Response deleteBook(@PathParam("bookID") String bookID, BookDeleteRequest request);
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})

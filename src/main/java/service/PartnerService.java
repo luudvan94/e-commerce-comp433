@@ -1,6 +1,7 @@
 package service;
 
 import javax.jws.WebService;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -19,16 +20,19 @@ import representation.PartnerRequest;
 public interface PartnerService {
 	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	public Response createPartner(PartnerRequest  request);
 	
 	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
-	@Path("/partnerInfo")
+	@Path("/{partnerID}")
 	public Response createPartnerInfo(PartnerInfoRequest  request);
 	
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	@Path("/login")
 	public Response login(PartnerRequest request);
@@ -39,8 +43,9 @@ public interface PartnerService {
 	public Response getPartnerInfo(@PathParam("partnerID") String id);
 	
 	@PUT
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
-	@Path("/partnerInfo")
+	@Path("/{partnerID}")
 	public Response updatePartnerInfo(PartnerInfoRequest request);
 	
 	@GET
@@ -55,7 +60,12 @@ public interface PartnerService {
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{partnerID}/orders/status/{status}")
-	public Response ordersByPartnerInfoByStatus(@PathParam("partnerID") String id, @PathParam("status") String status);
+	@Path("/{partnerID}/orders/status/pending")
+	public Response newOrder(@PathParam("partnerID") String id);
+	
+	@DELETE
+	@Produces({"application/xml" , "application/json"})
+	@Path("/{partnerID}")
+	public Response deleteCustomer(@PathParam("partnerID") String id);
 }
 

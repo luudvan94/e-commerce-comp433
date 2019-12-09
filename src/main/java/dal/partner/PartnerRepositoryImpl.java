@@ -57,7 +57,8 @@ public class PartnerRepositoryImpl extends AbstractRepository<Partner, String> i
 	public Partner partnerWithUsernamePassword(String username, String password) {
 		Criteria crit = getSession().createCriteria(Partner.class);
 		crit.add(Restrictions.eq("username", username));
-		crit.add(Restrictions.eq("password", Password.encrypt(password)));
+		crit.add(Restrictions.eq("password", password));
+//		crit.add(Restrictions.eq("password", Password.encrypt(password)));
 		List<Partner> result = crit.list();
 		
 		if (result.size() > 0) {
